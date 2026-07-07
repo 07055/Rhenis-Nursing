@@ -1,0 +1,510 @@
+// SkewLine\castoline\src\app\web\(auth)\login\page.tsx
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import { FcGoogle } from 'react-icons/fc'
+import 'react-phone-number-input/style.css'
+import { FaLinkedin, FaGithub, FaApple, FaMicrosoft, FaFacebookF, FaEye, FaEyeSlash } from 'react-icons/fa'
+import { FiCheckCircle } from 'react-icons/fi'
+import { APP_NAME } from '@/lib/config/config'
+import { useRouter } from 'next/navigation' // Use useRouter for navigation
+import { login, LoginCredentials } from '@/lib/services/auth/loginService' //  use your authService.ts which calls apiFetch to login - avoid direct axios calls to backend
+import { useEffect } from 'react'
+import Image from 'next/image'
+import { session } from '@/lib/services/auth/sessionService'
+import { useSearchParams } from 'next/navigation'
+
+// ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+import { Suspense } from 'react'
+
+// ── extract searchParams logic into a child ──
+function LoginSearchParamsHandler({
+  onRegistered,
+}: {
+  onRegistered: (email: string, message: string) => void;
+}) {
+  const searchParams = useSearchParams();
+  const justRegistered = searchParams.get('registered') === 'true';
+  const registeredEmail = searchParams.get('email') ?? '';
+
+  useEffect(() => {
+    if (justRegistered && registeredEmail) {
+      onRegistered(
+        decodeURIComponent(registeredEmail),
+        `Account created successfully ⚓ You can now log in as ${decodeURIComponent(registeredEmail)}`
+      );
+    }
+  }, [justRegistered, registeredEmail, onRegistered]);
+
+  return null;
+}
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+// Main Login Page User Inputs and Logic
+export default function LoginPage() {
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+    pin: '',
+    phone: '',
+    remember: false,
+  })
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  const router = useRouter() // Initialize router for redirection
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [selectedProvider, setSelectedProvider] = useState<'email' | 'google' | 'apple' | 'facebook' | 'github' | 'linkedin' | 'microsoft' | null>('email')
+
+  const [loginMethod, setLoginMethod] = useState<"password" | "pin" | "both">("password");
+
+  const [showPin, setShowPin] = useState(false);
+  const role = "Learner"; // hidden, fixed role
+
+  // Check if user is already authenticated for him to avoid login again
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target
+    setForm(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }))
+  }
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  // Check if the User in Logged In
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const data = await session.check()
+
+        // 🔹 Debug log only
+        console.log("➡️ Login status check :", {
+          logged_in: data.logged_in,
+          // user_id: data.user_id,
+          // user_email: data.user_email,
+          redirect_url: data.redirect_url,
+        })
+
+        //  Only update state
+        setIsAuthenticated(!!data.logged_in)
+      } catch (err) {
+        console.error("Session check failed:", err)
+        setIsAuthenticated(false)
+      }
+    }
+
+    checkAuth()
+  }, []) // ❗ no router dependency
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  // Handle login submission using authService.ts
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setError('')
+
+    try {
+      // Build credentials object based on selected login method
+      let credentials: LoginCredentials;
+
+      if (loginMethod === "password") {
+        credentials = {
+          email: form.email,
+          password: form.password,
+          pin: "",              // not used for password login
+          loginMethod: "password",
+          LoginProvider: selectedProvider || "email",
+          loginProviderPayload: "Void",
+          dashboardName: "web", // hardcoded
+          role: role,           // Predefined
+          challenge: "login-skew8@lancasto",
+          remember: form.remember,
+        }
+      } else {
+        credentials = {
+          email: form.email,
+          password: "",         // not used for pin login
+          pin: form.pin!,
+          loginMethod: "pin",
+          LoginProvider: selectedProvider || "email",
+          loginProviderPayload: "Void",
+          dashboardName: "web", // hardcoded
+          role: role,           // from dropdown
+          challenge: "login-skew8@lancasto",
+          remember: form.remember,
+        }
+      }
+
+      // Call authService login function 
+      const data = await login(credentials); // LoginResponse object already
+
+      if (data?.error) {
+        console.warn("⚠️ Login error:", data.error);
+        setError(data.error)
+        setSuccess('')
+        return
+      }
+
+      if (data?.redirect_url) {
+        setSuccess("Login successful! Redirecting…")
+        setError('')
+        if (typeof data.redirect_url === "string" && data.redirect_url.length > 0) {
+          const redirectUrl: string = data.redirect_url; //  capture as string
+          setTimeout(() => {
+            router.push(redirectUrl)
+          }, 800)
+        }
+        return
+      }
+
+      // Fallback (rare case)
+      setSuccess("Login succeeded, but no redirect URL was provided.")
+      setError('')
+
+    } catch (err: unknown) {
+      console.error("Login failed:", err)
+      setError(err instanceof Error ? err.message : "Login failed. Please try again.")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  // Render the login form
+  return (
+    <div className="flex flex-col items-center justify-center bg-gradient-to-br from-blue-300 to-white px-4 py-8">
+
+      <Suspense fallback={null}>
+        <LoginSearchParamsHandler
+          onRegistered={(email, message) => {
+            setForm(prev => ({ ...prev, email }));
+            setSuccess(message);
+          }}
+        />
+      </Suspense>
+
+      {/* App Title / Branding */}
+      <div className="flex flex-col items-center justify-center mb-3 text-center">
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-500 drop-shadow-md">
+            Welcome to
+          </span>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-blue-800 drop-shadow-md">
+            {APP_NAME}
+          </h1>
+          <FiCheckCircle
+            className="text-green-500 text-xl md:text-2xl drop-shadow-sm"
+            title="Verified"
+          />
+        </div>
+
+        <p className="text-xs text-gray-600 mt-1">
+          Your trusted platform for streamlined access to all Nursing Resources .
+        </p>
+      </div>
+
+      {/* Login Card Container */}
+      <div className="max-w-5xl w-full bg-white rounded-2xl shadow-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+
+        {/* LEFT SIDE: Full Image Background + Text at Bottom */}
+        <div className="hidden md:flex relative w-full h-full items-end justify-center overflow-hidden">
+          {/* Background Image */}
+          <Image
+            src="/auth/loginImage.jpg"
+            alt="Welcome"
+            layout="fill"
+            objectFit="cover"
+            priority
+            className="z-0"
+          />
+
+          {/* Bottom Text Overlay */}
+          <div className="z-10 w-full p-8 bg-gradient-to-t from-black/70 via-black/40 to-transparent text-white text-center">
+            {isAuthenticated ? (
+              <>
+                <h2 className="text-3xl font-extrabold drop-shadow-lg">Welcome Back !</h2>
+                <p className="text-sm mt-2 drop-shadow-md">
+                  You&apos;re already signed in. Ready to dive into {APP_NAME}?
+                </p>
+              </>
+            ) : (
+              <>
+                <h2 className="text-3xl font-extrabold drop-shadow-lg">Hello, there !</h2>
+                <p className="text-sm mt-2 drop-shadow-md">
+                  Sign in to continue exploring {APP_NAME}. Secure. Fast. Reliable.
+                </p>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className="w-full p-8 space-y-6 border-l border-gray-200">
+
+          {/* Social Login Buttons */}
+          <div className="grid grid-cols-3 gap-3">
+            <button
+              type="button"
+              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-gray-700"
+              onClick={() => setSelectedProvider('google')}
+            >
+              <FcGoogle className="text-xl" />
+              <span className="text-sm hidden sm:inline">Google</span>
+            </button>
+
+            <button
+              type="button"
+              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-gray-800"
+              onClick={() => setSelectedProvider('apple')}
+            >
+              <FaApple className="text-xl" />
+              <span className="text-sm hidden sm:inline">Apple</span>
+            </button>
+
+            <button
+              type="button"
+              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-blue-700"
+              onClick={() => setSelectedProvider('facebook')}
+            >
+              <FaFacebookF className="text-xl" />
+              <span className="text-sm hidden sm:inline">Facebook</span>
+            </button>
+
+            <button
+              type="button"
+              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-gray-800"
+              onClick={() => setSelectedProvider('github')}
+            >
+              <FaGithub className="text-xl" />
+              <span className="text-sm hidden sm:inline">GitHub</span>
+            </button>
+
+            <button
+              type="button"
+              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-blue-700"
+              onClick={() => setSelectedProvider('linkedin')}
+            >
+              <FaLinkedin className="text-xl" />
+              <span className="text-sm hidden sm:inline">LinkedIn</span>
+            </button>
+
+            <button
+              type="button"
+              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-blue-600"
+              onClick={() => setSelectedProvider('microsoft')}
+            >
+              <FaMicrosoft className="text-xl" />
+              <span className="text-sm hidden sm:inline">Microsoft</span>
+            </button>
+          </div>
+
+          <div className="text-center text-gray-400 text-sm">or continue with email</div>
+
+          {/* Error Message */}
+          {error && (
+            <div className="flex justify-center mt-4">
+              <div className="relative max-w-md w-full bg-yellow-100 border border-red-200 text-red-800 px-4 py-3 rounded-xl shadow-md text-sm flex items-center gap-3">
+
+                <span className="text-red-600 text-base shrink-0">⚓</span>
+
+                <span className="flex-1 leading-tight">
+                  {error}
+                </span>
+
+                <button
+                  type="button"
+                  onClick={() => setError("")}
+                  className="absolute top-2 right-2 text-red-800 hover:text-red-700"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Success Message */}
+          {success && (
+            <div className="flex justify-center mt-4">
+              <div className="relative max-w-md w-full bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-xl shadow-md text-sm flex items-center gap-3">
+
+                <FiCheckCircle className="text-green-600 text-base shrink-0" />
+
+                <span className="flex-1 leading-tight">
+                  {success}
+                </span>
+
+                <button
+                  type="button"
+                  onClick={() => setSuccess("")}
+                  className="absolute top-2 right-2 text-green-800 hover:text-green-700"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* If authenticated, show dashboard button */}
+          {isAuthenticated ? (
+            <div className="text-center">
+              <button
+                onClick={() => router.push('/dashboards')}
+                className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 font-semibold transition"
+              >
+                🚀 Dive in &amp; Continue
+              </button>
+              <p className="text-md text-gray-600 mt-3">
+                Your trusted platform for streamlined Nursing Resources  .
+              </p>
+
+            </div>
+          ) : (
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  autoComplete="username"
+                  required
+                  value={form.email}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-pink-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              {/* 🔐 Login Method Selector */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Choose Login Method
+                </label>
+                <div className="flex bg-gray-100 p-1 rounded-xl shadow-inner">
+                  {(["password", "pin"] as const).map((method) => (
+                    <button
+                      key={method}
+                      type="button"
+                      onClick={() => setLoginMethod(method)}
+                      className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-all ${loginMethod === method
+                        ? "bg-blue-300 text-black shadow"
+                        : "text-purple-900 hover:bg-yellow-300"
+                        }`}
+                    >
+                      {method === "password" && "Use Password"}
+                      {method === "pin" && "Use PIN"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* PASSWORD FIELD — always in DOM, hidden when not active */}
+              <div className={`mb-4 relative ${loginMethod !== "password" ? "hidden" : ""}`}>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Enter Your Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    autoComplete="current-password"
+                    required={loginMethod === "password"}
+                    value={form.password}
+                    onChange={handleChange}
+                    maxLength={32}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-10 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute top-2.5 right-3 text-gray-500 hover:text-gray-700"
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
+              </div>
+
+              {/* PIN FIELD — always in DOM, hidden when not active */}
+              <div className={`mb-4 relative ${loginMethod !== "pin" ? "hidden" : ""}`}>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Enter Your PIN
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPin ? "text" : "password"}
+                    name="pin"
+                    autoComplete="current-password"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    maxLength={32}
+                    required={loginMethod === "pin"}
+                    value={form.pin || ""}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/\D/g, "")
+                      setForm((prev) => ({ ...prev, pin: val }))
+                    }}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-10 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPin(!showPin)}
+                    className="absolute top-2.5 right-3 text-gray-500 hover:text-gray-700"
+                  >
+                    {showPin ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="remember"
+                    name="remember"
+                    checked={form.remember}
+                    onChange={handleChange}
+                    className="accent-blue-600"
+                  />
+                  Remember me
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 font-semibold transition disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isLoading ? 'Logging in...' : 'Login'}
+              </button>
+
+              <p className="text-sm text-center text-gray-600 mt-2">
+                Don&#39;t have an Account ?{' '}
+                <Link href="/auth/register" className="text-blue-600 font-semibold hover:underline">
+                  Register here
+                </Link>
+              </p>
+
+              {/* Centered Forgot Password */}
+              <div className="text-center mb-4">
+                <Link
+                  href="/auth/recovery/password"
+                  className="text-sm text-blue-600 hover:underline"
+                >
+                  Forgot Password ?
+                </Link>
+              </div>
+
+            </form>
+          )}
+        </div>
+      </div>
+
+    </div>
+  )
+}
