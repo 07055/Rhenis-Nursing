@@ -15,6 +15,7 @@ import { registerUser } from '@/lib/services/auth/registerService'
 import Image from 'next/image'
 import { session } from '@/lib/services/auth/sessionService'
 const role = "Learner"; // hidden, fixed role
+const LOGIN_PATH = "/auth/login";
 
 // -------------------------------------------------------------------------------------------------------------------------------
 
@@ -236,7 +237,7 @@ export default function RegisterPage() {
         setError(response.error)
       } else {
         // Redirect to login with success message and pre-filled email
-        router.push(`/auth/login?registered=true&email=${encodeURIComponent(form.email)}`)
+        router.push(`${LOGIN_PATH}?registered=true&email=${encodeURIComponent(form.email)}`)
       }
 
     } catch (err: unknown) {
@@ -289,6 +290,70 @@ export default function RegisterPage() {
             className="z-0"
           />
 
+          {/* Top Social Login Buttons Overlay */}
+          <div className="absolute top-0 left-0 z-10 w-full p-4">
+            <div className="bg-black/30 backdrop-blur-md rounded-2xl p-4 shadow-lg">
+              <p className="text-center text-white text-xs font-semibold tracking-wide uppercase mb-3 drop-shadow-md">
+                Sign in with
+              </p>
+              <div className="grid grid-cols-3 gap-3">
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-gray-700"
+                  onClick={() => setSelectedProvider('google')}
+                >
+                  <FcGoogle className="text-xl" />
+                  <span className="text-sm hidden lg:inline">Google</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-gray-800"
+                  onClick={() => setSelectedProvider('apple')}
+                >
+                  <FaApple className="text-xl" />
+                  <span className="text-sm hidden lg:inline">Apple</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-blue-700"
+                  onClick={() => setSelectedProvider('facebook')}
+                >
+                  <FaFacebookF className="text-xl" />
+                  <span className="text-sm hidden lg:inline">Facebook</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-gray-800"
+                  onClick={() => setSelectedProvider('github')}
+                >
+                  <FaGithub className="text-xl" />
+                  <span className="text-sm hidden lg:inline">GitHub</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-blue-700"
+                  onClick={() => setSelectedProvider('linkedin')}
+                >
+                  <FaLinkedin className="text-xl" />
+                  <span className="text-sm hidden lg:inline">LinkedIn</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-blue-600"
+                  onClick={() => setSelectedProvider('microsoft')}
+                >
+                  <FaMicrosoft className="text-xl" />
+                  <span className="text-sm hidden lg:inline">Microsoft</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
           {/* Bottom Text Overlay */}
           <div className="z-10 w-full p-8 bg-gradient-to-t from-black/70 via-black/40 to-transparent text-white text-center">
             {isAuthenticated ? (
@@ -311,65 +376,75 @@ export default function RegisterPage() {
 
         <div className="w-full p-8 bg-gradient-to-b from-green-10 to-yellow-100 space-y-6 border-l border-gray-200">
 
-          {/* Social Login Buttons */}
-          <div className="grid grid-cols-3 gap-1">
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-gray-700"
-              onClick={() => setSelectedProvider('google')}
-            // onClick={() => alert('Login with Google')}
-            >
-              <FcGoogle className="text-xl" />
-              <span className="text-sm hidden sm:inline">Google</span>
-            </button>
+          {/* Mobile-only Social Login Buttons (hidden on md+, shown inside photo panel instead) */}
+          <div className="md:hidden">
+            <p className="text-center text-gray-500 text-xs font-semibold tracking-wide uppercase mb-3">
+              Sign in with
+            </p>
+            <div className="grid grid-cols-3 gap-3">
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-gray-700"
+                onClick={() => setSelectedProvider('google')}
+              >
+                <FcGoogle className="text-xl" />
+              </button>
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-gray-800"
-              onClick={() => setSelectedProvider('apple')}
-            >
-              <FaApple className="text-xl" />
-              <span className="text-sm hidden sm:inline">Apple</span>
-            </button>
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-gray-800"
+                onClick={() => setSelectedProvider('apple')}
+              >
+                <FaApple className="text-xl" />
+              </button>
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-blue-700"
-              onClick={() => setSelectedProvider('facebook')}
-            >
-              <FaFacebookF className="text-xl" />
-              <span className="text-sm hidden sm:inline">Facebook</span>
-            </button>
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-blue-700"
+                onClick={() => setSelectedProvider('facebook')}
+              >
+                <FaFacebookF className="text-xl" />
+              </button>
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-gray-800"
-              onClick={() => setSelectedProvider('github')}
-            >
-              <FaGithub className="text-xl" />
-              <span className="text-sm hidden sm:inline">GitHub</span>
-            </button>
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-gray-800"
+                onClick={() => setSelectedProvider('github')}
+              >
+                <FaGithub className="text-xl" />
+              </button>
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-blue-700"
-              onClick={() => setSelectedProvider('linkedin')}
-            >
-              <FaLinkedin className="text-xl" />
-              <span className="text-sm hidden sm:inline">LinkedIn</span>
-            </button>
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-blue-700"
+                onClick={() => setSelectedProvider('linkedin')}
+              >
+                <FaLinkedin className="text-xl" />
+              </button>
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-blue-600"
-              onClick={() => setSelectedProvider('microsoft')}
-            >
-              <FaMicrosoft className="text-xl" />
-              <span className="text-sm hidden sm:inline">Microsoft</span>
-            </button>
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-green-200 transition text-blue-600"
+                onClick={() => setSelectedProvider('microsoft')}
+              >
+                <FaMicrosoft className="text-xl" />
+              </button>
+            </div>
           </div>
 
-          <div className="text-center text-gray-400 text-sm">or continue with email</div>
+          <div className="text-center text-md">
+            <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-yellow-800 via-gray-300 to-green-600 bg-[length:200%_100%] [animation:shimmer_3s_linear_infinite]">
+              or continue with email
+            </span>
+          </div>
+
+          <style>{`
+            @keyframes shimmer {
+              0% { background-position: 200% 0; }
+              100% { background-position: -200% 0; }
+            }
+          `}</style>
+
 
           {/* Alert Message */}
           {(error || success) && (
@@ -419,7 +494,7 @@ export default function RegisterPage() {
           ) : (
             <form onSubmit={handleRegister} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Enter Username</label>
                 <input
                   type="text"
                   name="username"
@@ -432,7 +507,7 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Enter Email</label>
                 <input
                   type="email"
                   name="email"
@@ -445,7 +520,7 @@ export default function RegisterPage() {
 
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Phone{' '}
+                  Enter Phone{' '}
                   {form.phone && form.phone.length > 6 && !phoneValid && (
                     <span className="text-red-500 text-xs">(Invalid phone number)</span>
                   )}
@@ -523,7 +598,7 @@ export default function RegisterPage() {
                   <div>
                     <div className="flex justify-between items-center mb-1">
                       <label className="block text-sm font-medium text-gray-700">
-                        Password
+                        Enter Password
                       </label>
 
                       <button
@@ -650,7 +725,7 @@ export default function RegisterPage() {
                 <div className="animate-fadeIn space-y-3">
                   <div className="flex justify-between items-center mb-1">
                     <label className="block text-sm font-medium text-gray-700">
-                      PIN (4–24 digits)
+                      Enter PIN (4–24 digits)
                     </label>
 
                     <button
@@ -739,26 +814,42 @@ export default function RegisterPage() {
                 />
                 <label className="text-sm text-gray-600">
                   I agree to the{' '}
-                  <Link href="/terms" className="text-blue-600 underline hover:text-blue-800">
+                  <Link href="/pages/terms" className="text-blue-600 underline hover:text-blue-800">
                     Terms and Conditions
                   </Link>
                 </label>
               </div>
 
+
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 font-semibold transition disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-indigo-600 font-semibold transition disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {isLoading ? 'Registering...' : 'Register'}
+                {isLoading ? 'Registering . . . ⚓' : 'Submit and Register'}
               </button>
 
-              <p className="text-sm text-center text-gray-600 mt-2">
-                Already have an account?{' '}
-                <Link href="/auth/login" className="text-blue-600 hover:underline">
-                  Login
+              {/* Submit */}
+              {error && (
+                <p className="text-sm text-red-700 text-center font-medium">{error}</p>
+              )}
+
+              {/* Links */}
+              <div className="mt-6 flex flex-row space-x-3 w-full">
+                <Link
+                  href="/auth/support"
+                  className="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+                >
+                  Having Issues ?
                 </Link>
-              </p>
+                <Link
+                  href="/auth/login"
+                  className="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+                >
+                  Login Instead ?
+                </Link>
+              </div>
+
             </form>
           )}
         </div>

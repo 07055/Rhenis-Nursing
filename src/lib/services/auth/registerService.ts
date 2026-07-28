@@ -24,9 +24,8 @@ export interface RegisterResponse {
   error?: string;
 }
 
-/**
- * Register a new user
- */
+// Register a new user
+
 export const registerUser = async (data: RegisterCredentials): Promise<RegisterResponse> => {
   console.log("💡 [registerService] registerUser() called with data:", data);
 
@@ -43,6 +42,7 @@ export const registerUser = async (data: RegisterCredentials): Promise<RegisterR
         pin_confirmation: data.pin_confirmation,
         loginMethod: data.loginMethod,
         agree: data.agree,
+        challenge: data.challenge,
         role: data.role || "user",
         dashboardName: data.dashboardName || "web",
         provider: data.provider || "email",

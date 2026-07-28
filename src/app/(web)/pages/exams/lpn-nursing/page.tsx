@@ -4,66 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { APP_NAME } from "@/lib/config/config";
+import SubscriptionItem from "@/app/(web)/pages/subscription/item/SubscriptionItem";
 
-const DASHBOARD_NAME = "ati-teas";
+const DASHBOARD_NAME = "lpn-nursing";
 const PROGRAM_NAME = "LPN NURSING";
-
-// Placeholder pricing (swap with real data later)
-
-const pricingPlans = [
-  {
-    badgeName: "Free Trial",
-    badgeBg: "bg-red-600",
-    title: "Starter",
-    titleBg: "bg-[#dee7e5]",
-    price: "$0 / 7 Days",
-    description: "Try before you commit — full access to a limited question set.",
-    features: ["50 Practice Questions", "1 Simulated Exam", "Basic Analytics", "Email Support"],
-    gradientFrom: "from-[#ff7e5f]",
-    gradientTo: "to-[#feb47b]",
-    btnBg: "bg-blue-600",
-    btnText: "Start Free Trial",
-  },
-  {
-    badgeName: "Most Popular",
-    badgeBg: "bg-emerald-600",
-    title: "Standard",
-    titleBg: "bg-[#dee7e5]",
-    price: "$29 / Month",
-    description: "Everything you need for a focused TEAS 7 prep sprint.",
-    features: ["3,000+ Questions", "10 Simulated Exams", "Detailed Rationales", "Progress Tracking"],
-    gradientFrom: "from-[#a1c4fd]",
-    gradientTo: "to-[#c2e9fb]",
-    btnBg: "bg-blue-600",
-    btnText: "Get Started",
-  },
-  {
-    badgeName: "Best Value",
-    badgeBg: "bg-amber-500",
-    title: "Premium",
-    titleBg: "bg-[#dee7e5]",
-    price: "$79 / 3 Months",
-    description: "Full library access with priority tutor support.",
-    features: ["All Standard Features", "Unlimited Simulated Exams", "1-on-1 Tutor Sessions", "Priority Support"],
-    gradientFrom: "from-[#fbc2eb]",
-    gradientTo: "to-[#a6c1ee]",
-    btnBg: "bg-blue-600",
-    btnText: "Get Started",
-  },
-  {
-    badgeName: "Casto",
-    badgeBg: "bg-gray-600",
-    title: "Annual",
-    titleBg: "bg-[#dee7e5]",
-    price: "$199 / Year",
-    description: "Best long-term value for multi-attempt exam prep.",
-    features: ["All Premium Features", "12 Months Access", "Free Content Updates", "Dedicated Advisor"],
-    gradientFrom: "from-[#d4fc79]",
-    gradientTo: "to-[#96e6a1]",
-    btnBg: "bg-blue-600",
-    btnText: "Get Started",
-  },
-];
+const PARENT_TABLE_NAME = "program";
+const PARENT_NAME = "LpnNursing";
 
 // Sample questions
 
@@ -239,34 +185,14 @@ export default function LpnNursingPage() {
           </div>
         </div>
 
-        {/* PRICING (placeholder cards) */}
+        {/* PRICING (live Subscription Items) */}
         <div className="mx-auto max-w-[1360px] px-4 md:px-6 mt-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {pricingPlans.map((plan) => (
-              <div key={plan.title} className="relative flex flex-col h-full rounded-xl shadow-sm hover:shadow-lg hover:scale-105 transition border border-gray-200">
-                {plan.badgeName !== "Casto" && (
-                  <span className={`absolute -top-2 -right-2 rounded-lg text-white text-xs font-bold px-2 py-1 ${plan.badgeBg}`}>
-                    {plan.badgeName}
-                  </span>
-                )}
-                <div className={`text-center font-bold py-3 rounded-t-xl ${plan.titleBg}`}>
-                  {plan.title}
-                </div>
-                <div className={`flex-1 flex flex-col p-5 rounded-b-xl bg-gradient-to-r ${plan.gradientFrom} ${plan.gradientTo}`}>
-                  <h5 className="font-bold mb-2">{plan.price}</h5>
-                  <p className="text-sm mb-3">{plan.description}</p>
-                  <ul className="text-sm space-y-1 flex-1 mb-4">
-                    {plan.features.map((f) => (
-                      <li key={f}>• {f}</li>
-                    ))}
-                  </ul>
-                  <button className={`w-full rounded-lg py-2.5 font-semibold text-white ${plan.btnBg}`}>
-                    Get Started
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+          <SubscriptionItem
+            parentTableName={PARENT_TABLE_NAME}
+            parentName={PARENT_NAME}
+            heading={`${PROGRAM_NAME} Exam Prep Plans`}
+            showSearch={false}
+          />
         </div>
 
         {/* SAMPLE QUESTIONS */}

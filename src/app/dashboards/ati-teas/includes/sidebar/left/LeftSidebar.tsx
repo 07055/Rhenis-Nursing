@@ -1,37 +1,47 @@
 "use client";
 
 import Link from "next/link";
-import { Home, LayoutDashboard, Settings, X } from "lucide-react";
+import { Home, LayoutDashboard, X } from "lucide-react";
 import { useLeftSidebar } from "@/lib/contexts/panel/layout/includes/sidebar/LeftSidebarContext";
 import { useThemeContext } from "@/lib/contexts/panel/layout/theme/PanelThemeContext";
 import { useEffect, useState } from "react";
 import { useSidebarAutoScroll } from "@/lib/hooks/nexus/includes/sidebars/useSidebarAutoScroll";
 
-import LeftSidebarDashboardDropdown from "../partials/left/dashboards/DashboardDropdown";
+// import LeftSidebarDashboardDropdown from "../partials/left/dashboards/DashboardDropdown";
 
-import LeftSidebarContentDropdown from "../partials/left/content/ContentDropdown";
-import LeftSidebarDocumentDropdown from "../partials/left/content/DocumentDropdown";
-import LeftSidebarMachineLearningDropdown from "../partials/left/cognition/MachineLearningDropdown";
+// import LeftSidebarContentDropdown from "../partials/left/content/ContentDropdown";
+// import LeftSidebarDocumentDropdown from "../partials/left/content/DocumentDropdown";
+// import LeftSidebarMachineLearningDropdown from "../partials/left/cognition/MachineLearningDropdown";
 
-import LeftSidebarProgramHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyProgramDropdown";
-import LeftSidebarCourseHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyCourseDropdown";
-import LeftSidebarSubjectHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchySubjectDropdown";
-import LeftSidebarUnitHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyUnitDropdown";
-import LeftSidebarLessonHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyLessonDropdown";
-import LeftSidebarTopicHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyTopicDropdown";
-import LeftSidebarConceptHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyConceptDropdown";
-import LeftSidebarFactHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyFactDropdown";
+// import LeftSidebarProgramHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyProgramDropdown";
+// import LeftSidebarCourseHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyCourseDropdown";
+// import LeftSidebarSubjectHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchySubjectDropdown";
+// import LeftSidebarUnitHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyUnitDropdown";
+// import LeftSidebarLessonHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyLessonDropdown";
+// import LeftSidebarTopicHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyTopicDropdown";
+// import LeftSidebarConceptHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyConceptDropdown";
+// import LeftSidebarFactHierarchyDropdown from "../partials/left/vista/learning/VistaHierarchyFactDropdown";
 
-import LeftSidebarAssessmentHierarchyDropdown from "../partials/left/vista/assessment/VistaHierarchyAssessmentDropdown";
-import LeftSidebarExamHierarchyDropdown from "../partials/left/vista/assessment/VistaHierarchyExamDropdown";
+// import LeftSidebarAssessmentHierarchyDropdown from "../partials/left/vista/assessment/VistaHierarchyAssessmentDropdown";
+// import LeftSidebarExamHierarchyDropdown from "../partials/left/vista/assessment/VistaHierarchyExamDropdown";
 
+import LeftSidebarProgramHierarchyOutline from "../partials/left/vista/outline/VistaHierarchyProgramOutline";
+
+import LeftSidebarProgress from "../partials/left/elements/Progress";
+import LeftSidebarReports from "../partials/left/elements/Reports";
+import LeftSidebarSubscriptionPackages from "../partials/left/elements/SubscriptionPackages";
+import LeftSidebarSubscriptionItems from "../partials/left/elements/SubscriptionItems";
+import LeftSidebarContact from "../partials/left/elements/Contact";
+import LeftSidebarSupport from "../partials/left/elements/Support";
+import LeftSidebarTerms from "../partials/left/elements/Terms";
 import LeftSidebarAbout from "../partials/left/elements/About";
+
 import { Tooltip } from "@/components/dashboards/includes/sidebar/tooltips/SidebarTooltip";
 import { APP_TITLE, APP_ACRONYM } from "@/lib/config/config";
 
 export default function LeftSidebar() {
 
-  const DASHBOARD_NAME = "Exams";
+  const DASHBOARD_NAME = "Ati-Teas";
 
   const { state, open, close } = useLeftSidebar();
 
@@ -204,10 +214,19 @@ export default function LeftSidebar() {
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
 
+
+
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        {/* Dashboards */}
-        <LeftSidebarDashboardDropdown
+        <div className="space-y-8">
+          <hr className="dark:border-[var(--text-color)]" />
+          <hr className="dark:border-[var(--text-color)]" />
+        </div>
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+
+        <LeftSidebarProgramHierarchyOutline
           {...{
             isOpened,
             activeDropdown,
@@ -222,59 +241,165 @@ export default function LeftSidebar() {
 
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        <div className="space-y-8">
+        {/* <LeftSidebarCourseHierarchyDropdown
+          {...{
+            isOpened,
+            activeDropdown,
+            toggleDropdown,
+            hoveredItem,
+            handleItemHover,
+            handleMouseLeave,
+            tooltipPosition,
+            handleItemClick,
+          }}
+        /> */}
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* <LeftSidebarSubjectHierarchyDropdown
+          {...{
+            isOpened,
+            activeDropdown,
+            toggleDropdown,
+            hoveredItem,
+            handleItemHover,
+            handleMouseLeave,
+            tooltipPosition,
+            handleItemClick,
+          }}
+        /> */}
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* <LeftSidebarUnitHierarchyDropdown
+          {...{
+            isOpened,
+            activeDropdown,
+            toggleDropdown,
+            hoveredItem,
+            handleItemHover,
+            handleMouseLeave,
+            tooltipPosition,
+            handleItemClick,
+          }}
+        /> */}
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* <LeftSidebarLessonHierarchyDropdown
+          {...{
+            isOpened,
+            activeDropdown,
+            toggleDropdown,
+            hoveredItem,
+            handleItemHover,
+            handleMouseLeave,
+            tooltipPosition,
+            handleItemClick,
+          }}
+        /> */}
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* <LeftSidebarTopicHierarchyDropdown
+          {...{
+            isOpened,
+            activeDropdown,
+            toggleDropdown,
+            hoveredItem,
+            handleItemHover,
+            handleMouseLeave,
+            tooltipPosition,
+            handleItemClick,
+          }}
+        /> */}
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* <LeftSidebarConceptHierarchyDropdown
+          {...{
+            isOpened,
+            activeDropdown,
+            toggleDropdown,
+            hoveredItem,
+            handleItemHover,
+            handleMouseLeave,
+            tooltipPosition,
+            handleItemClick,
+          }}
+        /> */}
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* <LeftSidebarFactHierarchyDropdown
+          {...{
+            isOpened,
+            activeDropdown,
+            toggleDropdown,
+            hoveredItem,
+            handleItemHover,
+            handleMouseLeave,
+            tooltipPosition,
+            handleItemClick,
+          }}
+        /> */}
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        <div className="space-y-16">
           <hr className="dark:border-[var(--text-color)]" />
           <hr className="dark:border-[var(--text-color)]" />
         </div>
-        
+
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        {/* Settings */}
-        <Link href="/dashboards/ati-teas/vista/assessments/absolute/overview">
+        {isOpened && (
+          <div className="flex justify-center p-0">
+            <span className="text-[10px] tracking-wide uppercase opacity-50 select-none">
+              My Account Data Management
+            </span>
+          </div>
+        )}
+
+       {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* Subscription Packeges */}
+        {/* <Link href="/dashboards/admin/settings">
           <div
             onClick={handleItemClick}
-            onMouseEnter={(e) => handleItemHover("Settings", e)}
+            onMouseEnter={(e) => handleItemHover("Subscription Packeges", e)}
             onMouseLeave={handleMouseLeave}
             className={`relative flex items-center p-2 rounded-lg transition
           border border-transparent hover:border-gray-900 select-none
           ${isLightSidebar ? "text-[var(--text-color)]" : "text-[var(--text-color)]"}
           ${!isOpened && "justify-center"}`}
           >
-            <Settings className="w-5 h-5" />
-            {isOpened && <span className="ml-3">Start Learning</span>}
+            <LayoutDashboard className="w-5 h-5" />
+            {isOpened && <span className="ml-3">Subscription Packeges</span>}
 
-            {isCollapsed && hoveredItem === "Settings" && (
+            {isCollapsed && hoveredItem === "Subscription Packeges" && (
               <Tooltip x={tooltipPosition.x} y={tooltipPosition.y}>
-                Settings
+                Subscription Packeges
               </Tooltip>
             )}
           </div>
-        </Link>
+        </Link> */}
 
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        <div className="space-y-8">
-          <hr className="dark:border-[var(--text-color)]" />
-          <hr className="dark:border-[var(--text-color)]" />
-        </div>
+
+
 
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        {isOpened && (
-          <div className="flex justify-center p-0">
-            <span className="text-[10px] tracking-wide uppercase opacity-50 select-none">
-              Learning Hierarchy List / Cards
-            </span>
-          </div>
-        )}
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        <LeftSidebarProgramHierarchyDropdown
+        {/* LeftSidebarProgress */}
+        <LeftSidebarProgress
           {...{
             isOpened,
-            activeDropdown,
-            toggleDropdown,
             hoveredItem,
             handleItemHover,
             handleMouseLeave,
@@ -282,14 +407,12 @@ export default function LeftSidebar() {
             handleItemClick,
           }}
         />
-
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        <LeftSidebarCourseHierarchyDropdown
+        {/* LeftSidebarReports */}
+        <LeftSidebarReports
           {...{
             isOpened,
-            activeDropdown,
-            toggleDropdown,
             hoveredItem,
             handleItemHover,
             handleMouseLeave,
@@ -297,14 +420,12 @@ export default function LeftSidebar() {
             handleItemClick,
           }}
         />
-
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        <LeftSidebarSubjectHierarchyDropdown
+        {/* LeftSidebarSubscriptionPackages */}
+        <LeftSidebarSubscriptionPackages
           {...{
             isOpened,
-            activeDropdown,
-            toggleDropdown,
             hoveredItem,
             handleItemHover,
             handleMouseLeave,
@@ -312,14 +433,12 @@ export default function LeftSidebar() {
             handleItemClick,
           }}
         />
-
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        <LeftSidebarUnitHierarchyDropdown
+        {/* LeftSidebarSubscriptionItems */}
+        <LeftSidebarSubscriptionItems
           {...{
             isOpened,
-            activeDropdown,
-            toggleDropdown,
             hoveredItem,
             handleItemHover,
             handleMouseLeave,
@@ -327,14 +446,12 @@ export default function LeftSidebar() {
             handleItemClick,
           }}
         />
-
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        <LeftSidebarLessonHierarchyDropdown
+        {/* LeftSidebarContact */}
+        <LeftSidebarContact
           {...{
             isOpened,
-            activeDropdown,
-            toggleDropdown,
             hoveredItem,
             handleItemHover,
             handleMouseLeave,
@@ -342,14 +459,12 @@ export default function LeftSidebar() {
             handleItemClick,
           }}
         />
-
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        <LeftSidebarTopicHierarchyDropdown
+        {/* LeftSidebarSupport */}
+        <LeftSidebarSupport
           {...{
             isOpened,
-            activeDropdown,
-            toggleDropdown,
             hoveredItem,
             handleItemHover,
             handleMouseLeave,
@@ -357,14 +472,12 @@ export default function LeftSidebar() {
             handleItemClick,
           }}
         />
-
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        <LeftSidebarConceptHierarchyDropdown
+        {/* LeftSidebarTerms*/}
+        <LeftSidebarTerms
           {...{
             isOpened,
-            activeDropdown,
-            toggleDropdown,
             hoveredItem,
             handleItemHover,
             handleMouseLeave,
@@ -372,191 +485,6 @@ export default function LeftSidebar() {
             handleItemClick,
           }}
         />
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        <LeftSidebarFactHierarchyDropdown
-          {...{
-            isOpened,
-            activeDropdown,
-            toggleDropdown,
-            hoveredItem,
-            handleItemHover,
-            handleMouseLeave,
-            tooltipPosition,
-            handleItemClick,
-          }}
-        />
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        <div className="space-y-3">
-          <hr className="dark:border-[var(--text-color)]" />
-          <hr className="dark:border-[var(--text-color)]" />
-        </div>
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        {isOpened && (
-          <div className="flex justify-center p-0">
-            <span className="text-[10px] tracking-wide uppercase opacity-50 select-none">
-              Assessment Hierarchy List / Cards
-            </span>
-          </div>
-        )}
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        <LeftSidebarAssessmentHierarchyDropdown
-          {...{
-            isOpened,
-            activeDropdown,
-            toggleDropdown,
-            hoveredItem,
-            handleItemHover,
-            handleMouseLeave,
-            tooltipPosition,
-            handleItemClick,
-          }}
-        />
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        <LeftSidebarExamHierarchyDropdown
-          {...{
-            isOpened,
-            activeDropdown,
-            toggleDropdown,
-            hoveredItem,
-            handleItemHover,
-            handleMouseLeave,
-            tooltipPosition,
-            handleItemClick,
-          }}
-        />
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        <div className="space-y-18">
-          <hr className="dark:border-[var(--text-color)]" />
-          <hr className="dark:border-[var(--text-color)]" />
-        </div>
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-
-
-        {isOpened && (
-          <div className="flex justify-center p-0">
-            <span className="text-[10px] tracking-wide uppercase opacity-50 select-none">
-              My Contents &amp; Documents
-            </span>
-          </div>
-        )}
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        <LeftSidebarContentDropdown
-          {...{
-            isOpened,
-            activeDropdown,
-            toggleDropdown,
-            hoveredItem,
-            handleItemHover,
-            handleMouseLeave,
-            tooltipPosition,
-            handleItemClick,
-          }}
-        />
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        <LeftSidebarDocumentDropdown
-          {...{
-            isOpened,
-            activeDropdown,
-            toggleDropdown,
-            hoveredItem,
-            handleItemHover,
-            handleMouseLeave,
-            tooltipPosition,
-            handleItemClick,
-          }}
-        />
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-
-
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        <div className="space-y-8">
-          <hr className="dark:border-[var(--text-color)]" />
-          <hr className="dark:border-[var(--text-color)]" />
-        </div>
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        {isOpened && (
-          <div className="flex justify-center p-0">
-            <span className="text-[10px] tracking-wide uppercase opacity-50 select-none">
-              AL / ML Management
-            </span>
-          </div>
-        )}
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        <LeftSidebarMachineLearningDropdown
-          {...{
-            isOpened,
-            activeDropdown,
-            toggleDropdown,
-            hoveredItem,
-            handleItemHover,
-            handleMouseLeave,
-            tooltipPosition,
-            handleItemClick,
-          }}
-        />
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-
-
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        <div className="space-y-8">
-          <hr className="dark:border-[var(--text-color)]" />
-          <hr className="dark:border-[var(--text-color)]" />
-        </div>
-
-        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
-
-        {/* Settings */}
-        <Link href="/dashboards/admin/settings">
-          <div
-            onClick={handleItemClick}
-            onMouseEnter={(e) => handleItemHover("Settings", e)}
-            onMouseLeave={handleMouseLeave}
-            className={`relative flex items-center p-2 rounded-lg transition
-          border border-transparent hover:border-gray-900 select-none
-          ${isLightSidebar ? "text-[var(--text-color)]" : "text-[var(--text-color)]"}
-          ${!isOpened && "justify-center"}`}
-          >
-            <Settings className="w-5 h-5" />
-            {isOpened && <span className="ml-3">Settings</span>}
-
-            {isCollapsed && hoveredItem === "Settings" && (
-              <Tooltip x={tooltipPosition.x} y={tooltipPosition.y}>
-                Settings
-              </Tooltip>
-            )}
-          </div>
-        </Link>
-
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
         {/* LeftSidebarAbout */}

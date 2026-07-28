@@ -5,7 +5,7 @@ import { strataService } from "@/lib/services/nexus/strata/strataService";
 
 export interface StrataItem {
   id: number;
-  guid_id: string;
+  guidId: string;
 
   assessmentId: number;
 

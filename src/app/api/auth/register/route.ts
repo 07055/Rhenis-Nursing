@@ -9,12 +9,13 @@ export type RegisterCredentials = {
   password?: string;
   passwordConfirmation?: string;
   pin?: string;
-  pin_confirmation?: string;
+  pinConfirmation?: string;
   loginMethod: "password" | "pin" | "both";
   agree: boolean;
   role?: string;
   dashboardName?: string;
   provider?: string; // email | google | apple | facebook | github | linkedin | microsoft
+  challenge: string;
 };
 
 // Expected backend response type
@@ -49,12 +50,13 @@ export async function POST(req: NextRequest) {
         password: body.password,
         passwordConfirmation: body.passwordConfirmation,
         pin: body.pin,
-        pin_confirmation: body.pin_confirmation,
+        pinConfirmation: body.pinConfirmation,
         loginMethod: body.loginMethod,
         agree: body.agree,
         role: body.role || "user",
         dashboardName: body.dashboardName || "web",
         provider: body.provider || "email",
+        challenge: body.challenge,
       }),
     });
 

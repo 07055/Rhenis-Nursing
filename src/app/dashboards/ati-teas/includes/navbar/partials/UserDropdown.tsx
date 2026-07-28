@@ -112,7 +112,7 @@ export default function UserDropdown() {
   };
 
   if (loading) {
-    return <div className="text-sm text-gray-500">Loading…</div>;
+    return <div className="text-sm font-bold text-red-800">Loading . . . ⚓</div>;
   }
 
   // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -200,7 +200,7 @@ export default function UserDropdown() {
 
             <DropdownItem>
               <Link
-                href={`/dashboards/${TARGET_DASHBOARD}/pages/help-center`}
+                href={`/dashboards/${TARGET_DASHBOARD}/vista/pages/support`}
                 className="
                 group flex items-center gap-2
                 rounded-xl px-3 py-2
@@ -218,7 +218,7 @@ export default function UserDropdown() {
 
             <DropdownItem>
               <Link
-                href={`/dashboards/${TARGET_DASHBOARD}/pages/contact-us`}
+                href={`/dashboards/${TARGET_DASHBOARD}/vista/pages/contact-us`}
                 className="
                   group flex items-center gap-2
                   rounded-xl px-3 py-2
@@ -399,21 +399,21 @@ export default function UserDropdown() {
             <InfoRow
               label="Email verified"
               status={primaryEmail?.isVerified}
-              actionHref="/profile/security/email"
+              actionHref="/dashboards/ati-teas/auth/account/verify/email"
               actionLabel="Verify email"
             />
 
             <InfoRow
               label="Phone verified"
               status={primaryPhone?.isVerified}
-              actionHref="/profile/security/phone"
+              actionHref="/dashboards/ati-teas/auth/account/verify/phone"
               actionLabel="Verify phone"
             />
 
             <InfoRow
               label="2FA enabled"
               status={user.twoFactorEnabled}
-              actionHref="/profile/security/2fa"
+              actionHref="/dashboards/ati-teas/auth/account/security/2fa"
               actionLabel="Enable 2FA"
             />
             <InfoRow label="Category" value={category} />
@@ -422,45 +422,52 @@ export default function UserDropdown() {
         )}
 
         {/* Actions */}
-        <div className="border-t px-4 py-3 space-y-1">
-          <DropdownItem
-            href="/profile"
-            className="
-            group flex items-center gap-2 rounded-xl px-3 py-2
-            transition-all duration-200
-            hover:bg-gradient-to-r hover:from-indigo-500/10 hover:to-cyan-500/10
-            hover:ring-1 hover:ring-indigo-300/40
-          "
-          >
-            <FiUser className="text-indigo-600 group-hover:translate-x-0.5 transition" />
-            Edit profile
-          </DropdownItem>
-
-          <DropdownItem
-            href="/profile/settings"
-            className="
+        <div className="border-t px-4 py-1 space-y-1">
+          <DropdownItem>
+            <Link
+              href="/dashboards/ati-teas/auth/account/show"
+              className="
               group flex items-center gap-2 rounded-xl px-3 py-2
               transition-all duration-200
-              hover:bg-gradient-to-r hover:from-emerald-500/10 hover:to-teal-500/10
-              hover:ring-1 hover:ring-emerald-300/40
+              hover:bg-gradient-to-r hover:from-indigo-500/10 hover:to-cyan-500/10
+              hover:ring-1 hover:ring-indigo-300/40
             "
-          >
-            <FiSettings className="text-emerald-600 group-hover:rotate-6 transition" />
-            Account settings
+            >
+              <FiUser className="text-indigo-600 group-hover:translate-x-0.5 transition" />
+              My profile Account
+            </Link>
           </DropdownItem>
 
-          <DropdownItem
-            href="/profile/security"
-            className="
-              group flex items-center gap-2 rounded-xl px-3 py-2
-              transition-all duration-200
-              hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-fuchsia-500/10
-              hover:ring-1 hover:ring-purple-300/40
-            "
-          >
-            <FiShield className="text-purple-600 group-hover:-translate-y-0.5 transition" />
-            Security
+          <DropdownItem>
+            <Link
+              href="/dashboards/ati-teas/auth/account/edit"
+              className="
+                group flex items-center gap-2 rounded-xl px-3 py-2
+                transition-all duration-200
+                hover:bg-gradient-to-r hover:from-emerald-500/10 hover:to-teal-500/10
+                hover:ring-1 hover:ring-emerald-300/40
+              "
+            >
+              <FiSettings className="text-emerald-600 group-hover:rotate-6 transition" />
+              Update My Profile
+            </Link>
           </DropdownItem>
+
+          <DropdownItem>
+            <Link
+              href="/dashboards/ati-teas/auth/account/security/profile"
+              className="
+                group flex items-center gap-2 rounded-xl px-3 py-2
+                transition-all duration-200
+                hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-fuchsia-500/10
+                hover:ring-1 hover:ring-purple-300/40
+              "
+            >
+              <FiShield className="text-purple-600 group-hover:-translate-y-0.5 transition" />
+              Account Security
+            </Link>
+          </DropdownItem>
+
           {/* Logout Actions */}
           <div className="relative space-y-2">
 

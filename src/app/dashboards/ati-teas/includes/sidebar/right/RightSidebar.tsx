@@ -1,16 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { Home, BarChart2, LayoutDashboard, Settings, X } from "lucide-react";
+import { Home, BarChart2, LayoutDashboard, BarChart3, X, Receipt, CreditCard } from "lucide-react";
 import { useRightSidebar } from "@/lib/contexts/panel/layout/includes/sidebar/RightSidebarContext";
 import { useThemeContext } from "@/lib/contexts/panel/layout/theme/PanelThemeContext";
 import { useEffect, useState } from "react";
 import { useSidebarAutoScroll } from "@/lib/hooks/nexus/includes/sidebars/useSidebarAutoScroll";
 
-import RightSidebarUserDropdown from "../partials/right/accounts/UserDropdown";
-import RightSidebarDashboardDropdown from "../partials/right/dashboards/DashboardDropdown";
-import RightSidebarDocumentationDropdown from "../partials/right/documentation/DocumentationDropdown";
+// import RightSidebarUserDropdown from "../partials/right/accounts/UserDropdown";
+// import RightSidebarDashboardDropdown from "../partials/right/dashboards/DashboardDropdown";
+// import RightSidebarDocumentationDropdown from "../partials/right/documentation/DocumentationDropdown";
+import RightSidebarSupport from "../partials/right/elements/Support";
+import RightSidebarContact from "../partials/right/elements/Contact";
+import RightSidebarTerms from "../partials/right/elements/Terms";
 import RightSidebarAbout from "../partials/right/elements/About";
+
+import RightSidebarProfileDropdown from "../partials/right/account/ProfileDropdown";
 
 import { Tooltip } from "@/components/dashboards/includes/sidebar/tooltips/SidebarTooltip";
 import { APP_TITLE, APP_ACRONYM } from "@/lib/config/config";
@@ -19,7 +24,8 @@ import { APP_TITLE, APP_ACRONYM } from "@/lib/config/config";
 
 export default function RightSidebar() {
 
-  const DASHBOARD_NAME = "Exams";
+  const DASHBOARD_NAME = "Ati-Teas";
+  const PROGRAM_PANEL = "ati-teas";
 
   const { state, open, close } = useRightSidebar();
 
@@ -41,7 +47,7 @@ export default function RightSidebar() {
   const [isMounted, setIsMounted] = useState(false);
 
   //───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- // On Reaload Auto Scroll to Active Dropdown (if any)
+  // On Reaload Auto Scroll to Active Dropdown (if any)
   useSidebarAutoScroll({
     sidebarScrollContainerSelector: ".right-sidebar-scroll", // or ".right-sidebar-scroll" for right sidebar
     sidebarActiveDropdownKey: activeDropdown,
@@ -194,7 +200,38 @@ export default function RightSidebar() {
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
         {/* Dashboards */}
-        <RightSidebarDashboardDropdown
+        {/* <RightSidebarDashboardDropdown
+          {...{
+            isOpened,
+            activeDropdown,
+            toggleDropdown,
+            hoveredItem,
+            handleItemHover,
+            handleMouseLeave,
+            tooltipPosition,
+            handleItemClick,
+          }}
+
+        /> */}
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        <div className="space-y-8">
+          <hr className="dark:border-[var(--text-color)]" />
+          <hr className="dark:border-[var(--text-color)]" />
+        </div>  
+      
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {isOpened && (
+          <div className="flex justify-center p-0">
+            <span className="text-[10px] tracking-wide uppercase opacity-50 select-none">
+              My Account Management
+            </span>
+          </div>
+        )}
+        {/* Profile */}
+        <RightSidebarProfileDropdown
           {...{
             isOpened,
             activeDropdown,
@@ -210,7 +247,7 @@ export default function RightSidebar() {
 
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <hr className="dark:border-[var(--text-color)]" />
           <hr className="dark:border-[var(--text-color)]" />
         </div>
@@ -220,7 +257,7 @@ export default function RightSidebar() {
         {isOpened && (
           <div className="flex justify-center p-0">
             <span className="text-[10px] tracking-wide uppercase opacity-50 select-none">
-              System User Management
+              My Data Management
             </span>
           </div>
         )}
@@ -228,7 +265,7 @@ export default function RightSidebar() {
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
         {/* Reports */}
-        <Link href="/dashboards/admin/reports">
+        <Link href={`/dashboards/${PROGRAM_PANEL}/vista/stats/reports`}>
           <div
             onClick={handleItemClick}
             onMouseEnter={(e) => handleItemHover("Reports", e)}
@@ -239,19 +276,20 @@ export default function RightSidebar() {
             ${!isOpened && "justify-center"}`}
           >
             <BarChart2 className="w-5 h-5" />
-            {isOpened && <span className="ml-3">Reports</span>}
+            {isOpened && <span className="ml-3">My Reports</span>}
 
             {isCollapsed && hoveredItem === "Reports" && (
               <Tooltip x={tooltipPosition.x} y={tooltipPosition.y} position="left">
-                Reports
+                My Reports
               </Tooltip>
             )}
           </div>
         </Link>
+
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
         {/* Dropdowns */}
-        <RightSidebarUserDropdown
+        {/* <RightSidebarUserDropdown
           {...{
             isOpened,
             activeDropdown,
@@ -262,10 +300,11 @@ export default function RightSidebar() {
             tooltipPosition,
             handleItemClick,
           }}
-        />
+        /> */}
+
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        <RightSidebarDocumentationDropdown
+        {/* <RightSidebarDocumentationDropdown
           {...{
             isOpened,
             activeDropdown,
@@ -276,30 +315,128 @@ export default function RightSidebar() {
             tooltipPosition,
             handleItemClick,
           }}
-        />
+        /> */}
+
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
-        {/* Settings */}
-        <Link href="/dashboards/admin/settings">
+        {/* Progress */}
+        <Link href={`/dashboards/${PROGRAM_PANEL}/vista/stats/progress`}>
           <div
             onClick={handleItemClick}
-            onMouseEnter={(e) => handleItemHover("Settings", e)}
+            onMouseEnter={(e) => handleItemHover("Progress", e)}
             onMouseLeave={handleMouseLeave}
             className={`relative flex items-center py-2 px-1 rounded-lg transition
-              border border-transparent hover:border-gray-900 select-none
-              ${isLightSidebar ? "text-[var(--text-color)]" : "text-[var(--text-color)]"}
-              ${!isOpened && "justify-center"}`}
+            border border-transparent hover:border-gray-900 select-none
+            ${isLightSidebar
+                ? "text-[var(--text-color)]"
+                : "text-[var(--text-color)]"
+              }
+            ${!isOpened && "justify-center"}`}
           >
-            <Settings className="w-5 h-5" />
-            {isOpened && <span className="ml-3">Settings</span>}
+            <BarChart3 className="w-5 h-5" />
 
-            {isCollapsed && hoveredItem === "Settings" && (
+            {isOpened && <span className="ml-3">My Progress</span>}
+
+            {isCollapsed && hoveredItem === "Progress" && (
               <Tooltip x={tooltipPosition.x} y={tooltipPosition.y} position="left">
-                Settings
+               My Progress
               </Tooltip>
             )}
           </div>
         </Link>
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* My Subscriptions */}
+        <Link href={`/dashboards/${PROGRAM_PANEL}/vista/subscriptions/packages`}>
+          <div
+            onClick={handleItemClick}
+            onMouseEnter={(e) => handleItemHover("My Subscriptions", e)}
+            onMouseLeave={handleMouseLeave}
+            className={`relative flex items-center py-2 px-1 rounded-lg transition
+              border border-transparent hover:border-gray-900 select-none
+              ${isLightSidebar
+                ? "text-[var(--text-color)]"
+                : "text-[var(--text-color)]"
+              }
+               ${!isOpened && "justify-center"}`}
+          >
+            <Receipt className="w-5 h-5" />
+
+            {isOpened && <span className="ml-3">My Subscriptions</span>}
+
+            {isCollapsed && hoveredItem === "My Subscriptions" && (
+              <Tooltip x={tooltipPosition.x} y={tooltipPosition.y} position="left">
+                My Subscriptions
+              </Tooltip>
+            )}
+          </div>
+        </Link>
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* Subscription Packages */}
+        <Link href={`/dashboards/${PROGRAM_PANEL}/vista/subscriptions/items`}>
+          <div
+            onClick={handleItemClick}
+            onMouseEnter={(e) => handleItemHover("Subscription Packages", e)}
+            onMouseLeave={handleMouseLeave}
+            className={`relative flex items-center py-2 px-1 rounded-lg transition
+              border border-transparent hover:border-gray-900 select-none
+              ${isLightSidebar
+                ? "text-[var(--text-color)]"
+                : "text-[var(--text-color)]"
+              }
+              ${!isOpened && "justify-center"}`}
+          >
+            <CreditCard className="w-5 h-5" />
+
+            {isOpened && <span className="ml-3">Subscription Packages</span>}
+
+            {isCollapsed && hoveredItem === "Subscription Packages" && (
+              <Tooltip x={tooltipPosition.x} y={tooltipPosition.y} position="left">
+                Subscription Packages
+              </Tooltip>
+            )}
+          </div>
+        </Link>
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* About */}
+        <RightSidebarTerms
+          {...{
+            isOpened,
+            hoveredItem,
+            handleItemHover,
+            handleMouseLeave,
+            tooltipPosition,
+            handleItemClick,
+          }}
+        />
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* About */}
+        <RightSidebarSupport
+          {...{
+            isOpened,
+            hoveredItem,
+            handleItemHover,
+            handleMouseLeave,
+            tooltipPosition,
+            handleItemClick,
+          }}
+        />
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+
+        {/* About */}
+        <RightSidebarContact
+          {...{
+            isOpened,
+            hoveredItem,
+            handleItemHover,
+            handleMouseLeave,
+            tooltipPosition,
+            handleItemClick,
+          }}
+        />
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
 
         {/* About */}

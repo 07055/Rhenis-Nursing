@@ -12,7 +12,7 @@ import { renderSystemSessionHeaders } from "@/lib/services/partial/helper/system
  
 // -------------------------------------------------------------------------------------------------
 
-const ACTIVE_BACKEND = process.env.NEXT_ACTIVE_BACKEND || "fastapi";
+const ACTIVE_BACKEND = process.env.NEXT_ACTIVE_BACKEND || "dotnet";
 
 
 // Resolve backend base URL based on active backend type.

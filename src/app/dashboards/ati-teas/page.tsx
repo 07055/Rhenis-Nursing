@@ -1,324 +1,161 @@
 "use client";
 
-import { useMemo, useState, useCallback } from "react";
+import { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
 import { useFlexPageClasp } from "@/lib/contexts/panel/layout/utils/FlexPageClasp";
-import { useAbsoluteStrataAssessments, StrataItem as AssessmentItem } from "@/lib/hooks/nexus/strata/assessment/assessments/absolute/useAbsoluteStrataAssessments";
-import { useDistinctStrataExams, StrataItem as ExamItem } from "@/lib/hooks/nexus/strata/assessment/exams/distinct/useDistinctStrataExams";
+import { useRelativeStrataPrograms } from "@/lib/hooks/nexus/strata/learning/programs/relative/useRelativeStrataPrograms";
+import { useRelativeStrataAssessments } from "@/lib/hooks/nexus/strata/assessment/assessments/relative/useRelativeStrataAssessments";
+import { useNominalStrataExams } from "@/lib/hooks/nexus/strata/assessment/learning/exams/nominal/useNominalStrataExams";
+import { useCurrentSystemUser } from "@/lib/hooks/users/account/current/useCurrentSystemUser";
+import { APP_TITLE } from "@/lib/config/config";
+import { VISTA_QUOTES } from "@/lib/constants/dashboards/nexus/vista/quotes";
+import {
+  Sun,
+  Sunset,
+  Moon,
+  PlayCircle,
+  GraduationCap,
+  ClipboardList,
+  CreditCard,
+  LogIn,
+  UserPlus,
+  ArrowRight,
+  Clock,
+  BookOpen,
+  ChevronLeft,
+  ChevronRight,
+  BookMarked,
+} from "lucide-react";
 
+// ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
+const CURRENT_NAME = "Ati Teas";
+const CURRENT_PANEL = "ati-teas";
+const CURRENT_SEGMENT = "ATI_TEAS";
 
-// TYPES
-// ─────────────────────────────────────────────────────────────────────────────
-type Tab = "assessments" | "learning" | "all";
-type LearningLevel = "program" | "course" | "subject" | "unit" | "lesson" | "topic" | "concept" | "fact";
+const SEGMENT_DASHBOARD_MAP: Record<string, string> = {
+  ATI_TEAS: CURRENT_PANEL,
+  HESI_A2: "hesi-a2",
+  PRE_NURSING: "pre-nursing",
+  RN_NURSING: "rn-nursing",
+  LPN_NURSING: "lpn-nursing",
+  GED: "ged",
+  CNA: "cna",
+  CERTIFICATION: "certification",
+};
 
-const LEARNING_LEVELS: { key: LearningLevel; label: string; icon: string }[] = [
-  { key: "program",  label: "Programs",  icon: "🎓" },
-  { key: "course",   label: "Courses",   icon: "📚" },
-  { key: "subject",  label: "Subjects",  icon: "📖" },
-  { key: "unit",     label: "Units",     icon: "📦" },
-  { key: "lesson",   label: "Lessons",   icon: "📝" },
-  { key: "topic",    label: "Topics",    icon: "💡" },
-  { key: "concept",  label: "Concepts",  icon: "🔬" },
-  { key: "fact",     label: "Facts",     icon: "⚡" },
-];
-
-// ─────────────────────────────────────────────────────────────────────────────
-// EXAM LIST PANEL — shown when an assessment is selected
-// ─────────────────────────────────────────────────────────────────────────────
-function ExamListPanel({
-  assessmentGuidId,
-  learningLevel,
+// ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+// Small helper: horizontal scroll strip with arrow controls
+function ScrollStrip({
+  id,
+  children,
 }: {
-  assessmentGuidId: string;
-  learningLevel: LearningLevel | null;
+  id: string;
+  children: React.ReactNode;
 }) {
-  const [page, setPage] = useState(1);
-  const { exams, skewTotal, skewTotalPages, examSearch, setExamSearch } =
-    useDistinctStrataExams({
-      parentIdentifier: assessmentGuidId,
-      page,
-      perPage: 20,
-    });
-
-  // Filter client-side by learning level name for display labelling
-  // (actual filtering is done server-side via the level param when you extend the hook)
-  return (
-    <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 12, minWidth: 0 }}>
-      {/* Search */}
-      <div style={{ position: "relative" }}>
-        <span style={{
-          position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)",
-          fontSize: 13, color: "var(--color-text-secondary)", pointerEvents: "none"
-        }}>🔍</span>
-        <input
-          type="text"
-          placeholder={`Search exams${learningLevel ? ` in ${learningLevel}` : ""}...`}
-          value={examSearch}
-          onChange={e => { setExamSearch(e.target.value); setPage(1); }}
-          style={{ width: "100%", paddingLeft: 30, boxSizing: "border-box" }}
-        />
-      </div>
-
-      {/* Stats bar */}
-      <div style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        fontSize: 12, color: "var(--color-text-secondary)"
-      }}>
-        <span>{skewTotal} exam{skewTotal !== 1 ? "s" : ""}</span>
-        {learningLevel && (
-          <span style={{
-            background: "var(--color-background-info)",
-            color: "var(--color-text-info)",
-            borderRadius: "var(--border-radius-md)",
-            padding: "2px 8px", fontSize: 11
-          }}>
-            {LEARNING_LEVELS.find(l => l.key === learningLevel)?.icon} {learningLevel}
-          </span>
-        )}
-      </div>
-
-      {/* Exam Cards */}
-      {exams.length === 0 ? (
-        <div style={{
-          textAlign: "center", padding: "2rem",
-          color: "var(--color-text-secondary)", fontSize: 13
-        }}>
-          No exams found
-        </div>
-      ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          {exams.map(exam => (
-            <ExamCard key={exam.guidId} exam={exam} />
-          ))}
-        </div>
-      )}
-
-      {/* Pagination */}
-      {skewTotalPages > 1 && (
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 8 }}>
-          <button
-            onClick={() => setPage(p => Math.max(1, p - 1))}
-            disabled={page === 1}
-            style={{ opacity: page === 1 ? 0.4 : 1 }}
-          >
-            ← Prev
-          </button>
-          <span style={{ fontSize: 13, color: "var(--color-text-secondary)" }}>
-            {page} / {skewTotalPages}
-          </span>
-          <button
-            onClick={() => setPage(p => Math.min(skewTotalPages, p + 1))}
-            disabled={page === skewTotalPages}
-            style={{ opacity: page === skewTotalPages ? 0.4 : 1 }}
-          >
-            Next →
-          </button>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// EXAM CARD
-// ─────────────────────────────────────────────────────────────────────────────
-function ExamCard({ exam }: { exam: ExamItem }) {
-  const statusColor: Record<string, string> = {
-    active:    "var(--color-background-success)",
-    published: "var(--color-background-success)",
-    draft:     "var(--color-background-warning)",
-    archived:  "var(--color-background-secondary)",
+  const scrollBy = (dir: 1 | -1) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollBy({ left: dir * 220, behavior: "smooth" });
   };
-  const bg = statusColor[(exam.status ?? "").toLowerCase()] ?? "var(--color-background-secondary)";
 
   return (
-    <div style={{
-      background: "var(--color-background-primary)",
-      border: "0.5px solid var(--color-border-tertiary)",
-      borderRadius: "var(--border-radius-lg)",
-      padding: "12px 14px",
-      cursor: "pointer",
-      transition: "border-color 0.15s",
-    }}
-      onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-border-secondary)")}
-      onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-border-tertiary)")}
-    >
-      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
-        <div style={{ minWidth: 0 }}>
-          <p style={{
-            margin: 0, fontSize: 14, fontWeight: 500,
-            color: "var(--color-text-primary)",
-            overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"
-          }}>
-            {exam.title}
-          </p>
-          {exam.description && (
-            <p style={{
-              margin: "2px 0 0", fontSize: 12,
-              color: "var(--color-text-secondary)",
-              overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"
-            }}>
-              {exam.description}
-            </p>
-          )}
-        </div>
-        {exam.status && (
-          <span style={{
-            background: bg, fontSize: 10, padding: "2px 7px",
-            borderRadius: "var(--border-radius-md)",
-            color: "var(--color-text-secondary)", flexShrink: 0,
-            whiteSpace: "nowrap", textTransform: "capitalize"
-          }}>
-            {exam.status}
-          </span>
-        )}
-      </div>
-
-      <div style={{
-        display: "flex", gap: 12, marginTop: 8,
-        fontSize: 11, color: "var(--color-text-secondary)"
-      }}>
-        {exam.sectionsCount !== undefined && (
-          <span>📋 {exam.sectionsCount} section{exam.sectionsCount !== 1 ? "s" : ""}</span>
-        )}
-        {exam.difficulty && <span>⚡ {exam.difficulty}</span>}
-        {exam.duration && <span>⏱ {exam.duration}min</span>}
-        {exam.code && <span style={{ fontFamily: "var(--font-mono)", fontSize: 10 }}>{exam.code}</span>}
-      </div>
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// ASSESSMENT ROW — collapsible, shows exam list when expanded
-// ─────────────────────────────────────────────────────────────────────────────
-function AssessmentRow({
-  assessment,
-  activeLearningLevel,
-}: {
-  assessment: AssessmentItem;
-  activeLearningLevel: LearningLevel | null;
-}) {
-  const [expanded, setExpanded] = useState(false);
-
-  return (
-    <div style={{
-      border: "0.5px solid var(--color-border-tertiary)",
-      borderRadius: "var(--border-radius-lg)",
-      overflow: "hidden",
-      background: "var(--color-background-primary)",
-    }}>
-      {/* Header row */}
+    <div className="relative flex items-center gap-1.5">
       <button
-        onClick={() => setExpanded(e => !e)}
-        style={{
-          width: "100%", display: "flex", alignItems: "center",
-          justifyContent: "space-between", padding: "12px 14px",
-          background: "transparent", border: "none", cursor: "pointer",
-          textAlign: "left", gap: 10,
-        }}
+        onClick={() => scrollBy(-1)}
+        className="shrink-0 w-7 h-7 flex items-center justify-center rounded-lg bg-[var(--text-color)]/10 hover:bg-[var(--text-color)]/20 text-[var(--text-color)] transition-all duration-200"
+        aria-label="Scroll left"
       >
-        <div style={{ minWidth: 0, flex: 1 }}>
-          <p style={{
-            margin: 0, fontSize: 14, fontWeight: 500,
-            color: "var(--color-text-primary)",
-            overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"
-          }}>
-            {assessment.name}
-          </p>
-          {assessment.description && (
-            <p style={{
-              margin: "2px 0 0", fontSize: 12,
-              color: "var(--color-text-secondary)",
-              overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"
-            }}>
-              {assessment.description}
-            </p>
-          )}
-        </div>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-          {assessment.examsCount !== undefined && (
-            <span style={{
-              fontSize: 11, padding: "2px 8px",
-              background: "var(--color-background-secondary)",
-              borderRadius: "var(--border-radius-md)",
-              color: "var(--color-text-secondary)"
-            }}>
-              {assessment.examsCount} exams
-            </span>
-          )}
-          <span style={{
-            fontSize: 12, color: "var(--color-text-secondary)",
-            transition: "transform 0.2s",
-            display: "inline-block",
-            transform: expanded ? "rotate(180deg)" : "rotate(0deg)"
-          }}>▼</span>
-        </div>
+        <ChevronLeft className="w-4 h-4" />
       </button>
 
-      {/* Collapsible exam panel */}
-      {expanded && (
-        <div style={{
-          borderTop: "0.5px solid var(--color-border-tertiary)",
-          padding: "12px 14px",
-        }}>
-          <ExamListPanel
-            assessmentGuidId={assessment.guidId}
-            learningLevel={activeLearningLevel}
-          />
-        </div>
-      )}
+      <div
+        id={id}
+        className="flex-1 overflow-x-auto flex gap-3 py-1 scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      >
+        {children}
+      </div>
+
+      <button
+        onClick={() => scrollBy(1)}
+        className="shrink-0 w-7 h-7 flex items-center justify-center rounded-lg bg-[var(--text-color)]/10 hover:bg-[var(--text-color)]/20 text-[var(--text-color)] transition-all duration-200"
+        aria-label="Scroll right"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
     </div>
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// MAIN PAGE
-// ─────────────────────────────────────────────────────────────────────────────
-export default function DashboardPage() {
-  const {
-    isClient,
-    leftWidth,
-    rightWidth,
-    navHeight,
-    effectiveContentTheme,
-  } = useFlexPageClasp();
+// ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+// Main Component
+export default function AtiTeasHomePage() {
+  const { leftWidth, rightWidth, navHeight } = useFlexPageClasp();
 
-  const greeting = useMemo(() => {
-    const hour = new Date().getHours();
-    if (hour < 12) return "Good Morning ☀️";
-    if (hour < 18) return "Good Afternoon 🌤️";
-    return "Good Evening 🌙";
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  // Current user (same hook the navbar dropdown uses)
+  const { user, loading: isUserLoading } = useCurrentSystemUser();
+  const firstName = user?.userName?.trim()?.split(" ")[0] || "";
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  // Greeting based on time of day
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => setNow(new Date()), 60_000);
+    return () => clearInterval(interval);
   }, []);
 
-  // ── State ──────────────────────────────────────────────────────────────────
-  const [activeTab, setActiveTab]               = useState<Tab>("assessments");
-  const [activeLearningLevel, setActiveLearningLevel] = useState<LearningLevel | null>(null);
-  const [assessmentPage, setAssessmentPage]     = useState(1);
-  const [assessmentSearch, setAssessmentSearch] = useState("");
+  const { greeting, GreetingIcon } = useMemo(() => {
+    const hour = now.getHours();
+    if (hour < 12) return { greeting: "Good morning", GreetingIcon: Sun };
+    if (hour < 18) return { greeting: "Good afternoon", GreetingIcon: Sunset };
+    return { greeting: "Good evening", GreetingIcon: Moon };
+  }, [now]);
 
-  // ── Data ───────────────────────────────────────────────────────────────────
-  const { filteredAssessments, skewTotalPages, setAssessmentSearch: setHookSearch } =
-    useAbsoluteStrataAssessments({ page: assessmentPage, perPage: 15 });
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  // Active / in-progress exam
+  // ⚠️ ASSUMPTION: parentIdentifier="" fetches across all parents for this panel;
+  // confirm your backend NominalFetch treats an empty identifier as "no parent filter".
+  const { filteredExams: allExams } = useNominalStrataExams({
+    parentIdentifier: "",
+    page: 1,
+    perPage: 50,
+  });
 
-  const handleSearch = useCallback((val: string) => {
-    setAssessmentSearch(val);
-    setHookSearch(val);
-    setAssessmentPage(1);
-  }, [setHookSearch]);
+  const activeExamMatch = useMemo(() => {
+    for (const exam of allExams) {
+      const action = exam.examActions?.find((a) => a.status === "InProgress");
+      if (action) return { exam, action };
+    }
+    return null;
+  }, [allExams]);
 
-  if (!isClient) {
-    return <div className="pt-16 min-h-[calc(100vh-64px)] w-full" />;
-  }
+  const activeExam = activeExamMatch?.exam ?? null;
 
-  const tabs: { key: Tab; label: string; icon: string }[] = [
-    { key: "assessments", label: "By Assessment", icon: "🎯" },
-    { key: "learning",    label: "By Subject",    icon: "📚" },
-    { key: "all",         label: "All Exams",     icon: "📋" },
-  ];
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  // Programs (across all segments) — highlight ATI_TEAS, show others as discovery
+  const { programs, isLoading: isProgramsLoading } = useRelativeStrataPrograms();
 
+  const currentPrograms = programs.filter((p) => p.segment === CURRENT_SEGMENT);
+  const otherPrograms = programs.filter((p) => p.segment !== CURRENT_SEGMENT);
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  // Assessments ({CURRENT_NAME} specific)
+  const { filteredAssessments, isLoading: isAssessmentsLoading } = useRelativeStrataAssessments();
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  // Random Quote
+  const randomQuote = useMemo(() => {
+    return VISTA_QUOTES[Math.floor(Math.random() * VISTA_QUOTES.length)];
+  }, []);
+
+  const funcTruncateHelper = (text: string | undefined, max = 60) => {
+    if (!text) return "—";
+    return text.length > max ? text.slice(0, max) + "…" : text;
+  };
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  // Render
   return (
     <main
       className="pt-16 transition-all duration-300 ease-in-out overflow-x-hidden"
@@ -326,291 +163,377 @@ export default function DashboardPage() {
         marginLeft: leftWidth,
         marginRight: rightWidth,
         minHeight: `calc(100vh - ${navHeight}px)`,
-        backgroundColor: effectiveContentTheme === "default" ? "var(--content-bg)" : undefined,
-color: "black",
+        backgroundColor: "var(--content-bg)",
+        color: "var(--content-text)",
       }}
     >
-      <div style={{ display: "flex", minHeight: `calc(100vh - ${navHeight}px - 64px)` }}>
+      <div className="p-3 md:p-4 space-y-5 w-full max-w-7xl mx-auto">
 
-        {/* ── SIDEBAR ──────────────────────────────────────────────────────── */}
-        <aside style={{
-          width: 300, flexShrink: 0,
-          borderRight: "0.5px solid var(--color-border-tertiary)",
-          display: "flex", flexDirection: "column",
-          background: "var(--color-background-primary)",
-          overflowY: "auto",
-        }}>
-          {/* Greeting */}
-          <div style={{ padding: "16px 16px 8px" }}>
-            <p style={{ margin: 0, fontSize: 12, color: "var(--color-text-secondary)" }}>{greeting}</p>
-            <p style={{ margin: "2px 0 0", fontSize: 16, fontWeight: 500, color: "var(--color-text-primary)" }}>
-              Your Exams
-            </p>
-          </div>
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+        {/* Hero / Greeting — compact */}
+        <div className="relative overflow-hidden rounded-2xl border border-[var(--text-color)]/20 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 backdrop-blur-xl px-5 py-4 md:px-7 md:py-5">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div className="flex items-center gap-3 min-w-0">
+              <GreetingIcon className="w-6 h-6 text-[var(--text-color)] opacity-80 shrink-0" />
 
-          {/* ── Tabs ─────────────────────────────────────────────────────── */}
-          <div style={{
-            display: "flex", gap: 4, padding: "8px 12px",
-            borderBottom: "0.5px solid var(--color-border-tertiary)",
-          }}>
-            {tabs.map(tab => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                style={{
-                  flex: 1, padding: "6px 4px", fontSize: 11,
-                  border: "0.5px solid",
-                  borderColor: activeTab === tab.key ? "var(--color-border-secondary)" : "transparent",
-                  borderRadius: "var(--border-radius-md)",
-                  background: activeTab === tab.key ? "var(--color-background-secondary)" : "transparent",
-                  color: activeTab === tab.key ? "var(--color-text-primary)" : "var(--color-text-secondary)",
-                  cursor: "pointer", textAlign: "center",
-                }}
-              >
-                <div style={{ fontSize: 14 }}>{tab.icon}</div>
-                <div style={{ marginTop: 2 }}>{tab.label}</div>
-              </button>
-            ))}
-          </div>
+              <div className="min-w-0">
+                <h1 className="text-lg md:text-2xl font-bold text-[var(--text-color)] truncate">
+                  {greeting}
+                  {!isUserLoading && firstName ? `, ${firstName}` : ""}!
+                </h1>
 
-          {/* ── Learning level filter (only on "learning" tab) ───────────── */}
-          {activeTab === "learning" && (
-            <div style={{
-              padding: "8px 12px",
-              borderBottom: "0.5px solid var(--color-border-tertiary)",
-              display: "flex", flexDirection: "column", gap: 4,
-            }}>
-              <p style={{ margin: "0 0 6px", fontSize: 11, color: "var(--color-text-secondary)", fontWeight: 500 }}>
-                FILTER BY LEVEL
-              </p>
-              {LEARNING_LEVELS.map(lv => (
-                <button
-                  key={lv.key}
-                  onClick={() => setActiveLearningLevel(prev => prev === lv.key ? null : lv.key)}
-                  style={{
-                    display: "flex", alignItems: "center", gap: 8,
-                    padding: "6px 10px", borderRadius: "var(--border-radius-md)",
-                    border: "0.5px solid",
-                    borderColor: activeLearningLevel === lv.key
-                      ? "var(--color-border-info)" : "transparent",
-                    background: activeLearningLevel === lv.key
-                      ? "var(--color-background-info)" : "transparent",
-                    color: activeLearningLevel === lv.key
-                      ? "var(--color-text-info)" : "var(--color-text-secondary)",
-                    cursor: "pointer", fontSize: 13, textAlign: "left", width: "100%",
-                  }}
-                >
-                  <span style={{ fontSize: 14 }}>{lv.icon}</span>
-                  <span>{lv.label}</span>
-                  {activeLearningLevel === lv.key && (
-                    <span style={{ marginLeft: "auto", fontSize: 10 }}>✕</span>
-                  )}
-                </button>
-              ))}
+                <p className="text-xs md:text-sm opacity-70 text-[var(--text-color)] truncate">
+                  {APP_TITLE} {CURRENT_NAME} dashboard — let&apos;s keep the momentum going. ⚓
+                </p>
+              </div>
             </div>
-          )}
 
-          {/* ── Search ───────────────────────────────────────────────────── */}
-          <div style={{ padding: "10px 12px" }}>
-            <div style={{ position: "relative" }}>
-              <span style={{
-                position: "absolute", left: 9, top: "50%",
-                transform: "translateY(-50%)", fontSize: 12,
-                color: "var(--color-text-secondary)", pointerEvents: "none"
-              }}>🔍</span>
-              <input
-                type="text"
-                placeholder="Search assessments..."
-                value={assessmentSearch}
-                onChange={e => handleSearch(e.target.value)}
-                style={{ width: "100%", paddingLeft: 28, boxSizing: "border-box", fontSize: 13 }}
-              />
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <Link
+                href={`/pages/exams/${CURRENT_PANEL}`}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm bg-gradient-to-r from-indigo-700 to-teal-700 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+              >
+                <CreditCard className="w-4 h-4" />
+                Open Subscription Packages
+              </Link>
+
+              <Link
+                href={`/dashboards/${CURRENT_PANEL}/subscriptions`}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm border border-indigo-200 bg-indigo-200 text-[var(--text-color)] backdrop-blur-sm hover:bg-indigo-500 hover:text-white hover:border-indigo-500 hover:shadow-lg hover:scale-105 transition-all duration-300"
+              >
+                <BookMarked className="w-4 h-4" />
+                My Subscriptions
+              </Link>
             </div>
           </div>
-
-          {/* ── Assessment list ───────────────────────────────────────────── */}
-          <div style={{ flex: 1, overflowY: "auto", padding: "0 12px", display: "flex", flexDirection: "column", gap: 6 }}>
-            {filteredAssessments.length === 0 ? (
-              <p style={{ fontSize: 13, color: "var(--color-text-secondary)", textAlign: "center", padding: "2rem 0" }}>
-                No assessments found
-              </p>
-            ) : (
-              filteredAssessments.map(assessment => (
-                <SidebarAssessmentItem
-                  key={assessment.guidId}
-                  assessment={assessment}
-                  activeLearningLevel={activeTab === "learning" ? activeLearningLevel : null}
-                />
-              ))
-            )}
-          </div>
-
-          {/* ── Sidebar pagination ────────────────────────────────────────── */}
-          {skewTotalPages > 1 && (
-            <div style={{
-              padding: "10px 12px",
-              borderTop: "0.5px solid var(--color-border-tertiary)",
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-            }}>
-              <button
-                onClick={() => setAssessmentPage(p => Math.max(1, p - 1))}
-                disabled={assessmentPage === 1}
-                style={{ fontSize: 12, opacity: assessmentPage === 1 ? 0.4 : 1 }}
-              >
-                ← Prev
-              </button>
-              <span style={{ fontSize: 11, color: "var(--color-text-secondary)" }}>
-                {assessmentPage} / {skewTotalPages}
-              </span>
-              <button
-                onClick={() => setAssessmentPage(p => Math.min(skewTotalPages, p + 1))}
-                disabled={assessmentPage === skewTotalPages}
-                style={{ fontSize: 12, opacity: assessmentPage === skewTotalPages ? 0.4 : 1 }}
-              >
-                Next →
-              </button>
-            </div>
-          )}
-        </aside>
-
-        {/* ── MAIN CONTENT ─────────────────────────────────────────────────── */}
-        <div style={{ flex: 1, padding: "24px", overflowY: "auto", minWidth: 0 }}>
-          <MainContent
-            activeTab={activeTab}
-            activeLearningLevel={activeTab === "learning" ? activeLearningLevel : null}
-            assessments={filteredAssessments}
-          />
         </div>
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+        {/* Continue Exam — only shows if an exam is currently in progress */}
+        {activeExam && (
+          <div className="rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-cyan-500/10 backdrop-blur-xl px-5 py-4">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/20 shrink-0">
+                  <PlayCircle className="w-5 h-5 text-emerald-500" />
+                  <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                  </span>
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] font-bold uppercase tracking-wide text-emerald-500">
+                    Exam In Progress
+                  </p>
+                  <h3 className="text-sm font-bold text-[var(--text-color)] truncate">
+                    {activeExam.title}
+                  </h3>
+                  <div className="flex items-center gap-1.5 text-[11px] opacity-70 text-[var(--text-color)]">
+                    <Clock className="w-3 h-3" />
+                    {activeExamMatch?.action.residualDuration != null
+                      ? `${Math.round(activeExamMatch.action.residualDuration)} min remaining`
+                      : "In progress"}
+                  </div>
+                </div>
+              </div>
+
+              <Link
+                href={`/web/${CURRENT_PANEL}/vista/exam/generic?mode=Exam&identifier=${activeExam.guidId ?? activeExam.id}`}
+                className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-xl font-bold text-xs md:text-sm bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md hover:scale-105 transition-transform duration-200 shrink-0"
+              >
+                Continue Exam
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+        {/* Quick Auth Actions — hidden once logged in */}
+        {!isUserLoading && !user && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <Link
+              href={`/dashboards/${CURRENT_PANEL}/auth/login`}
+              className="group relative overflow-hidden rounded-xl border border-[var(--text-color)]/20 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 px-4 py-3 flex items-center justify-between hover:border-[var(--text-color)]/50 transition-all duration-200"
+            >
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                  <LogIn className="w-4 h-4 text-blue-500" />
+                </div>
+                <div>
+                  <p className="font-bold text-xs text-[var(--text-color)]">Log In</p>
+                  <p className="text-[10px] opacity-60 text-[var(--text-color)]">Access your account</p>
+                </div>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200 text-[var(--text-color)]" />
+            </Link>
+
+            <Link
+              href={`/dashboards/${CURRENT_PANEL}/auth/register`}
+              className="group relative overflow-hidden rounded-xl border border-[var(--text-color)]/20 bg-gradient-to-br from-pink-500/10 to-purple-500/10 px-4 py-3 flex items-center justify-between hover:border-[var(--text-color)]/50 transition-all duration-200"
+            >
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-pink-500/20 flex items-center justify-center">
+                  <UserPlus className="w-4 h-4 text-pink-500" />
+                </div>
+                <div>
+                  <p className="font-bold text-xs text-[var(--text-color)]">Register</p>
+                  <p className="text-[10px] opacity-60 text-[var(--text-color)]">Create a new account</p>
+                </div>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200 text-[var(--text-color)]" />
+            </Link>
+          </div>
+        )}
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+        {/* Assessments — compact cards */}
+        <div>
+          <div className="flex items-center justify-between mb-2.5">
+            <div className="flex items-center gap-2">
+              <ClipboardList className="w-4 h-4 text-[var(--text-color)] opacity-70" />
+              <h2 className="text-base md:text-lg font-bold text-[var(--text-color)]">
+                Assessments
+              </h2>
+            </div>
+
+            <Link
+              href={`/dashboards/${CURRENT_PANEL}/vista/assessment/assessments/absolute/overview`}
+              className="text-[11px] font-semibold opacity-60 hover:opacity-100 flex items-center gap-1 text-[var(--text-color)] transition-opacity"
+            >
+              View all <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+
+          {isAssessmentsLoading && (
+            <div className="rounded-xl border border-[var(--text-color)]/10 px-6 py-6 text-center opacity-60 text-xs text-[var(--text-color)]">
+              Loading assessments…
+            </div>
+          )}
+
+          {!isAssessmentsLoading && filteredAssessments.length === 0 && (
+            <div className="rounded-xl border border-[var(--text-color)]/10 px-6 py-6 text-center opacity-60 text-xs text-[var(--text-color)]">
+              No assessments available yet ⚓
+            </div>
+          )}
+
+          {!isAssessmentsLoading && filteredAssessments.length > 0 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+              {filteredAssessments.slice(0, 8).map((assessment) => {
+                const hasActiveExam =
+                  !!activeExam &&
+                  (activeExam.assessmentGuidId === assessment.guidId ||
+                    activeExam.assessmentId === assessment.id);
+
+                const gradients = [
+                  {
+                    bg: "from-indigo-200 to-violet-200", icon: "text-indigo-600",
+                  },
+                  {
+                    bg: "from-emerald-200 to-teal-200", icon: "text-emerald-600",
+                  },
+                  {
+                    bg: "from-pink-200 to-rose-200", icon: "text-pink-600",
+                  },
+                  {
+                    bg: "from-sky-200 to-cyan-200", icon: "text-sky-600",
+                  },
+                  {
+                    bg: "from-orange-200 to-amber-200", icon: "text-orange-600",
+                  },
+                  {
+                    bg: "from-purple-200 to-fuchsia-200", icon: "text-purple-600",
+                  },
+                  {
+                    bg: "from-lime-200 to-green-200", icon: "text-lime-600",
+                  },
+                  {
+                    bg: "from-red-200 to-orange-200", icon: "text-red-600",
+                  },
+                ];
+
+                const color =
+                  gradients[Math.floor(Math.random() * gradients.length)];
+
+                return (
+                  <Link
+                    key={assessment.id}
+                    href={`/dashboards/${CURRENT_PANEL}/vista/assessment/exams/distinct/overview?identifier=${assessment.guidId ?? assessment.id
+                      }`}
+                    className="group relative overflow-hidden rounded-xl border border-[var(--text-color)]/20 bg-[var(--content-bg)] hover:border-[var(--text-color)]/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4"
+                  >
+                    {hasActiveExam && (
+                      <span className="absolute top-2 left-2 flex h-2.5 w-2.5 z-10">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                      </span>
+                    )}
+
+                    {assessment.isFeatured && (
+                      <span className="absolute top-2 right-2 text-[8px] font-bold px-1.5 py-0.5 rounded-full bg-yellow-500 text-black shadow-md">
+                        ★
+                      </span>
+                    )}
+
+                    {/* Icon + Name */}
+                    <div className="flex items-center gap-3 mb-3">
+                      <div
+                        className={`w-11 h-11 rounded-xl bg-gradient-to-br ${color.bg} flex items-center justify-center shrink-0`}
+                      >
+                        <BookOpen className={`w-5 h-5 ${color.icon}`} />
+                      </div>
+
+                      <h3 className="font-semibold text-base text-[var(--text-color)] line-clamp-2 leading-snug">
+                        {assessment.name}
+                      </h3>
+                    </div>
+
+                    <p className="text-xs opacity-65 text-[var(--text-color)] line-clamp-2">
+                      {funcTruncateHelper(assessment.description, 50)}
+                    </p>
+
+                    <div className="flex items-center justify-between mt-4">
+                      <span className="text-[10px] uppercase font-semibold tracking-wide opacity-60 text-[var(--text-color)]">
+                        {assessment.examsCount ?? 0} Exams
+                      </span>
+
+                      {hasActiveExam ? (
+                        <span className="text-[10px] font-bold text-emerald-500 uppercase">
+                          In Progress
+                        </span>
+                      ) : (
+                        <ArrowRight className="w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200 text-[var(--text-color)]" />
+                      )}
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+        {/* Current Programs ({CURRENT_NAME}) — sliding strip */}
+        {currentPrograms.length > 0 && (
+          <div>
+            <div className="flex items-center gap-2 mb-2.5">
+              <GraduationCap className="w-4 h-4 text-[var(--text-color)] opacity-70" />
+              <h2 className="text-base md:text-lg font-bold text-[var(--text-color)]">
+                Your {CURRENT_NAME} Courses
+              </h2>
+            </div>
+
+            <ScrollStrip id="ati-teas-courses-scroll">
+              {currentPrograms.map((program) => (
+                <Link
+                  key={program.guidId}
+                  href={`/dashboards/${CURRENT_PANEL}/vista/learning/courses/distinct/overview?identifier=${program.guidId}`}
+                  className="group shrink-0 snap-start w-52 overflow-hidden rounded-xl border border-[var(--text-color)]/20 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 hover:border-[var(--text-color)]/50 hover:shadow-lg transition-all duration-300 p-3"
+                >
+                  <h3 className="font-bold text-xs text-[var(--text-color)] truncate">
+                    {program.name}
+                  </h3>
+                  <p className="text-[10px] opacity-60 mt-0.5 text-[var(--text-color)] line-clamp-2">
+                    {funcTruncateHelper(program.description, 60)}
+                  </p>
+                  <div className="flex items-center justify-between mt-2.5">
+                    <span className="text-[9px] uppercase font-bold opacity-50 tracking-wide text-[var(--text-color)]">
+                      {program.coursesCount ?? 0} Courses
+                    </span>
+                    <ArrowRight className="w-3 h-3 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200 text-[var(--text-color)]" />
+                  </div>
+                </Link>
+              ))}
+            </ScrollStrip>
+          </div>
+        )}
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+        {/* Other Programs — single row, small, scrollable */}
+        <div>
+          <div className="flex items-center gap-2 mb-2.5">
+            <GraduationCap className="w-4 h-4 text-[var(--text-color)] opacity-70" />
+            <h2 className="text-base md:text-lg font-bold text-[var(--text-color)]">
+              Explore Other Programs
+            </h2>
+          </div>
+
+          {isProgramsLoading && (
+            <div className="rounded-xl border border-[var(--text-color)]/10 px-6 py-6 text-center opacity-60 text-xs text-[var(--text-color)]">
+              Loading programs…
+            </div>
+          )}
+
+          {!isProgramsLoading && otherPrograms.length === 0 && (
+            <div className="rounded-xl border border-[var(--text-color)]/10 px-6 py-6 text-center opacity-60 text-xs text-[var(--text-color)]">
+              No other programs available right now.
+            </div>
+          )}
+
+          {!isProgramsLoading && otherPrograms.length > 0 && (
+            <ScrollStrip id="other-programs-scroll">
+              {otherPrograms.map((program) => {
+                const dashboardSlug = SEGMENT_DASHBOARD_MAP[program.segment ?? ""];
+                if (!dashboardSlug) return null;
+
+                return (
+                  <Link
+                    key={program.guidId}
+                    href={`/dashboards/${dashboardSlug}`}
+                    className="group shrink-0 snap-start w-36 overflow-hidden rounded-xl border border-[var(--text-color)]/20 bg-gradient-to-br from-purple-500/10 to-pink-500/10 hover:border-[var(--text-color)]/50 hover:shadow-md transition-all duration-300 p-3"
+                  >
+                    <p className="text-[8px] uppercase font-bold tracking-wider opacity-50 text-[var(--text-color)] mb-1 truncate">
+                      {program.segment?.replace(/_/g, " ")}
+                    </p>
+                    <h3 className="font-bold text-xs text-[var(--text-color)] truncate">
+                      {program.name}
+                    </h3>
+                    <div className="flex items-center justify-end mt-2">
+                      <ArrowRight className="w-3 h-3 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200 text-[var(--text-color)]" />
+                    </div>
+                  </Link>
+                );
+              })}
+            </ScrollStrip>
+          )}
+        </div>
+
+        {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
+        {/* Dynamic Vista Quote */}
+        <div className="w-full flex justify-center items-center py-1">
+          <div
+            className="
+              max-w-5xl w-full
+              text-center
+              px-5 py-3
+              rounded-xl
+              border
+              backdrop-blur-xl
+              bg-gradient-to-r
+              from-purple-500/10
+              via-pink-500/10
+              to-cyan-500/10
+              shadow-md
+              transition-all duration-500
+            "
+          >
+            <div className="flex flex-col md:flex-row justify-center items-center gap-2 text-xs md:text-sm">
+              <span className="font-bold tracking-wide text-[var(--text-color)]">
+                {randomQuote.quoteTitle}
+              </span>
+              <span className="opacity-70 text-[var(--text-color)]">
+                — {randomQuote.quoteDescription}
+              </span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </main>
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SIDEBAR ASSESSMENT ITEM — compact, click to select and show exams in main
-// ─────────────────────────────────────────────────────────────────────────────
-function SidebarAssessmentItem({
-  assessment,
-  activeLearningLevel,
-}: {
-  assessment: AssessmentItem;
-  activeLearningLevel: LearningLevel | null;
-}) {
-  const [selected, setSelected] = useState(false);
-
-  return (
-    <div>
-      <button
-        onClick={() => setSelected(s => !s)}
-        style={{
-          width: "100%", display: "flex", alignItems: "center",
-          justifyContent: "space-between", padding: "8px 10px",
-          borderRadius: "var(--border-radius-md)",
-          border: "0.5px solid",
-          borderColor: selected ? "var(--color-border-secondary)" : "var(--color-border-tertiary)",
-          background: selected ? "var(--color-background-secondary)" : "transparent",
-          cursor: "pointer", textAlign: "left", gap: 8,
-        }}
-      >
-        <span style={{
-          fontSize: 13, fontWeight: selected ? 500 : 400,
-          color: "var(--color-text-primary)",
-          overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1,
-        }}>
-          {assessment.name}
-        </span>
-        <span style={{
-          fontSize: 11, color: "var(--color-text-secondary)", flexShrink: 0,
-          transition: "transform 0.15s", display: "inline-block",
-          transform: selected ? "rotate(180deg)" : "rotate(0deg)"
-        }}>▼</span>
-      </button>
-
-      {selected && (
-        <div style={{
-          marginTop: 4, marginLeft: 10,
-          borderLeft: "1.5px solid var(--color-border-tertiary)",
-          paddingLeft: 10, paddingBottom: 8,
-        }}>
-          <ExamListPanel
-            assessmentGuidId={assessment.guidId}
-            learningLevel={activeLearningLevel}
-          />
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// MAIN CONTENT AREA
-// ─────────────────────────────────────────────────────────────────────────────
-function MainContent({
-  activeTab,
-  activeLearningLevel,
-  assessments,
-}: {
-  activeTab: Tab;
-  activeLearningLevel: LearningLevel | null;
-  assessments: AssessmentItem[];
-}) {
-  if (activeTab === "all") {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        <h2 style={{ margin: 0, fontSize: 18, fontWeight: 500 }}>All Exams</h2>
-        <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
-          {assessments.map(assessment => (
-            <AssessmentRow
-              key={assessment.guidId}
-              assessment={assessment}
-              activeLearningLevel={null}
-            />
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (activeTab === "learning") {
-    const levelMeta = LEARNING_LEVELS.find(l => l.key === activeLearningLevel);
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <h2 style={{ margin: 0, fontSize: 18, fontWeight: 500 }}>
-            {levelMeta ? `${levelMeta.icon} Exams by ${levelMeta.label}` : "Exams by Subject"}
-          </h2>
-          {!activeLearningLevel && (
-            <span style={{ fontSize: 13, color: "var(--color-text-secondary)" }}>
-              ← Select a level from the sidebar
-            </span>
-          )}
-        </div>
-        <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
-          {assessments.map(assessment => (
-            <AssessmentRow
-              key={assessment.guidId}
-              assessment={assessment}
-              activeLearningLevel={activeLearningLevel}
-            />
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  // Default: assessments tab
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-      <h2 style={{ margin: 0, fontSize: 18, fontWeight: 500 }}>Assessments</h2>
-      <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
-        {assessments.map(assessment => (
-          <AssessmentRow
-            key={assessment.guidId}
-            assessment={assessment}
-            activeLearningLevel={null}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
+// ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+// The End By : B.L.S.M.C ;  -  SkewBlanc - The Winds Chase Us ⚓
+// ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

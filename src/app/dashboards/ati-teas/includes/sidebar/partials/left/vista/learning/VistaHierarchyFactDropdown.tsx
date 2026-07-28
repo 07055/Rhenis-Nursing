@@ -5,9 +5,9 @@ import { FolderTree, ChevronDown, ChevronRight } from "lucide-react";
 import { Tooltip } from "@/components/dashboards/includes/sidebar/tooltips/SidebarTooltip";
 import { useThemeContext } from "@/lib/contexts/panel/layout/theme/PanelThemeContext";
 
-const TARGET_PANEL = "exams";
+const TARGET_PANEL = "ati-teas";
 const TARGET_GROUP = "learning";
-const BASE_ROUTE = `/dashboards/${TARGET_PANEL}/vista/strata/${TARGET_GROUP}/facts/absolute`;
+const BASE_ROUTE = `/dashboards/${TARGET_PANEL}/vista/${TARGET_GROUP}/facts/absolute`;
 
 interface Props {
   isOpened: boolean;

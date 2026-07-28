@@ -29,7 +29,7 @@ export default function About({
     (theme.leftSidebar === "system" ? theme.global : theme.leftSidebar) === "light";
 
   return (
-    <Link href="/dashboards/exams/about">
+    <Link href="/dashboards/ati-teas/vista/pages/about-us">
       <div
         onClick={handleItemClick}
         onMouseEnter={(e) => handleItemHover("About", e)}
@@ -40,14 +40,14 @@ export default function About({
     ${!isOpened && "justify-center"}`}
       >
         <Info className="w-5 h-5" />
-        {isOpened && <span className="ml-3">About</span>}
+        {isOpened && <span className="ml-3">About Us</span>}
 
         {!isOpened && hoveredItem === "About" && (
           <Tooltip
             x={tooltipPosition.x}
             y={tooltipPosition.y}
           >
-            About
+            About Us
           </Tooltip>
         )}
       </div>

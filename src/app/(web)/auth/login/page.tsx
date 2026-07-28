@@ -1,10 +1,10 @@
 // SkewLine\castoline\src\app\web\(auth)\login\page.tsx
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Link from 'next/link'
-import { FcGoogle } from 'react-icons/fc'
 import 'react-phone-number-input/style.css'
+import { FcGoogle } from 'react-icons/fc'
 import { FaLinkedin, FaGithub, FaApple, FaMicrosoft, FaFacebookF, FaEye, FaEyeSlash } from 'react-icons/fa'
 import { FiCheckCircle } from 'react-icons/fi'
 import { APP_NAME } from '@/lib/config/config'
@@ -41,10 +41,10 @@ function LoginSearchParamsHandler({
   return null;
 }
 
-  // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 // Main Login Page User Inputs and Logic
-export default function LoginPage() {
+export default function WebLoginPage() {
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -67,6 +67,12 @@ export default function LoginPage() {
 
   const [showPin, setShowPin] = useState(false);
   const role = "Learner"; // hidden, fixed role
+  const LANDING_PATH = "/pages/entrance"; // Landing page
+
+  const handleRegisteredRedirect = useCallback((email: string, message: string) => {
+    setForm(prev => ({ ...prev, email }));
+    setSuccess(message);
+  }, []);
 
   // Check if user is already authenticated for him to avoid login again
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -125,7 +131,7 @@ export default function LoginPage() {
           loginProviderPayload: "Void",
           dashboardName: "web", // hardcoded
           role: role,           // Predefined
-          challenge: "login-skew8@lancasto",
+          challenge: "learner.login.skew8lancasto",
           remember: form.remember,
         }
       } else {
@@ -138,7 +144,7 @@ export default function LoginPage() {
           loginProviderPayload: "Void",
           dashboardName: "web", // hardcoded
           role: role,           // from dropdown
-          challenge: "login-skew8@lancasto",
+          challenge: "learner.login.skew8lancasto",
           remember: form.remember,
         }
       }
@@ -147,27 +153,18 @@ export default function LoginPage() {
       const data = await login(credentials); // LoginResponse object already
 
       if (data?.error) {
-        console.warn("⚠️ Login error:", data.error);
+        console.warn("⚠️ Login error (400 body):", data.error, data);
         setError(data.error)
         setSuccess('')
         return
       }
 
-      if (data?.redirect_url) {
-        setSuccess("Login successful! Redirecting…")
-        setError('')
-        if (typeof data.redirect_url === "string" && data.redirect_url.length > 0) {
-          const redirectUrl: string = data.redirect_url; //  capture as string
-          setTimeout(() => {
-            router.push(redirectUrl)
-          }, 800)
-        }
-        return
-      }
-
-      // Fallback (rare case)
-      setSuccess("Login succeeded, but no redirect URL was provided.")
+      setSuccess("Login Successful ! Redirecting . . . ⚓")
       setError('')
+      setTimeout(() => {
+        router.push(LANDING_PATH)
+      }, 800)
+      return
 
     } catch (err: unknown) {
       console.error("Login failed:", err)
@@ -184,12 +181,7 @@ export default function LoginPage() {
     <div className="flex flex-col items-center justify-center bg-gradient-to-br from-blue-300 to-white px-4 py-8">
 
       <Suspense fallback={null}>
-        <LoginSearchParamsHandler
-          onRegistered={(email, message) => {
-            setForm(prev => ({ ...prev, email }));
-            setSuccess(message);
-          }}
-        />
+        <LoginSearchParamsHandler onRegistered={handleRegisteredRedirect} />
       </Suspense>
 
       {/* App Title / Branding */}
@@ -220,13 +212,77 @@ export default function LoginPage() {
         <div className="hidden md:flex relative w-full h-full items-end justify-center overflow-hidden">
           {/* Background Image */}
           <Image
-            src="/auth/loginImage.jpg"
+            src="/web/auth/login/loginFoto.jpg"
             alt="Welcome"
             layout="fill"
             objectFit="cover"
             priority
             className="z-0"
           />
+
+          {/* Top Social Login Buttons Overlay */}
+          <div className="absolute top-0 left-0 z-10 w-full p-4">
+            <div className="bg-black/30 backdrop-blur-md rounded-2xl p-4 shadow-lg">
+              <p className="text-center text-white text-xs font-semibold tracking-wide uppercase mb-3 drop-shadow-md">
+                Sign in with
+              </p>
+              <div className="grid grid-cols-3 gap-3">
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-gray-700"
+                  onClick={() => setSelectedProvider('google')}
+                >
+                  <FcGoogle className="text-xl" />
+                  <span className="text-sm hidden lg:inline">Google</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-gray-800"
+                  onClick={() => setSelectedProvider('apple')}
+                >
+                  <FaApple className="text-xl" />
+                  <span className="text-sm hidden lg:inline">Apple</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-blue-700"
+                  onClick={() => setSelectedProvider('facebook')}
+                >
+                  <FaFacebookF className="text-xl" />
+                  <span className="text-sm hidden lg:inline">Facebook</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-gray-800"
+                  onClick={() => setSelectedProvider('github')}
+                >
+                  <FaGithub className="text-xl" />
+                  <span className="text-sm hidden lg:inline">GitHub</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-blue-700"
+                  onClick={() => setSelectedProvider('linkedin')}
+                >
+                  <FaLinkedin className="text-xl" />
+                  <span className="text-sm hidden lg:inline">LinkedIn</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 bg-white/90 border border-gray-300 p-2 rounded-lg hover:bg-white transition text-blue-600"
+                  onClick={() => setSelectedProvider('microsoft')}
+                >
+                  <FaMicrosoft className="text-xl" />
+                  <span className="text-sm hidden lg:inline">Microsoft</span>
+                </button>
+              </div>
+            </div>
+          </div>
 
           {/* Bottom Text Overlay */}
           <div className="z-10 w-full p-8 bg-gradient-to-t from-black/70 via-black/40 to-transparent text-white text-center">
@@ -250,65 +306,74 @@ export default function LoginPage() {
 
         <div className="w-full p-8 space-y-6 border-l border-gray-200">
 
-          {/* Social Login Buttons */}
-          <div className="grid grid-cols-3 gap-3">
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-gray-700"
-              onClick={() => setSelectedProvider('google')}
-            >
-              <FcGoogle className="text-xl" />
-              <span className="text-sm hidden sm:inline">Google</span>
-            </button>
+          {/* Mobile-only Social Login Buttons (hidden on md+, shown inside photo panel instead) */}
+          <div className="md:hidden">
+            <p className="text-center text-gray-500 text-xs font-semibold tracking-wide uppercase mb-3">
+              Sign in with
+            </p>
+            <div className="grid grid-cols-3 gap-3">
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-gray-700"
+                onClick={() => setSelectedProvider('google')}
+              >
+                <FcGoogle className="text-xl" />
+              </button>
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-gray-800"
-              onClick={() => setSelectedProvider('apple')}
-            >
-              <FaApple className="text-xl" />
-              <span className="text-sm hidden sm:inline">Apple</span>
-            </button>
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-gray-800"
+                onClick={() => setSelectedProvider('apple')}
+              >
+                <FaApple className="text-xl" />
+              </button>
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-blue-700"
-              onClick={() => setSelectedProvider('facebook')}
-            >
-              <FaFacebookF className="text-xl" />
-              <span className="text-sm hidden sm:inline">Facebook</span>
-            </button>
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-blue-700"
+                onClick={() => setSelectedProvider('facebook')}
+              >
+                <FaFacebookF className="text-xl" />
+              </button>
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-gray-800"
-              onClick={() => setSelectedProvider('github')}
-            >
-              <FaGithub className="text-xl" />
-              <span className="text-sm hidden sm:inline">GitHub</span>
-            </button>
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-gray-800"
+                onClick={() => setSelectedProvider('github')}
+              >
+                <FaGithub className="text-xl" />
+              </button>
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-blue-700"
-              onClick={() => setSelectedProvider('linkedin')}
-            >
-              <FaLinkedin className="text-xl" />
-              <span className="text-sm hidden sm:inline">LinkedIn</span>
-            </button>
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-blue-700"
+                onClick={() => setSelectedProvider('linkedin')}
+              >
+                <FaLinkedin className="text-xl" />
+              </button>
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-blue-600"
-              onClick={() => setSelectedProvider('microsoft')}
-            >
-              <FaMicrosoft className="text-xl" />
-              <span className="text-sm hidden sm:inline">Microsoft</span>
-            </button>
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition text-blue-600"
+                onClick={() => setSelectedProvider('microsoft')}
+              >
+                <FaMicrosoft className="text-xl" />
+              </button>
+            </div>
           </div>
 
-          <div className="text-center text-gray-400 text-sm">or continue with email</div>
+          <div className="text-center text-md">
+            <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-yellow-800 via-gray-300 to-green-600 bg-[length:200%_100%] [animation:shimmer_3s_linear_infinite]">
+              or continue with email
+            </span>
+          </div>
 
+          <style>{`
+            @keyframes shimmer {
+              0% { background-position: 200% 0; }
+              100% { background-position: -200% 0; }
+            }
+          `}</style>
           {/* Error Message */}
           {error && (
             <div className="flex justify-center mt-4">
@@ -480,23 +545,22 @@ export default function LoginPage() {
                 disabled={isLoading}
                 className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 font-semibold transition disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {isLoading ? 'Logging in...' : 'Login'}
+                {isLoading ? 'Logging in . . . ⚓' : 'Submit and Login'}
               </button>
 
-              <p className="text-sm text-center text-gray-600 mt-2">
-                Don&#39;t have an Account ?{' '}
-                <Link href="/auth/register" className="text-blue-600 font-semibold hover:underline">
-                  Register here
-                </Link>
-              </p>
-
-              {/* Centered Forgot Password */}
-              <div className="text-center mb-4">
+              {/* Links */}
+              <div className="mt-6 flex flex-row space-x-3 w-full">
                 <Link
                   href="/auth/recovery/password"
-                  className="text-sm text-blue-600 hover:underline"
+                  className="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
                 >
                   Forgot Password ?
+                </Link>
+                <Link
+                  href="/auth/register"
+                  className="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+                >
+                  Register Instead ?
                 </Link>
               </div>
 

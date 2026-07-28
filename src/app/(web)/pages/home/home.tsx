@@ -7,15 +7,15 @@ const examCategories = [
   {
     heading: "ENTRANCE EXAMS",
     links: [
-      { label: "ATI TEAS", href: "#", bg: "bg-[#d9c8f2]" },
-      { label: "HESI A2", href: "#", bg: "bg-[#cfa8f2]" },
+      { label: "ATI TEAS", href: "pages/exams/ati-teas", bg: "bg-[#d9c8f2]" },
+      { label: "HESI A2", href: "pages/exams/hesi-a2", bg: "bg-[#cfa8f2]" },
     ],
   },
   {
     heading: "NURSING Q-BANK",
     links: [
-      { label: "RN NURSING EXAMS", href: "#", bg: "bg-[#f3e4c8]" },
-      { label: "LPN NURSING EXAMS", href: "#", bg: "bg-[#ffe4b2]" },
+      { label: "RN NURSING EXAMS", href: "pages/exams/rn-nursing", bg: "bg-[#f3e4c8]" },
+      { label: "LPN NURSING EXAMS", href: "pages/exams/lpn-nursing", bg: "bg-[#ffe4b2]" },
     ],
   },
   {

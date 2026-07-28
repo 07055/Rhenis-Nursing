@@ -12,6 +12,7 @@ export interface StrataItem {
 
   target?: string;
   type?: string;
+  accessType?: string;
   code?: string;
   status?: string;
 
@@ -19,7 +20,7 @@ export interface StrataItem {
   fragment?: string;
   link?: string;
 
-  ratings?: number;
+  rating?: number;
   version?: string;
   tag?: string;
 
