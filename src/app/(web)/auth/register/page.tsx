@@ -252,31 +252,31 @@ export default function RegisterPage() {
   // -------------------------------------------------------------------------------------------------------------------------------
 
   return (
-    <div className="flex flex-col items-center justify-center bg-gradient-to-br from-blue-300 to-white px-4 py-8">
+    <div className="flex flex-col items-center justify-center px-4 py-8" style={{ backgroundColor: "#0d1b2e" }}>
 
 
       {/* App Title / Branding */}
       <div className="flex flex-col items-center justify-center mb-3 text-center">
         <div className="flex items-center justify-center gap-2">
-          <span className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-500 drop-shadow-md">
+          <span className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-navy/60 drop-shadow-md">
             Welcome to
           </span>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-blue-800 drop-shadow-md">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-coral drop-shadow-md">
             {APP_NAME}
           </h1>
           <FiCheckCircle
-            className="text-green-500 text-xl md:text-2xl drop-shadow-sm"
+            className="text-teal text-xl md:text-2xl drop-shadow-sm"
             title="Verified"
           />
         </div>
 
-        <p className="text-xs text-gray-600 mt-1">
+        <p className="text-xs text-navy/50 mt-1">
           Your trusted platform for streamlined access to all Nursing Resources .
         </p>
       </div>
 
       {/* Login Card Container */}
-      <div className="max-w-5xl w-full bg-white rounded-2xl shadow-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+      <div className="max-w-5xl w-full bg-paper border border-border rounded-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
 
         {/* LEFT SIDE: Full Image Background + Text at Bottom */}
         <div className="hidden md:flex relative w-full h-full items-end justify-center overflow-hidden">
@@ -374,11 +374,11 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        <div className="w-full p-8 bg-gradient-to-b from-green-10 to-yellow-100 space-y-6 border-l border-gray-200">
+        <div className="w-full p-8 bg-paper space-y-6 border-l border-border">
 
           {/* Mobile-only Social Login Buttons (hidden on md+, shown inside photo panel instead) */}
           <div className="md:hidden">
-            <p className="text-center text-gray-500 text-xs font-semibold tracking-wide uppercase mb-3">
+            <p className="text-center text-navy/60 text-xs font-semibold tracking-wide uppercase mb-3">
               Sign in with
             </p>
             <div className="grid grid-cols-3 gap-3">
@@ -432,18 +432,13 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          <div className="text-center text-md">
-            <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-yellow-800 via-gray-300 to-green-600 bg-[length:200%_100%] [animation:shimmer_3s_linear_infinite]">
+          <div className="flex items-center gap-3">
+            <span className="flex-1 h-px bg-border" />
+            <span className="text-xs font-mono tracking-widest uppercase text-navy/50">
               or continue with email
             </span>
+            <span className="flex-1 h-px bg-border" />
           </div>
-
-          <style>{`
-            @keyframes shimmer {
-              0% { background-position: 200% 0; }
-              100% { background-position: -200% 0; }
-            }
-          `}</style>
 
 
           {/* Alert Message */}
@@ -451,8 +446,8 @@ export default function RegisterPage() {
             <div className="flex justify-center">
               <div
                 className={`relative max-w-md w-full px-4 py-3 rounded-xl shadow-md text-sm flex items-center gap-3
-                ${error ? 'bg-red-100 border border-red-200 text-red-800' : ''}
-                ${success ? 'bg-green-100 border border-green-200 text-green-800' : ''}
+                ${error ? 'bg-coral/10 border border-coral/30 text-coral' : ''}
+                ${success ? 'bg-teal/10 border border-teal/30 text-teal' : ''}
               `}
               >
                 {/* Emoji */}
@@ -472,7 +467,7 @@ export default function RegisterPage() {
                     setError('')
                     setSuccess('')
                   }}
-                  className={`absolute top-2 right-2 font-bold hover:text-gray-700 ${error ? 'text-red-800' : 'text-green-800'}`}
+                  className={`absolute top-2 right-2 font-bold hover:text-navy ${error ? 'text-coral' : 'text-teal'}`}
                 >
                   ✕
                 </button>
@@ -486,7 +481,7 @@ export default function RegisterPage() {
             <div className="text-center">
               <button
                 onClick={() => router.push('/dashboards')}
-                className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 font-semibold transition"
+                className="w-full bg-coral text-paper py-2 rounded-lg hover:bg-coral-hover font-semibold transition"
               >
                 🚀 Dive in &amp; Continue
               </button>
@@ -494,7 +489,7 @@ export default function RegisterPage() {
           ) : (
             <form onSubmit={handleRegister} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Enter Username</label>
+                <label className="block text-sm font-medium text-navy/70 mb-1">Enter Username</label>
                 <input
                   type="text"
                   name="username"
@@ -502,27 +497,27 @@ export default function RegisterPage() {
                   required
                   value={form.username}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-md text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 text-md text-navy focus:outline-none focus:ring-2 focus:ring-coral"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Enter Email</label>
+                <label className="block text-sm font-medium text-navy/70 mb-1">Enter Email</label>
                 <input
                   type="email"
                   name="email"
                   required
                   value={form.email}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-md text-cyan-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 text-md text-navy focus:outline-none focus:ring-2 focus:ring-coral"
                 />
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-navy/70 mb-1">
                   Enter Phone{' '}
                   {form.phone && form.phone.length > 6 && !phoneValid && (
-                    <span className="text-red-500 text-xs">(Invalid phone number)</span>
+                    <span className="text-coral text-xs">(Invalid phone number)</span>
                   )}
                 </label>
 
@@ -532,9 +527,9 @@ export default function RegisterPage() {
                   value={form.phone}
                   onChange={handlePhoneChange}
                   name="phone"
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500 transition-all"
+                  className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-coral transition-all"
                   countrySelectProps={{
-                    className: "text-blue-600 text-sm",
+                    className: "text-navy text-sm",
                   }}
                 />
 
@@ -543,7 +538,7 @@ export default function RegisterPage() {
                   width: 100%;
                   font-size: 1rem; /* text-sm */
                   padding: 0rem 0; /* py-2 */
-                  color: #1f2937; /* text-gray-900 */
+                  color: #e2e8f0; /* text-navy */
                   background-color: transparent;
                   border: none;
                   outline: none;
@@ -559,11 +554,11 @@ export default function RegisterPage() {
 
               {/* 🔐 Login Method Selector */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-navy/70 mb-2">
                   Choose Login Method
                 </label>
 
-                <div className="flex bg-gray-100 p-1 rounded-xl shadow-inner">
+                <div className="flex bg-paper-dim p-1 rounded-xl shadow-inner border border-border">
                   {(["password", "pin", "both"] as Array<"password" | "pin" | "both">).map(
                     method => (
                       <button
@@ -578,8 +573,8 @@ export default function RegisterPage() {
                         className={`
                         flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-all
                         ${form.loginMethod === method
-                            ? "bg-blue-600 text-white shadow"
-                            : "text-gray-600 hover:bg-gray-200"
+                            ? "bg-coral text-paper shadow"
+                            : "text-navy/70 hover:bg-paper-dim"
                           }
                         `}
                       >
@@ -597,14 +592,14 @@ export default function RegisterPage() {
                 <div className="animate-fadeIn space-y-3">
                   <div>
                     <div className="flex justify-between items-center mb-1">
-                      <label className="block text-sm font-medium text-gray-700">
+                      <label className="block text-sm font-medium text-navy/70">
                         Enter Password
                       </label>
 
                       <button
                         type="button"
                         onClick={generatePassword}
-                        className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded hover:bg-blue-200"
+                        className="text-xs bg-coral/10 text-coral px-2 py-1 rounded hover:bg-coral/20"
                       >
                         Generate
                       </button>
@@ -618,13 +613,13 @@ export default function RegisterPage() {
                         value={form.password}
                         maxLength={24}
                         onChange={handleChange}
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-md 
-                     text-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
+                        className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 text-md 
+                     text-navy focus:outline-none focus:ring-2 focus:ring-coral pr-10"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute top-2.5 right-3 text-gray-500 hover:text-gray-700"
+                        className="absolute top-2.5 right-3 text-navy/40 hover:text-navy"
                       >
                         {showPassword ? <FaEyeSlash /> : <FaEye />}
                       </button>
@@ -632,37 +627,37 @@ export default function RegisterPage() {
 
                     {/* Password Requirements */}
                     {form.password && (
-                      <div className="mt-2 text-xs text-gray-600 space-y-1">
+                      <div className="mt-2 text-xs text-navy/60 space-y-1">
                         <p className="font-medium">Password must contain:</p>
                         <ul className="space-y-1 mt-1">
                           <li
                             className={`${passwordRequirements.length
-                              ? "text-green-500"
-                              : "text-gray-500"
+                              ? "text-teal"
+                              : "text-navy/50"
                               }`}
                           >
                             {passwordRequirements.length ? "✓" : "•"} At Least 8 Characters
                           </li>
                           <li
                             className={`${passwordRequirements.uppercase
-                              ? "text-green-500"
-                              : "text-gray-500"
+                              ? "text-teal"
+                              : "text-navy/50"
                               }`}
                           >
                             {passwordRequirements.uppercase ? "✓" : "•"} One Uppercase Letter (Optional)
                           </li>
                           <li
                             className={`${passwordRequirements.number
-                              ? "text-green-500"
-                              : "text-gray-500"
+                              ? "text-teal"
+                              : "text-navy/50"
                               }`}
                           >
                             {passwordRequirements.number ? "✓" : "•"} One Number (Optional)
                           </li>
                           <li
                             className={`${passwordRequirements.specialChar
-                              ? "text-green-500"
-                              : "text-gray-500"
+                              ? "text-teal"
+                              : "text-navy/50"
                               }`}
                           >
                             {passwordRequirements.specialChar ? "✓" : "•"} One special
@@ -680,7 +675,7 @@ export default function RegisterPage() {
                     // passwordRequirements.specialChar &&    // without special characters the confirm password shows up
                     (
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                        <label className="block text-sm font-medium text-navy/70 mb-1">
                           Confirm Password
                         </label>
 
@@ -692,19 +687,19 @@ export default function RegisterPage() {
                             value={form.confirmPassword}
                             onChange={handleChange}
                             maxLength={24}
-                            className={`w-full border ${form.password &&
+                            className={`w-full bg-paper-dim border ${form.password &&
                               form.confirmPassword &&
                               form.password !== form.confirmPassword
-                              ? "border-red-300"
-                              : "border-gray-300"
-                              } rounded-lg px-3 py-2 text-md text-green-700 
-                          focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10`}
+                              ? "border-coral/50"
+                              : "border-border"
+                              } rounded-lg px-3 py-2 text-md text-navy 
+                          focus:outline-none focus:ring-2 focus:ring-coral pr-10`}
                           />
 
                           <button
                             type="button"
                             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                            className="absolute top-2.5 right-3 text-gray-500 hover:text-gray-700"
+                            className="absolute top-2.5 right-3 text-navy/40 hover:text-navy"
                           >
                             {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                           </button>
@@ -713,7 +708,7 @@ export default function RegisterPage() {
                         {form.password &&
                           form.confirmPassword &&
                           form.password !== form.confirmPassword && (
-                            <p className="mt-1 text-xs text-red-500">Passwords do not match</p>
+                            <p className="mt-1 text-xs text-coral">Passwords do not match</p>
                           )}
                       </div>
                     )}
@@ -724,14 +719,14 @@ export default function RegisterPage() {
               {(form.loginMethod === "pin" || form.loginMethod === "both") && (
                 <div className="animate-fadeIn space-y-3">
                   <div className="flex justify-between items-center mb-1">
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-medium text-navy/70">
                       Enter PIN (4–24 digits)
                     </label>
 
                     <button
                       type="button"
                       onClick={() => generatePin(16)} // generate 16-digit PIN
-                      className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded hover:bg-blue-200"
+                      className="text-xs bg-coral/10 text-coral px-2 py-1 rounded hover:bg-coral/20"
                     >
                       Generate
                     </button>
@@ -753,12 +748,12 @@ export default function RegisterPage() {
                           setForm(prev => ({ ...prev, pin: value }))
                         }
                       }}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-md text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
+                      className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 text-md text-navy focus:outline-none focus:ring-2 focus:ring-coral pr-10"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPin(!showPin)}
-                      className="absolute top-2.5 right-3 text-gray-500 hover:text-gray-700"
+                      className="absolute top-2.5 right-3 text-navy/40 hover:text-navy"
                     >
                       {showPin ? <FaEyeSlash /> : <FaEye />}
                     </button>
@@ -766,7 +761,7 @@ export default function RegisterPage() {
 
                   {/* Confirm PIN */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-navy/70 mb-1">
                       Confirm PIN
                     </label>
                     <div className="relative">
@@ -783,12 +778,12 @@ export default function RegisterPage() {
                             pin_confirmation: e.target.value.replace(/\D/g, "")
                           }))
                         }
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-md text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
+                        className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 text-md text-navy focus:outline-none focus:ring-2 focus:ring-coral pr-10"
                       />
                       <button
                         type="button"
                         onClick={() => setShowConfirmPin(!showConfirmPin)}
-                        className="absolute top-2.5 right-3 text-gray-500 hover:text-gray-700"
+                        className="absolute top-2.5 right-3 text-navy/40 hover:text-navy"
                       >
                         {showConfirmPin ? <FaEyeSlash /> : <FaEye />}
                       </button>
@@ -797,7 +792,7 @@ export default function RegisterPage() {
                     {form.pin &&
                       form.pin_confirmation &&
                       form.pin !== form.pin_confirmation && (
-                        <p className="mt-1 text-xs text-red-500">PINs do not match</p>
+                        <p className="mt-1 text-xs text-coral">PINs do not match</p>
                       )}
                   </div>
 
@@ -810,11 +805,11 @@ export default function RegisterPage() {
                   name="agree"
                   checked={form.agree}
                   onChange={handleChange}
-                  className="mt-1 accent-blue-600"
+                  className="mt-1 accent-coral"
                 />
-                <label className="text-sm text-gray-600">
+                <label className="text-sm text-navy/60">
                   I agree to the{' '}
-                  <Link href="/pages/terms" className="text-blue-600 underline hover:text-blue-800">
+                  <Link href="/pages/terms" className="text-coral underline hover:text-coral-hover">
                     Terms and Conditions
                   </Link>
                 </label>
@@ -824,27 +819,27 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-indigo-600 font-semibold transition disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-coral text-paper py-2 rounded-lg hover:bg-coral-hover font-semibold transition disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? 'Registering . . . ⚓' : 'Submit and Register'}
               </button>
 
               {/* Submit */}
               {error && (
-                <p className="text-sm text-red-700 text-center font-medium">{error}</p>
+                <p className="text-sm text-coral text-center font-medium">{error}</p>
               )}
 
               {/* Links */}
               <div className="mt-6 flex flex-row space-x-3 w-full">
                 <Link
                   href="/auth/support"
-                  className="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+                  className="flex-1 text-center bg-transparent border border-border-light text-navy font-semibold py-2 px-4 rounded-lg hover:bg-paper-dim transition-colors duration-300"
                 >
                   Having Issues ?
                 </Link>
                 <Link
                   href="/auth/login"
-                  className="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+                  className="flex-1 text-center bg-transparent border border-border-light text-navy font-semibold py-2 px-4 rounded-lg hover:bg-paper-dim transition-colors duration-300"
                 >
                   Login Instead ?
                 </Link>

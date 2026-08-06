@@ -78,23 +78,23 @@ export default function EntrancePage() {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 px-4 py-12 sm:px-8">
+        <div className="min-h-screen px-4 py-12 sm:px-8" style={{ backgroundColor: "#0d1b2e" }}>
             <div className="mx-auto max-w-7xl">
                 <div className="mb-10 text-center">
-                    <h1 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">
+                    <h1 className="font-serif text-3xl font-semibold text-navy sm:text-4xl tracking-tight">
                         Where would you like to start?
                     </h1>
-                    <p className="mt-3 text-slate-500">
+                    <p className="mt-3 text-navy/60">
                         Pick a track below to jump into practice exams, study resources, and progress tracking built for that path.
                     </p>
                 </div>
 
                 {isLoading && (
-                    <p className="text-center text-slate-400">Loading Programs…</p>
+                    <p className="text-center text-navy/50">Loading Programs…</p>
                 )}
 
                 {!isLoading && orderedPrograms.length === 0 && (
-                    <p className="text-center text-slate-400">No Programs Found ⚓</p>
+                    <p className="text-center text-navy/50">No Programs Found ⚓</p>
                 )}
 
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -114,11 +114,11 @@ export default function EntrancePage() {
                         return (
                             <div
                                 key={program.guidId}
-                                className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm ring-2 ring-transparent transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${presentation.ring}`}
+                                className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-paper p-6 shadow-sm ring-2 ring-transparent transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${presentation.ring}`}
                             >
                                 {/* Featured badge */}
                                 {program.isFeatured && (
-                                    <div className="absolute right-4 top-4 z-10 flex items-center gap-1 rounded-full bg-amber-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-amber-950 shadow">
+                                    <div className="absolute right-4 top-4 z-10 flex items-center gap-1 rounded-full bg-coral px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-paper shadow">
                                         ⭐ Featured
                                     </div>
                                 )}
@@ -131,14 +131,14 @@ export default function EntrancePage() {
                                         >
                                             <Icon size={24} />
                                         </div>
-                                        <h2 className="text-lg font-bold leading-snug text-slate-900">
+                                        <h2 className="font-serif text-lg font-semibold leading-snug text-navy">
                                             {program.name}
                                         </h2>
                                     </div>
 
                                     {/* Description */}
                                     {program.description && (
-                                        <p className="mt-1 text-sm leading-relaxed text-slate-500">
+                                        <p className="mt-1 text-sm leading-relaxed text-navy/60">
                                             {program.description}
                                         </p>
                                     )}
@@ -146,17 +146,17 @@ export default function EntrancePage() {
                                     {/* Meta row — courses count + level, if present */}
                                     <div className="mt-3 flex flex-wrap items-center gap-2">
                                         {typeof program.coursesCount === "number" && (
-                                            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
+                                            <span className="rounded-full bg-paper-dim px-2.5 py-1 text-xs font-semibold text-navy/60">
                                                 {program.coursesCount} Course{program.coursesCount !== 1 ? "s" : ""}
                                             </span>
                                         )}
                                         {program.level && (
-                                            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
+                                            <span className="rounded-full bg-paper-dim px-2.5 py-1 text-xs font-semibold text-navy/60">
                                                 {program.level}
                                             </span>
                                         )}
                                         {program.difficulty && (
-                                            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
+                                            <span className="rounded-full bg-paper-dim px-2.5 py-1 text-xs font-semibold text-navy/60">
                                                 {program.difficulty}
                                             </span>
                                         )}
@@ -167,7 +167,7 @@ export default function EntrancePage() {
                                 <div className="mt-6 grid grid-cols-2 gap-2">
                                     <Link
                                         href={subscriptionsHref}
-                                        className="flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-50"
+                                        className="flex items-center justify-center rounded-lg border border-border-light px-3 py-2 text-xs font-semibold text-navy transition-colors hover:bg-paper-dim"
                                     >
                                         View Subscriptions
                                     </Link>

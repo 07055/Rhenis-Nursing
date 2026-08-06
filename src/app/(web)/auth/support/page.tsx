@@ -92,26 +92,26 @@ export default function SupportPage() {
   // ───────────────────────────────────────────────────────────────────────────
 
   return (
-    <div className="flex flex-col items-center justify-center bg-gradient-to-br from-blue-300 to-white px-4 py-8 min-h-screen">
+    <div className="flex flex-col items-center justify-center px-4 py-8 min-h-screen" style={{ backgroundColor: "#0d1b2e" }}>
 
       {/* App Title / Branding */}
       <div className="flex flex-col items-center justify-center mb-3 text-center">
         <div className="flex items-center justify-center gap-2">
-          <span className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-500 drop-shadow-md">
+          <span className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-navy/60 drop-shadow-md">
             Support at
           </span>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-blue-800 drop-shadow-md">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-coral drop-shadow-md">
             {APP_NAME}
           </h1>
-          <FiCheckCircle className="text-green-500 text-xl md:text-2xl drop-shadow-sm" title="Verified" />
+          <FiCheckCircle className="text-teal text-xl md:text-2xl drop-shadow-sm" title="Verified" />
         </div>
-        <p className="text-xs text-gray-600 mt-1">
+        <p className="text-xs text-navy/50 mt-1">
           Having trouble? Tell us what happened and we&apos;ll help you sort it out.
         </p>
       </div>
 
       {/* Card Container */}
-      <div className="max-w-5xl w-full bg-white rounded-2xl shadow-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+      <div className="max-w-5xl w-full bg-paper border border-border rounded-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
 
         {/* LEFT SIDE: Photo */}
         <div className="hidden md:flex relative w-full h-full items-end justify-center overflow-hidden">
@@ -133,15 +133,15 @@ export default function SupportPage() {
         </div>
 
         {/* RIGHT SIDE: Form */}
-        <div className="w-full p-8 space-y-6 border-l border-gray-200">
+        <div className="w-full p-8 space-y-6 border-l border-border">
 
           {/* Alert Message */}
           {(error || success) && (
             <div className="flex justify-center">
               <div
                 className={`relative max-w-md w-full px-4 py-3 rounded-xl shadow-md text-sm flex items-center gap-3
-                ${error ? 'bg-red-100 border border-red-200 text-red-800' : ''}
-                ${success ? 'bg-green-100 border border-green-200 text-green-800' : ''}`}
+                ${error ? 'bg-coral/10 border border-coral/30 text-coral' : ''}
+                ${success ? 'bg-teal/10 border border-teal/30 text-teal' : ''}`}
               >
                 <span className="flex items-center justify-center leading-none">
                   {error ? '⚠️' : '✅'}
@@ -150,7 +150,7 @@ export default function SupportPage() {
                 <button
                   type="button"
                   onClick={() => { setError(''); setSuccess('') }}
-                  className={`absolute top-2 right-2 font-bold hover:text-gray-700 ${error ? 'text-red-800' : 'text-green-800'}`}
+                  className={`absolute top-2 right-2 font-bold hover:text-navy ${error ? 'text-coral' : 'text-teal'}`}
                 >
                   ✕
                 </button>
@@ -161,25 +161,25 @@ export default function SupportPage() {
           {!submitted ? (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <label className="block text-sm font-medium text-navy/70 mb-1">Email</label>
                 <div className="relative">
-                  <FiMail className="absolute top-3 left-3 text-gray-400" />
+                  <FiMail className="absolute top-3 left-3 text-navy/40" />
                   <input
                     type="email"
                     name="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg pl-10 pr-3 py-2 text-sm text-cyan-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full bg-paper-dim border border-border rounded-lg pl-10 pr-3 py-2 text-sm text-navy placeholder:text-navy/40 focus:outline-none focus:ring-2 focus:ring-coral"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-navy/70 mb-1">
                   Phone {' '}
                   {phone && phone.length > 6 && !phoneValid && (
-                    <span className="text-red-500 text-xs">(Invalid phone number)</span>
+                    <span className="text-coral text-xs">(Invalid phone number)</span>
                   )}
                 </label>
                 <PhoneInput
@@ -188,8 +188,8 @@ export default function SupportPage() {
                   value={phone}
                   onChange={handlePhoneChange}
                   name="phone"
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500 transition-all"
-                  countrySelectProps={{ className: 'text-blue-600 text-sm' }}
+                  className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-coral transition-all"
+                  countrySelectProps={{ className: 'text-navy text-sm' }}
                 />
 
                 <style jsx global>{`
@@ -197,7 +197,7 @@ export default function SupportPage() {
                     width: 100%;
                     font-size: 1rem;
                     padding: 0rem 0;
-                    color: #1f2937;
+                    color: #e2e8f0;
                     background-color: transparent;
                     border: none;
                     outline: none;
@@ -212,13 +212,13 @@ export default function SupportPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-navy/70 mb-1">
                   What&apos;s this about ?
                 </label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value as IssueCategory)}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-coral"
                 >
                   <option value="login_issue">I can&apos;t log in</option>
                   <option value="account_recovery">Account recovery problem</option>
@@ -229,7 +229,7 @@ export default function SupportPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-navy/70 mb-1">
                   Describe your issue
                 </label>
                 <textarea
@@ -238,24 +238,24 @@ export default function SupportPage() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tell us what happened, what you expected, and any error messages you saw . . ."
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 text-sm text-navy placeholder:text-navy/40 focus:outline-none focus:ring-2 focus:ring-coral resize-none"
                 />
-                <p className="text-xs text-gray-400 mt-1">{message.length} characters</p>
+                <p className="text-xs text-navy/40 mt-1">{message.length} characters</p>
               </div>
 
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 font-semibold transition disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-coral text-paper py-2 rounded-lg hover:bg-coral-hover font-semibold transition disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? 'Submitting . . . ⚓' : 'Submit Issue'}
               </button>
             </form>
           ) : (
             <div className="text-center space-y-3">
-              <FiCheckCircle className="text-green-500 text-4xl mx-auto" />
-              <h3 className="text-lg font-semibold text-gray-800">Thanks for reaching out ⚓</h3>
-              <p className="text-sm text-gray-600">
+              <FiCheckCircle className="text-teal text-4xl mx-auto" />
+              <h3 className="text-lg font-semibold text-navy">Thanks for reaching out ⚓</h3>
+              <p className="text-sm text-navy/60">
                 We&apos;ve logged your issue and will follow up at {email} or by phone if needed.
               </p>
             </div>
@@ -265,13 +265,13 @@ export default function SupportPage() {
           <div className="mt-6 flex flex-row space-x-3 w-full">
             <Link
               href="/auth/login"
-              className="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+              className="flex-1 text-center bg-transparent border border-border-light text-navy font-semibold py-2 px-4 rounded-lg hover:bg-paper-dim transition-colors duration-300"
             >
               Back to Login
             </Link>
             <Link
               href="/auth/recovery/password"
-              className="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+              className="flex-1 text-center bg-transparent border border-border-light text-navy font-semibold py-2 px-4 rounded-lg hover:bg-paper-dim transition-colors duration-300"
             >
               Forgot Password ?
             </Link>
@@ -282,7 +282,7 @@ export default function SupportPage() {
           <div className="mt-6 flex flex-row space-x-3 w-full">
             <Link
               href="/auth/recovery/social"
-              className="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+              className="flex-1 text-center bg-transparent border border-border-light text-navy font-semibold py-2 px-4 rounded-lg hover:bg-paper-dim transition-colors duration-300"
             >
               Switch to use Email and Password / Pin  ?
             </Link>

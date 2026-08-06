@@ -1,94 +1,145 @@
-'use client'
-
-import Link from 'next/link'
-import PageWrapper from '@/app/(web)/wrapper'
-
-const topics = [
-  { icon: '🧬', label: 'Anatomy & Physiology', desc: 'Body systems, organs, and physiological processes.' },
-  { icon: '⚗️', label: 'Chemistry', desc: 'Basic chemistry concepts relevant to nursing and healthcare.' },
-  { icon: '🔢', label: 'Statistics & Math', desc: 'Dosage calculations, ratios, and basic statistics.' },
-  { icon: '📖', label: 'English & Writing', desc: 'Academic writing, grammar, and reading comprehension.' },
-]
+import Link from "next/link";
+import PulseLine from "@/app/(web)/includes/components/PulseLine";
 
 const facts = [
-  { value: 'GPA', label: 'Typically 2.5+ Required' },
-  { value: '2yrs', label: 'Average Pre-Nursing' },
-  { value: '4+', label: 'Prerequisite Courses' },
-  { value: '100%', label: 'Foundation Coverage' },
-]
+  { value: "4", label: "Core Pillars" },
+  { value: "96%", label: "NCLEX Pass Rate" },
+  { value: "8", label: "Modules Available" },
+  { value: "100%", label: "Online Study" },
+];
 
 export default function PreNursingPage() {
   return (
-    <PageWrapper>
-      <main className="bg-white text-gray-800 overflow-x-hidden">
-
-        <section className="relative bg-gradient-to-br from-sky-950 via-sky-900 to-blue-800 text-white py-16 overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none"
-            style={{ backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`, backgroundSize: '28px 28px' }} />
-          <div className="max-w-5xl mx-auto px-4 text-center relative">
-            <span className="inline-block mb-3 px-3 py-1 text-xs font-bold tracking-widest uppercase rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30">
-              Foundation Track
-            </span>
-            <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
-              Pre-Nursing Prep
-            </h1>
-            <p className="text-sky-100 text-base max-w-2xl mx-auto mb-8">
-              Build a strong academic foundation before entering nursing school. Cover the prerequisite subjects that every nursing program requires.
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Link href="/dashboards/web/assessments/absolute"
-                className="px-6 py-3 bg-sky-500 hover:bg-sky-400 text-white font-bold rounded-xl shadow-lg transition-all duration-200 hover:scale-105">
-                Start Pre-Nursing Practice →
-              </Link>
-              <Link href="/dashboards/web/programs/absolute"
-                className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl transition-all duration-200">
-                View All Programs
-              </Link>
-            </div>
+    <main>
+      {/* Hero */}
+      <section className="relative overflow-hidden" style={{ backgroundColor: "#0d1b2e" }}>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+            maskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
+            WebkitMaskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
+          }}
+        />
+        <div className="mx-auto max-w-6xl px-5 pt-14 pb-12 md:pt-20 md:pb-16 text-center">
+          <span className="inline-block font-mono text-xs tracking-widest uppercase text-coral mb-4">
+            Pre-Nursing Essentials
+          </span>
+          <h1 className="font-serif text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-navy mb-6">
+            Pre-Nursing Essentials<span className="text-coral">.</span>
+          </h1>
+          <p className="text-lg text-navy/60 leading-relaxed max-w-2xl mx-auto mb-8">
+            Get a head start on your nursing education. Our pre-nursing
+            essentials help you build the academic and clinical foundation
+            you&apos;ll need for success in nursing school and beyond.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href="/pages/exams/ati-teas"
+              className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors"
+            >
+              Start with TEAS Prep
+            </Link>
+            <Link
+              href="/pages/entrance"
+              className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium text-navy border border-border-light hover:bg-paper-dim transition-colors"
+            >
+              View All Programs
+            </Link>
           </div>
-        </section>
 
-        <section className="bg-sky-50 py-10 border-b border-sky-100">
-          <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            {facts.map((f, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-sky-100 shadow-sm py-6 px-3">
-                <div className="text-2xl font-extrabold text-sky-600 mb-1">{f.value}</div>
-                <div className="text-xs text-gray-500 font-medium">{f.label}</div>
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+            {facts.map((f) => (
+              <div key={f.label} className="rounded-2xl border border-border bg-paper-dim px-4 py-5 text-center">
+                <div className="font-serif text-2xl md:text-3xl font-semibold text-teal">{f.value}</div>
+                <div className="mt-1 text-xs text-navy/50 font-medium">{f.label}</div>
               </div>
             ))}
           </div>
-        </section>
 
-        <section className="py-14 bg-white">
-          <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-2xl font-extrabold text-sky-900 text-center mb-2">Pre-Nursing Subject Areas</h2>
-            <p className="text-center text-gray-500 text-sm mb-10">Master the prerequisites that nursing schools require.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {topics.map((t, i) => (
-                <div key={i} className="flex gap-4 items-start p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-sky-200 transition-all duration-200">
-                  <div className="text-3xl shrink-0">{t.icon}</div>
-                  <div>
-                    <h3 className="font-bold text-sky-900 mb-1">{t.label}</h3>
-                    <p className="text-gray-500 text-sm">{t.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="mt-14 md:mt-20">
+            <PulseLine variant="divider" />
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="py-12 bg-gradient-to-br from-sky-950 to-blue-900 text-white text-center">
-          <div className="max-w-xl mx-auto px-4">
-            <h2 className="text-2xl font-extrabold mb-3">Build Your Nursing Foundation</h2>
-            <p className="text-sky-200 text-sm mb-6">Start with the fundamentals and progress confidently into nursing school.</p>
-            <Link href="/dashboards/web/assessments/absolute"
-              className="px-8 py-3 bg-sky-500 hover:bg-sky-400 text-white font-bold rounded-xl shadow-lg transition-all duration-200 hover:scale-105 inline-block">
-              Browse Pre-Nursing Assessments
+      {/* Pillars */}
+      <section className="py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-5">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="inline-block font-mono text-xs tracking-widest uppercase text-sage mb-3">
+              Your Foundation
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight">
+              Four Core Pillars
+            </h2>
+            <p className="mt-4 text-navy/60 leading-relaxed">
+              Everything you need to walk into nursing school prepared.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[
+              {
+                title: "Academic Readiness",
+                description:
+                  "Refreshers in the core sciences, math, and reading comprehension that nursing admissions exams evaluate.",
+              },
+              {
+                title: "Test-Taking Strategy",
+                description:
+                  "Proven strategies for standardized nursing exams, from pacing to prioritization and elimination techniques.",
+              },
+              {
+                title: "Clinical Fundamentals",
+                description:
+                  "Foundational clinical concepts and terminology that will carry you through your first year of nursing school.",
+              },
+              {
+                title: "Career Planning",
+                description:
+                  "Guidance on choosing the right program path — whether RN, LPN, or a bridge program — and mapping your next steps.",
+              },
+            ].map((pillar) => (
+              <article key={pillar.title} className="relative rounded-2xl border border-border bg-paper p-7 flex flex-col overflow-hidden">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-teal" />
+                <h3 className="font-serif text-xl font-semibold text-navy mb-3">{pillar.title}</h3>
+                <p className="text-sm text-navy/60 leading-relaxed">{pillar.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="bg-paper py-12 md:py-16">
+        <div className="mx-auto max-w-3xl px-5 text-center">
+          <span className="inline-block font-mono text-xs tracking-widest uppercase text-coral mb-3">
+            Ready to Begin?
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight mb-4">
+            Build Your Nursing Foundation
+          </h2>
+          <p className="text-navy/60 leading-relaxed max-w-xl mx-auto mb-8">
+            Start with ATI TEAS prep or explore all available programs.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href="/pages/exams/ati-teas"
+              className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors"
+            >
+              Explore ATI TEAS Prep
+            </Link>
+            <Link
+              href="/pages/exams/rn-nursing"
+              className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-navy border border-border-light hover:bg-paper-dim transition-colors"
+            >
+              Explore RN Nursing
             </Link>
           </div>
-        </section>
-
-      </main>
-    </PageWrapper>
-  )
+        </div>
+      </section>
+    </main>
+  );
 }

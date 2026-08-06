@@ -30,6 +30,18 @@ async function forwardToBackend(
     }
 
     const backendBaseUrl = getBackendBaseUrl();
+
+    // If no backend is configured, respond cleanly instead of failing the request
+    if (!backendBaseUrl || backendBaseUrl === "undefined") {
+      return NextResponse.json(
+        {
+          message: "Backend not configured",
+          data: { items: [], skewPage: 1, skewPerPage: 0, skewTotal: 0, skewTotalPages: 0 },
+        },
+        { status: 200 }
+      );
+    }
+
     const queryParams = method === "GET" ? new URL(req.url).searchParams.toString() : "";
     const url = `${backendBaseUrl}${backendPath}${queryParams ? `?${queryParams}` : ""}`;
 
