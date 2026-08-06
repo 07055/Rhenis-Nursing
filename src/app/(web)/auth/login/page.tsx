@@ -178,7 +178,7 @@ export default function WebLoginPage() {
 
   // Render the login form
   return (
-    <div className="flex flex-col items-center justify-center bg-gradient-to-br from-blue-300 to-white px-4 py-8">
+    <div className="flex flex-col items-center justify-center px-4 py-8" style={{ backgroundColor: "#0d1b2e" }}>
 
       <Suspense fallback={null}>
         <LoginSearchParamsHandler onRegistered={handleRegisteredRedirect} />
@@ -187,25 +187,25 @@ export default function WebLoginPage() {
       {/* App Title / Branding */}
       <div className="flex flex-col items-center justify-center mb-3 text-center">
         <div className="flex items-center justify-center gap-2">
-          <span className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-500 drop-shadow-md">
+          <span className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-navy/60 drop-shadow-md">
             Welcome to
           </span>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-blue-800 drop-shadow-md">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-coral drop-shadow-md">
             {APP_NAME}
           </h1>
           <FiCheckCircle
-            className="text-green-500 text-xl md:text-2xl drop-shadow-sm"
+            className="text-teal text-xl md:text-2xl drop-shadow-sm"
             title="Verified"
           />
         </div>
 
-        <p className="text-xs text-gray-600 mt-1">
+        <p className="text-xs text-navy/50 mt-1">
           Your trusted platform for streamlined access to all Nursing Resources .
         </p>
       </div>
 
       {/* Login Card Container */}
-      <div className="max-w-5xl w-full bg-white rounded-2xl shadow-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+      <div className="max-w-5xl w-full bg-paper border border-border rounded-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
 
 
         {/* LEFT SIDE: Full Image Background + Text at Bottom */}
@@ -304,11 +304,11 @@ export default function WebLoginPage() {
           </div>
         </div>
 
-        <div className="w-full p-8 space-y-6 border-l border-gray-200">
+        <div className="w-full p-8 space-y-6 border-l border-border">
 
           {/* Mobile-only Social Login Buttons (hidden on md+, shown inside photo panel instead) */}
           <div className="md:hidden">
-            <p className="text-center text-gray-500 text-xs font-semibold tracking-wide uppercase mb-3">
+            <p className="text-center text-navy/60 text-xs font-semibold tracking-wide uppercase mb-3">
               Sign in with
             </p>
             <div className="grid grid-cols-3 gap-3">
@@ -362,24 +362,20 @@ export default function WebLoginPage() {
             </div>
           </div>
 
-          <div className="text-center text-md">
-            <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-yellow-800 via-gray-300 to-green-600 bg-[length:200%_100%] [animation:shimmer_3s_linear_infinite]">
+          <div className="flex items-center gap-3">
+            <span className="flex-1 h-px bg-border" />
+            <span className="text-xs font-mono tracking-widest uppercase text-navy/50">
               or continue with email
             </span>
+            <span className="flex-1 h-px bg-border" />
           </div>
 
-          <style>{`
-            @keyframes shimmer {
-              0% { background-position: 200% 0; }
-              100% { background-position: -200% 0; }
-            }
-          `}</style>
           {/* Error Message */}
           {error && (
             <div className="flex justify-center mt-4">
-              <div className="relative max-w-md w-full bg-yellow-100 border border-red-200 text-red-800 px-4 py-3 rounded-xl shadow-md text-sm flex items-center gap-3">
+              <div className="relative max-w-md w-full bg-coral/10 border border-coral/30 text-coral px-4 py-3 rounded-xl shadow-md text-sm flex items-center gap-3">
 
-                <span className="text-red-600 text-base shrink-0">⚓</span>
+                <span className="text-coral text-base shrink-0">⚓</span>
 
                 <span className="flex-1 leading-tight">
                   {error}
@@ -388,7 +384,7 @@ export default function WebLoginPage() {
                 <button
                   type="button"
                   onClick={() => setError("")}
-                  className="absolute top-2 right-2 text-red-800 hover:text-red-700"
+                  className="absolute top-2 right-2 text-coral hover:text-coral-hover"
                 >
                   ✕
                 </button>
@@ -399,9 +395,9 @@ export default function WebLoginPage() {
           {/* Success Message */}
           {success && (
             <div className="flex justify-center mt-4">
-              <div className="relative max-w-md w-full bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-xl shadow-md text-sm flex items-center gap-3">
+              <div className="relative max-w-md w-full bg-teal/10 border border-teal/30 text-teal px-4 py-3 rounded-xl shadow-md text-sm flex items-center gap-3">
 
-                <FiCheckCircle className="text-green-600 text-base shrink-0" />
+                <FiCheckCircle className="text-teal text-base shrink-0" />
 
                 <span className="flex-1 leading-tight">
                   {success}
@@ -410,7 +406,7 @@ export default function WebLoginPage() {
                 <button
                   type="button"
                   onClick={() => setSuccess("")}
-                  className="absolute top-2 right-2 text-green-800 hover:text-green-700"
+                  className="absolute top-2 right-2 text-teal hover:text-teal"
                 >
                   ✕
                 </button>
@@ -423,11 +419,11 @@ export default function WebLoginPage() {
             <div className="text-center">
               <button
                 onClick={() => router.push('/dashboards')}
-                className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 font-semibold transition"
+                className="w-full bg-coral text-paper py-2 rounded-lg hover:bg-coral-hover font-semibold transition"
               >
                 🚀 Dive in &amp; Continue
               </button>
-              <p className="text-md text-gray-600 mt-3">
+              <p className="text-md text-navy/60 mt-3">
                 Your trusted platform for streamlined Nursing Resources  .
               </p>
 
@@ -435,7 +431,7 @@ export default function WebLoginPage() {
           ) : (
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <label className="block text-sm font-medium text-navy/70 mb-1">Email</label>
                 <input
                   type="email"
                   name="email"
@@ -443,23 +439,23 @@ export default function WebLoginPage() {
                   required
                   value={form.email}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-pink-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 text-sm text-navy placeholder:text-navy/40 focus:outline-none focus:ring-2 focus:ring-coral"
                 />
               </div>
               {/* 🔐 Login Method Selector */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-navy/70 mb-2">
                   Choose Login Method
                 </label>
-                <div className="flex bg-gray-100 p-1 rounded-xl shadow-inner">
+                <div className="flex bg-paper-dim p-1 rounded-xl shadow-inner border border-border">
                   {(["password", "pin"] as const).map((method) => (
                     <button
                       key={method}
                       type="button"
                       onClick={() => setLoginMethod(method)}
                       className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-all ${loginMethod === method
-                        ? "bg-blue-300 text-black shadow"
-                        : "text-purple-900 hover:bg-yellow-300"
+                        ? "bg-coral text-paper shadow"
+                        : "text-navy/70 hover:bg-paper-dim"
                         }`}
                     >
                       {method === "password" && "Use Password"}
@@ -471,7 +467,7 @@ export default function WebLoginPage() {
 
               {/* PASSWORD FIELD — always in DOM, hidden when not active */}
               <div className={`mb-4 relative ${loginMethod !== "password" ? "hidden" : ""}`}>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-navy/70 mb-1">
                   Enter Your Password
                 </label>
                 <div className="relative">
@@ -483,12 +479,12 @@ export default function WebLoginPage() {
                     value={form.password}
                     onChange={handleChange}
                     maxLength={32}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-10 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 pr-10 text-navy focus:outline-none focus:ring-2 focus:ring-coral"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute top-2.5 right-3 text-gray-500 hover:text-gray-700"
+                    className="absolute top-2.5 right-3 text-navy/40 hover:text-navy"
                   >
                     {showPassword ? <FaEyeSlash /> : <FaEye />}
                   </button>
@@ -497,7 +493,7 @@ export default function WebLoginPage() {
 
               {/* PIN FIELD — always in DOM, hidden when not active */}
               <div className={`mb-4 relative ${loginMethod !== "pin" ? "hidden" : ""}`}>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-navy/70 mb-1">
                   Enter Your PIN
                 </label>
                 <div className="relative">
@@ -514,12 +510,12 @@ export default function WebLoginPage() {
                       const val = e.target.value.replace(/\D/g, "")
                       setForm((prev) => ({ ...prev, pin: val }))
                     }}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-10 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full bg-paper-dim border border-border rounded-lg px-3 py-2 pr-10 text-navy focus:outline-none focus:ring-2 focus:ring-coral"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPin(!showPin)}
-                    className="absolute top-2.5 right-3 text-gray-500 hover:text-gray-700"
+                    className="absolute top-2.5 right-3 text-navy/40 hover:text-navy"
                   >
                     {showPin ? <FaEyeSlash /> : <FaEye />}
                   </button>
@@ -527,14 +523,14 @@ export default function WebLoginPage() {
               </div>
 
               <div className="flex items-center gap-2">
-                <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                <label className="flex items-center gap-2 text-sm text-navy/60 cursor-pointer">
                   <input
                     type="checkbox"
                     id="remember"
                     name="remember"
                     checked={form.remember}
                     onChange={handleChange}
-                    className="accent-blue-600"
+                    className="accent-coral"
                   />
                   Remember me
                 </label>
@@ -543,7 +539,7 @@ export default function WebLoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 font-semibold transition disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-coral text-paper py-2 rounded-lg hover:bg-coral-hover font-semibold transition disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? 'Logging in . . . ⚓' : 'Submit and Login'}
               </button>
@@ -552,13 +548,13 @@ export default function WebLoginPage() {
               <div className="mt-6 flex flex-row space-x-3 w-full">
                 <Link
                   href="/auth/recovery/password"
-                  className="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+                  className="flex-1 text-center bg-transparent border border-border-light text-navy font-semibold py-2 px-4 rounded-lg hover:bg-paper-dim transition-colors duration-300"
                 >
                   Forgot Password ?
                 </Link>
                 <Link
                   href="/auth/register"
-                  className="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+                  className="flex-1 text-center bg-transparent border border-border-light text-navy font-semibold py-2 px-4 rounded-lg hover:bg-paper-dim transition-colors duration-300"
                 >
                   Register Instead ?
                 </Link>

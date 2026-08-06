@@ -1,82 +1,96 @@
 // src/app/(web)/pages/(more)/about/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
+import PulseLine from "@/app/(web)/includes/components/PulseLine";
 
 export const metadata: Metadata = {
     title: "About Us",
     description: "Learn more about our platform, mission, and the team behind it.",
 };
 
+const stats = [
+    { value: "50K+", label: "Students" },
+    { value: "25K+", label: "Practice Questions" },
+    { value: "96%", label: "NCLEX Pass Rate" },
+    { value: "24/7", label: "Study Access" },
+];
+
+const values = [
+    {
+        icon: "🎯",
+        title: "Focused Practice",
+        desc: "Every question is written by nursing educators and mapped to the exact content tested on your exam.",
+    },
+    {
+        icon: "📊",
+        title: "Smart Analytics",
+        desc: "Real-time performance tracking shows your strengths and the weak areas that need attention.",
+    },
+    {
+        icon: "⚡",
+        title: "Real-time Feedback",
+        desc: "Detailed rationales for every answer help you understand each concept, not just memorize it.",
+    },
+];
+
 export default function AboutPage() {
     return (
-        <main className="min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-100">
-
+        <main>
             {/* ── Hero ── */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-blue-600 to-cyan-500 text-white py-24 px-6">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_60%)] pointer-events-none" />
-                <div className="relative max-w-4xl mx-auto text-center">
-                    <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/15 text-sm font-semibold tracking-wide uppercase">
+            <section className="relative overflow-hidden" style={{ backgroundColor: "#0d1b2e" }}>
+                <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                        backgroundImage: "radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)",
+                        backgroundSize: "24px 24px",
+                        maskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
+                        WebkitMaskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
+                    }}
+                />
+                <div className="relative mx-auto max-w-6xl px-5 pt-14 pb-12 md:pt-20 md:pb-16 text-center">
+                    <span className="inline-block font-mono text-xs tracking-widest uppercase text-coral mb-4">
                         Our Story
                     </span>
-                    <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-5">
-                        Built for Students.<br className="hidden sm:block" /> Driven by Results.
+                    <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight text-navy mb-6">
+                        Built for Students. Driven by Results<span className="text-coral">.</span>
                     </h1>
-                    <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-                        We&apos;re on a mission to make exam preparation smarter, more accessible, and
-                        genuinely effective — for every student, everywhere.
+                    <p className="text-lg text-navy/60 leading-relaxed max-w-2xl mx-auto">
+                        We&apos;re on a mission to make nursing exam preparation smarter, more
+                        accessible, and genuinely effective — for every student, everywhere.
                     </p>
                 </div>
             </section>
 
             {/* ── Mission ── */}
-            <section className="py-20 px-6">
-                <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-12 items-center">
+            <section className="py-12 md:py-16">
+                <div className="mx-auto max-w-6xl px-5 grid md:grid-cols-2 gap-10 items-center">
                     <div>
-                        <h2 className="text-3xl font-black mb-4">Our Mission</h2>
-                        <p className="text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
-                            We believe every student deserves access to high-quality exam practice tools —
-                            not just those who can afford expensive prep courses or tutors.
+                        <span className="inline-block font-mono text-xs tracking-widest uppercase text-sage mb-3">
+                            Our Mission
+                        </span>
+                        <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight mb-4">
+                            Quality Prep for Every Student
+                        </h2>
+                        <p className="text-navy/60 leading-relaxed mb-4">
+                            We believe every student deserves access to high-quality exam practice
+                            tools — not just those who can afford expensive prep courses or tutors.
                         </p>
-                        <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
-                            Our platform combines adaptive assessments, AI-powered guidance, and
-                            real-time performance analytics to give you the edge you need to succeed.
+                        <p className="text-navy/60 leading-relaxed">
+                            Our platform combines realistic practice questions, expert rationales,
+                            and real-time performance analytics to give you the edge you need to
+                            pass your nursing exam.
                         </p>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                        {[
-                            { emoji: "🎯", label: "Focused Practice" },
-                            { emoji: "🤖", label: "AI Assistance" },
-                            { emoji: "📊", label: "Smart Analytics" },
-                            { emoji: "⚡", label: "Real-time Feedback" },
-                        ].map(({ emoji, label }) => (
+                        {stats.map(({ value, label }) => (
                             <div
                                 key={label}
-                                className="flex flex-col items-center justify-center gap-2 p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-center"
+                                className="rounded-2xl border border-border bg-paper-dim px-4 py-6 text-center"
                             >
-                                <span className="text-3xl">{emoji}</span>
-                                <span className="text-sm font-bold">{label}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ── Stats ── */}
-            <section className="bg-slate-50 dark:bg-slate-900 py-16 px-6">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-black text-center mb-12">By the Numbers</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                        {[
-                            { value: "50K+", label: "Students" },
-                            { value: "10K+", label: "Practice Questions" },
-                            { value: "98%", label: "Satisfaction Rate" },
-                            { value: "24/7", label: "AI Support" },
-                        ].map(({ value, label }) => (
-                            <div key={label} className="text-center">
-                                <div className="text-4xl font-black bg-gradient-to-r from-violet-600 to-cyan-500 bg-clip-text text-transparent mb-1">
+                                <div className="font-serif text-2xl md:text-3xl font-semibold text-teal">
                                     {value}
                                 </div>
-                                <div className="text-sm text-slate-500 dark:text-slate-400 font-medium">{label}</div>
+                                <div className="mt-1 text-xs text-navy/50 font-medium">{label}</div>
                             </div>
                         ))}
                     </div>
@@ -84,93 +98,64 @@ export default function AboutPage() {
             </section>
 
             {/* ── Values ── */}
-            <section className="py-20 px-6">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-black text-center mb-12">What We Stand For</h2>
-                    <div className="grid sm:grid-cols-3 gap-6">
-                        {[
-                            {
-                                emoji: "🌍",
-                                title: "Accessibility",
-                                desc: "Quality education tools should be available to everyone, regardless of background or budget.",
-                            },
-                            {
-                                emoji: "🔬",
-                                title: "Evidence-Based",
-                                desc: "Every feature is grounded in learning science — spaced repetition, active recall, and more.",
-                            },
-                            {
-                                emoji: "🤝",
-                                title: "Student-First",
-                                desc: "We listen to our users and ship improvements fast. Your success is our only metric.",
-                            },
-                        ].map(({ emoji, title, desc }) => (
-                            <div
-                                key={title}
-                                className="p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow"
-                            >
-                                <div className="text-4xl mb-4">{emoji}</div>
-                                <h3 className="text-lg font-black mb-2">{title}</h3>
-                                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{desc}</p>
-                            </div>
-                        ))}
+            <section className="bg-paper-dim py-12 md:py-16">
+                <div className="mx-auto max-w-6xl px-5">
+                    <div className="text-center max-w-2xl mx-auto mb-12">
+                        <span className="inline-block font-mono text-xs tracking-widest uppercase text-sage mb-3">
+                            What We Stand For
+                        </span>
+                        <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight">
+                            Values That Guide Us
+                        </h2>
                     </div>
-                </div>
-            </section>
-
-            {/* ── Team ── */}
-            <section className="bg-slate-50 dark:bg-slate-900 py-20 px-6">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-black text-center mb-4">Meet the Team</h2>
-                    <p className="text-center text-slate-500 dark:text-slate-400 mb-12 max-w-xl mx-auto">
-                        A small, passionate team of educators, engineers, and designers committed to
-                        transforming how students prepare for exams.
-                    </p>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                        {[
-                            { initials: "SK", name: "Skew Blanc", role: "Founder & CEO" },
-                            { initials: "AM", name: "Alex M.", role: "Lead Engineer" },
-                            { initials: "JR", name: "Jamie R.", role: "Head of Design" },
-                            { initials: "TC", name: "Taylor C.", role: "Content Lead" },
-                        ].map(({ initials, name, role }) => (
-                            <div key={name} className="flex flex-col items-center text-center gap-3">
-                                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600 via-blue-600 to-cyan-500 text-white flex items-center justify-center text-xl font-black shadow-lg">
-                                    {initials}
+                    <div className="grid sm:grid-cols-3 gap-5">
+                        {values.map(({ icon, title, desc }) => (
+                            <article
+                                key={title}
+                                className="relative rounded-2xl border border-border bg-paper p-7 flex flex-col overflow-hidden"
+                            >
+                                <div className="absolute left-0 top-0 bottom-0 w-1 bg-coral" />
+                                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-coral/20 bg-coral/10 mb-4">
+                                    <span className="text-lg" aria-hidden="true">{icon}</span>
                                 </div>
-                                <div>
-                                    <div className="font-bold text-sm">{name}</div>
-                                    <div className="text-xs text-slate-500 dark:text-slate-400">{role}</div>
-                                </div>
-                            </div>
+                                <h3 className="font-serif text-xl font-semibold text-navy mb-3">{title}</h3>
+                                <p className="text-sm text-navy/60 leading-relaxed">{desc}</p>
+                            </article>
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* ── CTA ── */}
-            <section className="py-20 px-6">
-                <div className="max-w-2xl mx-auto text-center">
-                    <h2 className="text-3xl font-black mb-4">Ready to Start?</h2>
-                    <p className="text-slate-500 dark:text-slate-400 mb-8">
-                        Join thousands of students already using our platform to ace their exams.
+            <section className="py-12 md:py-16">
+                <div className="mx-auto max-w-3xl px-5 text-center">
+                    <PulseLine variant="divider" className="mb-12" />
+                    <span className="inline-block font-mono text-xs tracking-widest uppercase text-coral mb-3">
+                        Ready to Start?
+                    </span>
+                    <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight mb-4">
+                        Join Thousands of Nursing Students
+                    </h2>
+                    <p className="text-navy/60 leading-relaxed max-w-xl mx-auto mb-8">
+                        Start with a free account and get instant access to practice questions,
+                        study guides, and more.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                         <Link
                             href="/auth/register"
-                            className="px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 via-blue-600 to-cyan-500 text-white font-bold text-sm shadow-lg hover:opacity-90 transition"
+                            className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors"
                         >
                             Get Started Free
                         </Link>
                         <Link
-                            href="/pages/contact"
-                            className="px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-900 transition"
+                            href="/pages/contact-us"
+                            className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium text-navy border border-border-light hover:bg-paper-dim transition-colors"
                         >
                             Contact Us
                         </Link>
                     </div>
                 </div>
             </section>
-
         </main>
     );
 }

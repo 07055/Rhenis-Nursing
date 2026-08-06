@@ -40,80 +40,80 @@ const rawCards: DashboardCard[] = [
     {
         label: 'ATI TEAS EXAMS',
         description: 'Assess academic preparedness for nursing school.',
-        icon: <FaBookOpen className="text-purple-600 text-3xl" />,
+        icon: <FaBookOpen className="text-purple-400 text-3xl" />,
         route: '/pages/exams/ati-teas',
-    },    
+    },
     {
         label: 'HESI A2 EXAMS',
         description: 'Health Education Systems Inc. admissions exams.',
-        icon: <FaClipboardList className="text-rose-600 text-3xl" />,
+        icon: <FaClipboardList className="text-rose-400 text-3xl" />,
         route: '/pages/exams/hesi-a2',
     },
     {
         label: 'NCLEX EXAMS',
         description: 'Comprehensive NCLEX practice exams.',
-        icon: <FaAward className="text-pink-600 text-3xl" />,
-        route: '/pages/exams/nclex',
+        icon: <FaAward className="text-pink-400 text-3xl" />,
+        route: '/pages/exams/certification',
     },
     {
         label: 'NCLEX-RN EXAMS',
         description: 'Registered Nurse licensure exam prep.',
-        icon: <FaAward className="text-green-600 text-3xl" />,
-        route: '/pages/exams/nclex-rn',
+        icon: <FaAward className="text-green-400 text-3xl" />,
+        route: '/pages/exams/rn-nursing',
     },
     {
         label: 'NCLEX-PN EXAMS',
         description: 'Practical Nurse licensure exam guide.',
-        icon: <FaAward className="text-orange-600 text-3xl" />,
-        route: '/pages/exams/nclex-pn',
+        icon: <FaAward className="text-orange-400 text-3xl" />,
+        route: '/pages/exams/lpn-nursing',
     },
     {
         label: 'PRE NURSING EXAMS',
         description: 'Entry-level nursing readiness assessments.',
-        icon: <FaClipboardList className="text-cyan-600 text-3xl" />,
+        icon: <FaClipboardList className="text-cyan-400 text-3xl" />,
         route: '/pages/exams/pre-nursing',
     },
     {
         label: 'RN NURSING EXAMS',
         description: 'Registered Nurse core competency review.',
-        icon: <FaStethoscope className="text-blue-500 text-3xl" />,
+        icon: <FaStethoscope className="text-blue-400 text-3xl" />,
         route: '/pages/exams/rn-nursing',
     },
     {
         label: 'LPN NURSING EXAMS',
         description: 'Licensed Practical Nurse exam simulations.',
-        icon: <FaStethoscope className="text-purple-500 text-3xl" />,
+        icon: <FaStethoscope className="text-purple-400 text-3xl" />,
         route: '/pages/exams/lpn-nursing',
     },
     {
         label: 'CNA EXAMS',
         description: 'Certified Nursing Assistant training & evaluation.',
-        icon: <FaStethoscope className="text-teal-600 text-3xl" />,
+        icon: <FaStethoscope className="text-teal-400 text-3xl" />,
         route: '/pages/exams/cna',
     },
     {
         label: 'GED EXAMS',
         description: 'General Educational Development prep & tests.',
-        icon: <FaBookOpen className="text-yellow-600 text-3xl" />,
+        icon: <FaBookOpen className="text-yellow-400 text-3xl" />,
         route: '/pages/exams/ged',
     },
     {
         label: 'CERTIFICATION EXAMS',
         description: 'Various professional healthcare certifications.',
-        icon: <FaAward className="text-red-500 text-3xl" />,
-        route: '/pages/exams/certifications',
+        icon: <FaAward className="text-red-400 text-3xl" />,
+        route: '/pages/exams/certification',
     },
     {
         label: 'Users Dashboard',
         description: 'Manage profile, progress, and system access',
-        icon: <FaUserGraduate className="text-blue-600 text-3xl" />,
-        route: '/user/dashboard',
+        icon: <FaUserGraduate className="text-blue-400 text-3xl" />,
+        route: '/dashboards/ati-teas',
     },
     {
         label: 'Praxis Dashboard',
         description: 'Prep for the Praxis educator certification exams.',
-        icon: <FaClipboardList className="text-indigo-600 text-3xl" />,
-        route: '/pages/exams/praxis',
+        icon: <FaClipboardList className="text-indigo-400 text-3xl" />,
+        route: '/pages/exams/certification',
     },
 ]
 
@@ -150,12 +150,12 @@ export default function DashboardsPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-green-100 to-pink-300 pt-8 pb-10 px-4 md:px-10">
-            <h1 className="text-4xl font-bold text-center text-gray-800 mb-3">
+        <div className="min-h-screen pt-8 pb-10 px-4 md:px-10" style={{ backgroundColor: '#0d1b2e' }}>
+            <h1 className="font-serif text-4xl font-semibold text-center text-navy mb-3">
                 📚 Explore All Resources.
             </h1>
 
-            <div className="border-2 border-gray-300 rounded-2xl p-6 shadow-inner bg-white">
+            <div className="border border-border rounded-2xl p-6 bg-paper/50">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
                     {dashboardCards.map((card, index) => {
                         const isLastOpened = lastOpenedRoute === card.route
@@ -164,12 +164,12 @@ export default function DashboardsPage() {
                             <div
                                 key={index}
                                 onClick={() => handleCardClick(card.route)}
-                                className={`relative cursor-pointer bg-gradient-to-br from-indigo-200 via-gray-50 to-pink-100 rounded-xl shadow hover:shadow-xl transition-all duration-300 p-5 border hover:border-green-500 ${isLastOpened ? 'ring-2 ring-purple-400 bg-purple-50' : ''
+                                className={`relative cursor-pointer rounded-xl shadow hover:shadow-xl transition-all duration-300 p-5 border border-border bg-paper hover:border-coral ${isLastOpened ? 'ring-2 ring-purple-500 bg-paper-dim' : ''
                                     }`}
                             >
                                 {card.badge && (
                                     <span
-                                        className={`absolute top-3 right-3 text-black font-bold text-xs px-2 py-1 rounded-full shadow-sm flex items-center ${card.badge.color
+                                        className={`absolute top-3 right-3 text-white font-bold text-xs px-2 py-1 rounded-full shadow-sm flex items-center ${card.badge.color
                                             } ${isLastOpened ? 'opacity-50' : ''}`}
                                     >
                                         {card.badge.icon}
@@ -178,18 +178,18 @@ export default function DashboardsPage() {
                                 )}
 
                                 {isLastOpened && (
-                                    <span className="animate-pulse absolute top-3 left-3 font-bold bg-purple-300 border text-black text-xs px-3 py-1 rounded-full shadow-md">
+                                    <span className="animate-pulse absolute top-3 left-3 font-bold bg-purple-500 text-white text-xs px-3 py-1 rounded-full shadow-md">
                                         Last Opened
                                     </span>
                                 )}
 
                                 <div className="mb-4 flex justify-center">{card.icon}</div>
 
-                                <h2 className="text-lg font-semibold text-gray-800 text-center mb-2">
+                                <h2 className="font-serif text-lg font-semibold text-navy text-center mb-2">
                                     {card.label}
                                 </h2>
 
-                                <p className="text-sm text-gray-600 text-center">{card.description}</p>
+                                <p className="text-sm text-navy/60 text-center">{card.description}</p>
                             </div>
                         )
                     })}

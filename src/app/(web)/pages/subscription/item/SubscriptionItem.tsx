@@ -101,8 +101,8 @@ export default function SubscriptionItem({
     return (
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-8">
             <div className="mb-8 text-center">
-                <h2 className="text-3xl font-bold text-slate-900">{heading}</h2>
-                <p className="mt-2 text-slate-500">
+                <h2 className="font-serif text-3xl font-semibold text-navy tracking-tight">{heading}</h2>
+                <p className="mt-2 text-navy/60">
                     {subheading ?? `Choose the plan that fits your study timeline. ${skewTotal} plan${skewTotal !== 1 ? "s" : ""} available.`}
                 </p>
             </div>
@@ -110,10 +110,10 @@ export default function SubscriptionItem({
             {/* Auth-required banner */}
             {authRequiredMessage && (
                 <div className="mb-8 flex justify-center">
-                    <div className="flex w-full max-w-md flex-col items-center gap-3 rounded-xl border border-red-300 bg-red-50 px-5 py-4 text-center shadow-sm sm:flex-row sm:justify-between sm:text-left">
+                    <div className="flex w-full max-w-md flex-col items-center gap-3 rounded-xl border border-red-500/30 bg-red-500/10 px-5 py-4 text-center shadow-sm sm:flex-row sm:justify-between sm:text-left">
                         <div className="flex items-center gap-2">
                             <span className="text-lg">🔒</span>
-                            <p className="text-sm font-semibold text-red-700">{authRequiredMessage}</p>
+                            <p className="text-sm font-semibold text-red-300">{authRequiredMessage}</p>
                         </div>
                         <div className="flex shrink-0 items-center gap-2">
                             <button
@@ -126,7 +126,7 @@ export default function SubscriptionItem({
                             <button
                                 type="button"
                                 onClick={() => setAuthRequiredMessage(null)}
-                                className="rounded p-1 text-black font-bold hover:text-red-800"
+                                className="rounded p-1 text-navy font-bold hover:text-red-300"
                                 aria-label="Dismiss"
                             >
                                 ✕
@@ -143,13 +143,22 @@ export default function SubscriptionItem({
                         value={subscriptionItemSearch}
                         onChange={(e) => setSubscriptionItemSearch(e.target.value)}
                         placeholder="Search plans…"
-                        className="w-full max-w-md rounded-lg border border-slate-300 px-4 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                        className="w-full max-w-md rounded-lg border border-border-light bg-paper px-4 py-2 text-sm text-navy shadow-sm placeholder:text-navy/40 focus:border-coral focus:outline-none focus:ring-1 focus:ring-coral"
                     />
                 </div>
             )}
 
             {sortedItems.length === 0 && (
-                <p className="text-center text-slate-400">No Plans Found ⚓</p>
+                <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-border-light bg-paper-dim/50 px-6 py-12 text-center">
+                    <span className="text-3xl">📚</span>
+                    <p className="font-serif text-xl font-semibold text-navy">
+                        Plans are on their way
+                    </p>
+                    <p className="max-w-md text-sm leading-relaxed text-navy/60">
+                        Pricing isn&apos;t available right now. Check back soon or
+                        contact support for the latest plan options.
+                    </p>
+                </div>
             )}
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

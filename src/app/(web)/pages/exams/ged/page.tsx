@@ -1,94 +1,128 @@
-'use client'
-
-import Link from 'next/link'
-import PageWrapper from '@/app/(web)/wrapper'
-
-const topics = [
-  { icon: '📐', label: 'Mathematical Reasoning', desc: 'Arithmetic, algebra, geometry, and data analysis.' },
-  { icon: '🔬', label: 'Science', desc: 'Life science, physical science, and earth/space science.' },
-  { icon: '📜', label: 'Social Studies', desc: 'Civics, US history, economics, and geography.' },
-  { icon: '📖', label: 'Reasoning Through Language', desc: 'Reading comprehension, writing, and extended response.' },
-]
+import Link from "next/link";
+import { GED_SUBJECTS } from "@/lib/data/subject-breakdown";
+import PulseLine from "@/app/(web)/includes/components/PulseLine";
 
 const facts = [
-  { value: '4', label: 'Subject Tests' },
-  { value: '420', label: 'Minutes Total' },
-  { value: '145', label: 'Passing Score' },
-  { value: '800', label: 'Max Score' },
-]
+  { value: "4", label: "Subject Areas" },
+  { value: "7+ hrs", label: "Total Testing Time" },
+  { value: "145", label: "Score Per Subject" },
+  { value: "1", label: "Test Per Session" },
+];
 
 export default function GedPage() {
   return (
-    <PageWrapper>
-      <main className="bg-white text-gray-800 overflow-x-hidden">
-
-        <section className="relative bg-gradient-to-br from-orange-950 via-orange-900 to-amber-800 text-white py-16 overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none"
-            style={{ backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`, backgroundSize: '28px 28px' }} />
-          <div className="max-w-5xl mx-auto px-4 text-center relative">
-            <span className="inline-block mb-3 px-3 py-1 text-xs font-bold tracking-widest uppercase rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
-              High School Equivalency
-            </span>
-            <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
-              GED Exam Prep
-            </h1>
-            <p className="text-orange-100 text-base max-w-2xl mx-auto mb-8">
-              Earn your high school equivalency credential and open doors to nursing programs and career advancement. We cover all four GED subject areas.
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Link href="/dashboards/web/assessments/absolute"
-                className="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-white font-bold rounded-xl shadow-lg transition-all duration-200 hover:scale-105">
-                Start GED Practice →
-              </Link>
-              <Link href="/dashboards/web/programs/absolute"
-                className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl transition-all duration-200">
-                View All Programs
-              </Link>
-            </div>
+    <main>
+      {/* Hero */}
+      <section className="relative overflow-hidden" style={{ backgroundColor: "#0d1b2e" }}>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+            maskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
+            WebkitMaskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
+          }}
+        />
+        <div className="mx-auto max-w-6xl px-5 pt-14 pb-12 md:pt-20 md:pb-16 text-center">
+          <span className="inline-block font-mono text-xs tracking-widest uppercase text-coral mb-4">
+            High School Equivalency
+          </span>
+          <h1 className="font-serif text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-navy mb-6">
+            GED Exam Prep<span className="text-coral">.</span>
+          </h1>
+          <p className="text-lg text-navy/60 leading-relaxed max-w-2xl mx-auto mb-8">
+            Earn your high school equivalency credential and unlock new
+            opportunities. Build confidence across all four GED subjects with
+            targeted practice and study guides.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href="/auth/register"
+              className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors"
+            >
+              Start GED Practice
+            </Link>
+            <Link
+              href="/pages/entrance"
+              className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium text-navy border border-border-light hover:bg-paper-dim transition-colors"
+            >
+              View All Programs
+            </Link>
           </div>
-        </section>
 
-        <section className="bg-orange-50 py-10 border-b border-orange-100">
-          <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            {facts.map((f, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-orange-100 shadow-sm py-6 px-3">
-                <div className="text-3xl font-extrabold text-amber-600 mb-1">{f.value}</div>
-                <div className="text-xs text-gray-500 font-medium">{f.label}</div>
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+            {facts.map((f) => (
+              <div key={f.label} className="rounded-2xl border border-border bg-paper-dim px-4 py-5 text-center">
+                <div className="font-serif text-2xl md:text-3xl font-semibold text-teal">{f.value}</div>
+                <div className="mt-1 text-xs text-navy/50 font-medium">{f.label}</div>
               </div>
             ))}
           </div>
-        </section>
 
-        <section className="py-14 bg-white">
-          <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-2xl font-extrabold text-orange-900 text-center mb-2">GED Subject Areas</h2>
-            <p className="text-center text-gray-500 text-sm mb-10">All four tests covered with targeted practice questions.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {topics.map((t, i) => (
-                <div key={i} className="flex gap-4 items-start p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all duration-200">
-                  <div className="text-3xl shrink-0">{t.icon}</div>
-                  <div>
-                    <h3 className="font-bold text-orange-900 mb-1">{t.label}</h3>
-                    <p className="text-gray-500 text-sm">{t.desc}</p>
-                  </div>
+          <div className="mt-14 md:mt-20">
+            <PulseLine variant="divider" />
+          </div>
+        </div>
+      </section>
+
+      {/* Subject areas */}
+      <section className="py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-5">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="inline-block font-mono text-xs tracking-widest uppercase text-sage mb-3">
+              GED Subject Areas
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight">
+              Four Subjects, One Goal
+            </h2>
+            <p className="mt-4 text-navy/60 leading-relaxed">
+              Comprehensive coverage of every GED test area with realistic
+              practice and clear explanations.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {GED_SUBJECTS.map((subject) => (
+              <article key={subject.name} className="relative rounded-2xl border border-border bg-paper p-7 flex flex-col overflow-hidden">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-teal" />
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-teal/20 bg-teal/10 text-teal mb-4">
+                  <span className="text-lg" aria-hidden="true">{subject.icon}</span>
                 </div>
-              ))}
-            </div>
+                <h3 className="font-serif text-xl font-semibold text-navy mb-4">{subject.name}</h3>
+                <ul className="space-y-2.5 text-sm text-navy/60 leading-relaxed">
+                  {subject.topics.map((topic) => (
+                    <li key={topic} className="flex gap-2">
+                      <span className="text-teal shrink-0">•</span>
+                      <span>{topic}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="py-12 bg-gradient-to-br from-orange-950 to-amber-900 text-white text-center">
-          <div className="max-w-xl mx-auto px-4">
-            <h2 className="text-2xl font-extrabold mb-3">Pass Your GED — First Try</h2>
-            <p className="text-orange-200 text-sm mb-6">Targeted practice across all four subject areas with instant feedback.</p>
-            <Link href="/dashboards/web/assessments/absolute"
-              className="px-8 py-3 bg-amber-500 hover:bg-amber-400 text-white font-bold rounded-xl shadow-lg transition-all duration-200 hover:scale-105 inline-block">
-              Browse GED Assessments
-            </Link>
-          </div>
-        </section>
-
-      </main>
-    </PageWrapper>
-  )
+      {/* Closing CTA */}
+      <section className="bg-paper py-12 md:py-16">
+        <div className="mx-auto max-w-3xl px-5 text-center">
+          <span className="inline-block font-mono text-xs tracking-widest uppercase text-coral mb-3">
+            Ready to Begin?
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight mb-4">
+            Start Your GED Journey
+          </h2>
+          <p className="text-navy/60 leading-relaxed max-w-xl mx-auto mb-8">
+            Create a free account and get started with targeted GED prep today.
+          </p>
+          <Link
+            href="/auth/register"
+            className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors"
+          >
+            Create Free Account
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
 }

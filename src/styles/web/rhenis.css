@@ -1,0 +1,18 @@
+.rhenis-web {
+  --font-sans: var(--font-ibm-plex-sans);
+  --font-serif: var(--font-fraunces);
+  --font-mono: var(--font-ibm-plex-mono);
+  background: #0d1f33;
+  min-height: 100vh;
+  color: #e2e8f0;
+  font-family: var(--font-ibm-plex-sans), system-ui, sans-serif;
+}
+
+.rhenis-web h1,
+.rhenis-web h2,
+.rhenis-web h3,
+.rhenis-web h4,
+.rhenis-web h5,
+.rhenis-web h6 {
+  font-family: var(--font-fraunces), Georgia, serif;
+}
