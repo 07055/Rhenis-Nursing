@@ -29,6 +29,11 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: APP_NAME,
   description: `${APP_NAME} Systems`,
+  icons: {
+    icon: '/logo/logo.png',
+    shortcut: '/logo/logo.png',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function WebLayout({ children }: { children: React.ReactNode }) {

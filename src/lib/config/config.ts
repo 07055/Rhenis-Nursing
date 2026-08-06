@@ -4,10 +4,10 @@
 // -----------------------------------------------------------------------------
 // APP INFO
 // -----------------------------------------------------------------------------
-export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "EXAM GEN SYSTEM";
-export const APP_TITLE = process.env.NEXT_PUBLIC_APP_TITLE || "EXAM GEN";
-export const APP_ACRONYM = process.env.NEXT_PUBLIC_APP_ACRONNYM || "EG";
-export const APP_DESCRIPTION = process.env.NEXT_PUBLIC_APP_DESCRIPTION || "Examination Generation System for Nursing Exams";
+export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "Rhenis Nursing";
+export const APP_TITLE = process.env.NEXT_PUBLIC_APP_TITLE || "Rhenis Nursing";
+export const APP_ACRONYM = process.env.NEXT_PUBLIC_APP_ACRONNYM || "RN";
+export const APP_DESCRIPTION = process.env.NEXT_PUBLIC_APP_DESCRIPTION || "Nursing Exam Preparation and Practice Platform";
 export const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION || "1.0.0";
 export const APP_ENV = process.env.NEXT_PUBLIC_APP_ENV || "live";
 export const APP_DEBUG = process.env.NEXT_PUBLIC_APP_DEBUG === "true";
@@ -53,9 +53,9 @@ export const CONTACT = {
 // EMAILS CONFIGURATION
 // -----------------------------------------------------------------------------
 export const EMAILS = {
-  SUPPORT: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "support@examgen.com",
-  SYSTEM: process.env.NEXT_PUBLIC_SYSTEM_EMAIL || "support@examgen.com",
-  HELP: process.env.NEXT_PUBLIC_HELP_EMAIL || "support@examgen.com",
+  SUPPORT: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "support@rhenisnursing.com",
+  SYSTEM: process.env.NEXT_PUBLIC_SYSTEM_EMAIL || "support@rhenisnursing.com",
+  HELP: process.env.NEXT_PUBLIC_HELP_EMAIL || "support@rhenisnursing.com",
 };
 
 // -----------------------------------------------------------------------------
@@ -92,8 +92,8 @@ export const DEVELOPER = {
 // SEO CONFIG
 // -----------------------------------------------------------------------------
 export const SEO = {
-  author: DEVELOPER.NAME || "Exam Gen Team",
-  keywords: "Register, Login, Exam Generation, SaaS, Tech, Platform, Cloud, Web Solutions",
-  ogImage: `${CONTACT.CANONICALLINK || "https://examgen.com"}/images/og-banner.jpg`,
-  siteUrl: CONTACT.CANONICALLINK || "https://examgen.com",
+  author: DEVELOPER.NAME || "Rhenis Nursing",
+  keywords: "Nursing, Nursing Exams, ATI TEAS, HESI A2, NCLEX, RN, LPN, CNA, GED, Exam Prep, Study Resources",
+  ogImage: `${CONTACT.CANONICALLINK || "https://rhenisnursing.com"}/images/og-banner.jpg`,
+  siteUrl: CONTACT.CANONICALLINK || "https://rhenisnursing.com",
 };
