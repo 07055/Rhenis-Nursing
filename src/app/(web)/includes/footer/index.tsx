@@ -78,12 +78,6 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-
-        <div className="mt-12 pt-6 border-t border-border text-center">
-          <p className="text-xs text-navy/40">
-            &copy; {new Date().getFullYear()} Rhenis Nursing. All rights reserved.
-          </p>
-        </div>
       </div>
     </footer>
   );
