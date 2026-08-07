@@ -47,7 +47,7 @@ export default function AboutPage() {
                         WebkitMaskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
                     }}
                 />
-                <div className="relative mx-auto max-w-6xl px-5 pt-14 pb-12 md:pt-20 md:pb-16 text-center">
+                <div className="relative mx-auto max-w-6xl px-5 pt-24 pb-12 md:pt-20 md:pb-16 text-center">
                     <span className="inline-block font-mono text-xs tracking-widest uppercase text-coral mb-4">
                         Our Story
                     </span>

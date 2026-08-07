@@ -46,7 +46,7 @@ export default function TermsPage() {
             WebkitMaskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
           }}
         />
-        <div className="relative mx-auto max-w-3xl px-5 pt-14 pb-12 md:pt-20 md:pb-16">
+        <div className="relative mx-auto max-w-3xl px-5 pt-24 pb-12 md:pt-20 md:pb-16">
           <span className="inline-block font-mono text-xs tracking-widest uppercase text-coral mb-4">
             Legal
           </span>
