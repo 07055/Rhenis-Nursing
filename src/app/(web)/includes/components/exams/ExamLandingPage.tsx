@@ -5,7 +5,6 @@ import Link from "next/link";
 import type { SubjectTopic } from "@/lib/data/subject-breakdown";
 import type { SampleQuestion } from "@/lib/data/sample-questions";
 import type { StudyDoc } from "@/lib/data/study-materials";
-import SubscriptionItem from "@/app/(web)/pages/subscription/item/SubscriptionItem";
 
 export interface ExamLandingConfig {
   dashboardName: string;
@@ -62,8 +61,6 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
   const {
     dashboardName,
     programName,
-    parentTableName,
-    parentName,
     tagline,
     intro,
     subjects,
@@ -228,13 +225,26 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
       {/* ── Exam Plans (populated from the admin dashboard) ── */}
       <section id="plans" className="scroll-mt-24 py-12 md:py-16">
         <div className="mx-auto max-w-6xl px-5">
-          <SubscriptionItem
-            parentTableName={parentTableName}
-            parentName={parentName}
-            heading={`${programName} Exam Prep Plans`}
-            subheading="Choose the plan that fits your study timeline. Plans are managed in the admin dashboard."
-            showSearch={false}
-          />
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-3`}>
+              Exam Plans
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight">
+              {programName} Exam Prep Plans
+            </h2>
+            <p className="mt-4 text-navy/60 leading-relaxed">
+              Choose the plan that fits your study timeline.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-dashed border-border-light bg-paper-dim px-6 py-16 text-center">
+            <p className="font-serif text-xl font-semibold text-navy mb-2">
+              Plans are on their way
+            </p>
+            <p className="text-sm text-navy/60">
+              Exam plans are added by our admin team and will appear here.
+            </p>
+          </div>
         </div>
       </section>
 
