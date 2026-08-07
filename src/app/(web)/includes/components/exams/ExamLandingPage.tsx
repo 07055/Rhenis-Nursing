@@ -12,6 +12,7 @@ export interface ExamLandingConfig {
   parentTableName: string;
   parentName: string;
   tagline: string;
+  title?: string;
   intro: string;
   subjects: SubjectTopic[];
   samples: Record<string, SampleQuestion>;
@@ -62,6 +63,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
     dashboardName,
     programName,
     tagline,
+    title,
     intro,
     subjects,
     samples,
@@ -117,15 +119,15 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
               {tagline}
             </span>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight text-navy mb-6">
-              {programName} Exam Prep with Rhenis Nursing<span className="text-coral">.</span>
+              {title ?? `${programName} Exam Prep with Rhenis Nursing`}<span className="text-coral">.</span>
             </h1>
             <p className="text-lg text-navy/60 leading-relaxed mb-8">{intro}</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="flex flex-row items-center justify-center gap-3">
               <Link
                 href={`/dashboards/${dashboardName}`}
                 className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors"
               >
-                Access Exams
+                Access Now
               </Link>
               <a
                 href="#plans"
@@ -287,7 +289,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
               href={`/dashboards/${dashboardName}`}
               className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium text-navy border border-border-light hover:bg-paper-dim transition-colors"
             >
-              Access Exams
+              Access Now
             </Link>
           </div>
         </div>

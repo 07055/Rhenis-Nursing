@@ -40,8 +40,8 @@ const tracks = [
     tags: ["CAT Format", "Adaptive", "Readiness Score"],
     accent: "blue" as const,
     links: [
-      { label: "NCLEX-RN", href: "/pages/exams/rn-nursing" },
-      { label: "NCLEX-PN", href: "/pages/exams/lpn-nursing" },
+      { label: "NCLEX-RN", href: "/pages/exams/nclex-rn" },
+      { label: "NCLEX-PN", href: "/pages/exams/nclex-pn" },
     ],
   },
   {

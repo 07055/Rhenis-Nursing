@@ -52,8 +52,8 @@ const quickLinks = [
     accentColor: "text-green-light",
     accentBg: "bg-green-light",
     links: [
-      { label: "NCLEX-RN", href: "/pages/exams/rn-nursing", linkIcon: ClipboardCheck },
-      { label: "NCLEX-PN", href: "/pages/exams/lpn-nursing", linkIcon: ClipboardCheck },
+      { label: "NCLEX-RN", href: "/pages/exams/nclex-rn", linkIcon: ClipboardCheck },
+      { label: "NCLEX-PN", href: "/pages/exams/nclex-pn", linkIcon: ClipboardCheck },
     ],
   },
   {

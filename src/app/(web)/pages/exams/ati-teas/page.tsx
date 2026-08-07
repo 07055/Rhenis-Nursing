@@ -18,7 +18,7 @@ export default function AtiTeasPage() {
         parentName: PARENT_NAME,
         tagline: "ATI TEAS Exam Prep",
         intro:
-          "Dreaming of a career in nursing? The ATI TEAS Exam is your critical first step — and Rhenis Nursing offers the ultimate preparation to help you excel. Our expertly designed TEAS prep boosts your confidence, sharpens essential skills, and gets you exam-ready faster. Thousands of aspiring nurses have already achieved top scores with our realistic practice questions and proven strategies.",
+          "Dreaming of a career in nursing? The ATI TEAS 7 Exam is your critical first step—and Rhenis Review offers the ultimate preparation to help you excel. Our expertly designed TEAS prep boosts your confidence, sharpens essential skills, and gets you exam-ready faster. Thousands of aspiring nurses have already achieved top scores with our realistic practice questions and proven strategies. Don't leave your future to chance—start your journey with Rhenis Review today and move closer to nursing school success. With the right preparation, your nursing dream becomes reality.",
         subjects: ATI_TEAS_SUBJECTS,
         samples: ATI_TEAS_SAMPLES,
         shopDocs: ATI_TEAS_SHOP_DOCS,

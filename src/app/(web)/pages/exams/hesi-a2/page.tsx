@@ -18,7 +18,7 @@ export default function HesiA2Page() {
         parentName: PARENT_NAME,
         tagline: "HESI A2 Exam Prep",
         intro:
-          "Dreaming of a career in nursing? The HESI A2 Exam is your critical first step — and Rhenis Nursing offers the ultimate preparation to help you excel. Our expertly designed HESI prep boosts your confidence, sharpens essential skills, and gets you exam-ready faster. Thousands of aspiring nurses have already achieved top scores with our realistic practice questions and proven strategies.",
+          "Ace your HESI A2 with expertly crafted study materials from Rhenis Review—your trusted partner in nursing exam success. Our prep resources mirror the real exam, helping you master Reading Comprehension, Math, Vocabulary, Grammar, and Biology. Whether you're just starting or fine-tuning your knowledge, our practice questions, rationales, and strategies build confidence and precision for exam day.",
         subjects: HESI_A2_SUBJECTS,
         samples: HESI_A2_SAMPLES,
         shopDocs: HESI_A2_SHOP_DOCS,
