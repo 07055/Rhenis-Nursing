@@ -5,9 +5,6 @@ import Link from "next/link";
 import type { SubjectTopic } from "@/lib/data/subject-breakdown";
 import type { SampleQuestion } from "@/lib/data/sample-questions";
 import type { StudyDoc } from "@/lib/data/study-materials";
-import SubscriptionItem from "@/app/(web)/pages/subscription/item/SubscriptionItem";
-import ShopCard from "@/app/(web)/includes/components/shop/ShopCard";
-import PulseLine from "@/app/(web)/includes/components/PulseLine";
 
 export interface ExamLandingConfig {
   dashboardName: string;
@@ -64,14 +61,10 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
   const {
     dashboardName,
     programName,
-    parentTableName,
-    parentName,
     tagline,
     intro,
     subjects,
     samples,
-    shopDocs,
-    stats,
     accent = "coral",
   } = config;
 
@@ -132,7 +125,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
                 href={`/dashboards/${dashboardName}`}
                 className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors"
               >
-                Access {programName} Q-Bank
+                Access Exams
               </Link>
               <a
                 href="#plans"
@@ -141,25 +134,6 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
                 View Exam Plans
               </a>
             </div>
-          </div>
-
-          {/* Stats */}
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-2xl border border-border bg-paper-dim px-4 py-5 text-center"
-              >
-                <div className={`font-serif text-2xl md:text-3xl font-semibold ${s.text}`}>
-                  {stat.value}
-                </div>
-                <div className="mt-1 text-xs text-navy/50 font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-14 md:mt-20">
-            <PulseLine showWaypoints variant="hero" />
           </div>
         </div>
       </section>
@@ -248,45 +222,6 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
         </section>
       )}
 
-      {/* ── Pricing (live from backend) ── */}
-      <section id="plans" className="py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-5">
-          <SubscriptionItem
-            parentTableName={parentTableName}
-            parentName={parentName}
-            heading={`${programName} Exam Prep Plans`}
-            subheading="Choose the plan that fits your study timeline. Pricing is pulled live from our platform."
-            showSearch={false}
-          />
-        </div>
-      </section>
-
-      {/* ── Shop ── */}
-      {shopDocs.length > 0 && (
-        <section id="shop" className="bg-paper-dim py-12 md:py-16">
-          <div className="mx-auto max-w-6xl px-5">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-3`}>
-                Rhenis Shop
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight">
-                {programName} Study Materials
-              </h2>
-              <p className="mt-4 text-navy/60 leading-relaxed">
-                Downloadable PDF &amp; Word study documents, ready to print or
-                study on any device.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {shopDocs.map((doc) => (
-                <ShopCard key={doc.id} doc={doc} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* ── FAQ ── */}
       <section id="faq" className="py-12 md:py-16">
         <div className="mx-auto max-w-6xl px-5">
@@ -305,7 +240,6 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
       {/* ── Closing CTA ── */}
       <section className="bg-paper py-12 md:py-16">
         <div className="mx-auto max-w-3xl px-5 text-center">
-          <PulseLine variant="divider" className="mb-12" />
           <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-3`}>
             Ready to Begin?
           </span>
@@ -327,7 +261,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
               href={`/dashboards/${dashboardName}`}
               className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium text-navy border border-border-light hover:bg-paper-dim transition-colors"
             >
-              Access {programName} Q-Bank
+              Access Exams
             </Link>
           </div>
         </div>
