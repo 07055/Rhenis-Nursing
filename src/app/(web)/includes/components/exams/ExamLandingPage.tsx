@@ -129,7 +129,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
               </Link>
               <a
                 href="#plans"
-                className={`inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium ${s.text} border border-border-light hover:bg-paper-dim transition-colors`}
+                className={`inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper ${s.bar} hover:opacity-90 transition-colors`}
               >
                 View Exam Plans
               </a>
