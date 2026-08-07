@@ -118,7 +118,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
             <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-4`}>
               {tagline}
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight text-navy mb-6">
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight text-navy mb-6">
               {title ?? `${programName} Exam Prep with Rhenis Nursing`}<span className="text-coral">.</span>
             </h1>
             <p className="text-lg text-navy/60 leading-relaxed mb-8">{intro}</p>
