@@ -1,5 +1,4 @@
 import Link from "next/link";
-import PulseLine from "@/app/(web)/includes/components/PulseLine";
 
 const certs = [
   {
@@ -17,13 +16,6 @@ const certs = [
     description:
       "Coverage across clinical and administrative medical assistant domains for your certification exam.",
   },
-];
-
-const facts = [
-  { value: "3+", label: "Certifications" },
-  { value: "100%", label: "Online Study" },
-  { value: "24/7", label: "Practice Access" },
-  { value: "Free", label: "Skill Assessments" },
 ];
 
 export default function CertificationPage() {
@@ -65,19 +57,6 @@ export default function CertificationPage() {
             >
               View All Programs
             </Link>
-          </div>
-
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-            {facts.map((f) => (
-              <div key={f.label} className="rounded-2xl border border-border bg-paper-dim px-4 py-5 text-center">
-                <div className="font-serif text-2xl md:text-3xl font-semibold text-teal">{f.value}</div>
-                <div className="mt-1 text-xs text-navy/50 font-medium">{f.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-14 md:mt-20">
-            <PulseLine variant="divider" />
           </div>
         </div>
       </section>

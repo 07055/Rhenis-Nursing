@@ -175,7 +175,7 @@ export const OrderingNumberQuestion = ({
                 placeholder={`1 - ${maxPosition}`}
                 title={`Enter a Number from 1 to ${maxPosition}`}
                 className="w-24 md:w-28 shrink-0 border border-gray-300 rounded px-2 py-1 text-sm text-center
-                placeholder:placeholder:text-xs
+                placeholder:text-xs
                 focus:outline-none focus:ring-2 focus:ring-indigo-400
                 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />

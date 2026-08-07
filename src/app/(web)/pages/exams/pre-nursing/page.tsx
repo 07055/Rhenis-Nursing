@@ -1,12 +1,4 @@
 import Link from "next/link";
-import PulseLine from "@/app/(web)/includes/components/PulseLine";
-
-const facts = [
-  { value: "4", label: "Core Pillars" },
-  { value: "96%", label: "NCLEX Pass Rate" },
-  { value: "8", label: "Modules Available" },
-  { value: "100%", label: "Online Study" },
-];
 
 export default function PreNursingPage() {
   return (
@@ -47,19 +39,6 @@ export default function PreNursingPage() {
             >
               View All Programs
             </Link>
-          </div>
-
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-            {facts.map((f) => (
-              <div key={f.label} className="rounded-2xl border border-border bg-paper-dim px-4 py-5 text-center">
-                <div className="font-serif text-2xl md:text-3xl font-semibold text-teal">{f.value}</div>
-                <div className="mt-1 text-xs text-navy/50 font-medium">{f.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-14 md:mt-20">
-            <PulseLine variant="divider" />
           </div>
         </div>
       </section>

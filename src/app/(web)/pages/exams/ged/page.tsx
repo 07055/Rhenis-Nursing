@@ -1,13 +1,5 @@
 import Link from "next/link";
 import { GED_SUBJECTS } from "@/lib/data/subject-breakdown";
-import PulseLine from "@/app/(web)/includes/components/PulseLine";
-
-const facts = [
-  { value: "4", label: "Subject Areas" },
-  { value: "7+ hrs", label: "Total Testing Time" },
-  { value: "145", label: "Score Per Subject" },
-  { value: "1", label: "Test Per Session" },
-];
 
 export default function GedPage() {
   return (
@@ -48,19 +40,6 @@ export default function GedPage() {
             >
               View All Programs
             </Link>
-          </div>
-
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-            {facts.map((f) => (
-              <div key={f.label} className="rounded-2xl border border-border bg-paper-dim px-4 py-5 text-center">
-                <div className="font-serif text-2xl md:text-3xl font-semibold text-teal">{f.value}</div>
-                <div className="mt-1 text-xs text-navy/50 font-medium">{f.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-14 md:mt-20">
-            <PulseLine variant="divider" />
           </div>
         </div>
       </section>
