@@ -3,12 +3,12 @@ import { RN_NURSING_CATEGORIES } from "@/lib/data/subject-breakdown";
 import { RN_NURSING_SAMPLES } from "@/lib/data/sample-questions";
 import { RHENIS_SHOP_DOCS } from "@/lib/data/study-materials";
 
-const DASHBOARD_NAME = "rn-nursing";
-const PROGRAM_NAME = "RN NURSING";
+const DASHBOARD_NAME = "nclex-rn";
+const PROGRAM_NAME = "NCLEX-RN";
 const PARENT_TABLE_NAME = "program";
-const PARENT_NAME = "RnNursing";
+const PARENT_NAME = "NclexRn";
 
-export default function RnNursingPage() {
+export default function NclexRnPage() {
   return (
     <ExamLandingPage
       config={{
@@ -16,10 +16,10 @@ export default function RnNursingPage() {
         programName: PROGRAM_NAME,
         parentTableName: PARENT_TABLE_NAME,
         parentName: PARENT_NAME,
-        tagline: "RN Nursing Q-Bank",
-        title: "RN Nursing Q-Bank Exam Prep with Rhenis Review",
+        tagline: "NCLEX-RN",
+        title: "🩺 NCLEX-RN Prep with Rhenis Review",
         intro:
-          "Master your RN nursing exams with Rhenis Review's Q-Bank, designed to mirror real test formats and clinical scenarios. Our comprehensive question bank builds confidence across all major nursing subjects—preparing you for classroom tests, exit exams, and professional assessments. Whether you're focusing on fundamentals or advanced specialties, Rhenis Review helps you study smarter and achieve a competitive edge.",
+          "Launch your nursing career with confidence using Rhenis Review's NCLEX-RN Prep. Our resources mirror the rigor and format of the official exam—helping you refine clinical judgment, strengthen content mastery, and feel fully prepared. Whether you're doing targeted drills or full-length simulations, Rhenis Review gives you the tools to succeed.",
         subjects: RN_NURSING_CATEGORIES,
         samples: RN_NURSING_SAMPLES,
         shopDocs: RHENIS_SHOP_DOCS,
