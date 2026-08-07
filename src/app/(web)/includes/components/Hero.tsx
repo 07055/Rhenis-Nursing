@@ -101,7 +101,7 @@ export default function Hero() {
         height={400}
         className="absolute top-8 -right-10 w-[200px] md:w-[380px] lg:w-[440px] object-contain opacity-[0.15] pointer-events-none mix-blend-multiply"
       />
-      <div className="mx-auto max-w-6xl px-5 pt-10 pb-12 md:pt-16 md:pb-16">
+      <div className="mx-auto max-w-6xl px-5 pt-24 pb-12 md:pt-16 md:pb-16">
         <div className="text-center max-w-4xl lg:max-w-5xl relative mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
             <div className="flex-1 min-w-0">

@@ -111,7 +111,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
             WebkitMaskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
           }}
         />
-        <div className="mx-auto max-w-6xl px-5 pt-14 pb-12 md:pt-20 md:pb-16">
+        <div className="mx-auto max-w-6xl px-5 pt-24 pb-12 md:pt-20 md:pb-16">
           <div className="text-center max-w-3xl mx-auto">
             <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-4`}>
               {tagline}
