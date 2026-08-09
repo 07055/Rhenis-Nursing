@@ -21,6 +21,16 @@ export interface ExamLandingConfig {
   shopDocs: StudyDoc[];
   stats: { value: string; label: string }[];
   accent?: "coral" | "teal" | "blue" | "green" | "purple";
+  showSubjects?: boolean;
+  showSamples?: boolean;
+  prepFormatLabel?: string;
+  prepFormatCards?: {
+    title: string;
+    intro?: string;
+    subtitle?: string;
+    items?: string[];
+    footer?: string;
+  }[];
 }
 
 const accentMap = {
@@ -72,6 +82,10 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
     subjects,
     samples,
     accent = "coral",
+    showSubjects = true,
+    showSamples = true,
+    prepFormatLabel,
+    prepFormatCards,
   } = config;
 
   const s = accentMap[accent];
@@ -170,49 +184,96 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
         </div>
       </section>
 
-      {/* ── Subject breakdown ── */}
-      <section id="subjects" className="py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-3`}>
-              Subject Breakdown
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight">
-              What the {programName} Covers
-            </h2>
-            <p className="mt-4 text-navy/60 leading-relaxed">
-              Master every section tested on the exam with focused study guides
-              and realistic practice questions.
-            </p>
-          </div>
+      {/* ── Prep format ── */}
+      {prepFormatLabel && (
+        <section className="text-center pb-12 -mt-6">
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className={`inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper ${barColor ?? s.bar} hover:opacity-90 transition-colors`}
+          >
+            {prepFormatLabel}
+          </button>
+        </section>
+      )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {subjects.map((subject) => (
-              <article
-                key={subject.name}
-                className="relative rounded-2xl border border-border bg-paper p-7 flex flex-col overflow-hidden"
-              >
-                <div className={`absolute left-0 top-0 bottom-0 w-1 ${s.bar}`} />
-                <div className={`inline-flex items-center justify-center w-10 h-10 rounded-xl border ${s.badge} mb-4`}>
-                  <span className="text-lg" aria-hidden="true">{subject.icon}</span>
-                </div>
-                <h3 className="font-serif text-xl font-semibold text-navy mb-4">{subject.name}</h3>
-                <ul className="space-y-2.5 text-sm text-navy/60 leading-relaxed">
-                  {subject.topics.map((topic) => (
-                    <li key={topic} className="flex gap-2">
-                      <span className={`${s.text} shrink-0`}>•</span>
-                      <span>{topic}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+      {/* ── Prep format cards ── */}
+      {prepFormatCards && prepFormatCards.length > 0 && (
+        <section className="pb-12 -mt-6">
+          <div className="mx-auto max-w-6xl px-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {prepFormatCards.map((card) => (
+                <article
+                  key={card.title}
+                  className="relative rounded-2xl border border-border bg-paper p-7 flex flex-col overflow-hidden"
+                >
+                  <div className={`absolute left-0 top-0 bottom-0 w-1 ${barColor ?? s.bar}`} />
+                  <h3 className="font-serif text-xl font-semibold text-navy mb-4">{card.title}</h3>
+                  {card.intro && <p className="text-sm text-navy/80 leading-relaxed mb-3">{card.intro}</p>}
+                  {card.subtitle && <p className="text-sm text-navy/80 leading-relaxed mb-2">{card.subtitle}</p>}
+                  {card.items && card.items.length > 0 && (
+                    <ul className="space-y-2 text-sm text-navy/60 leading-relaxed">
+                      {card.items.map((item) => (
+                        <li key={item} className="flex gap-2">
+                          <span className={`${s.text} shrink-0`}>•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {card.footer && <p className="text-sm text-navy/80 leading-relaxed mt-3">{card.footer}</p>}
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* ── Subject breakdown ── */}
+      {showSubjects && (
+        <section id="subjects" className="py-12 md:py-16">
+          <div className="mx-auto max-w-6xl px-5">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-3`}>
+                Subject Breakdown
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight">
+                What the {programName} Covers
+              </h2>
+              <p className="mt-4 text-navy/60 leading-relaxed">
+                Master every section tested on the exam with focused study guides
+                and realistic practice questions.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {subjects.map((subject) => (
+                <article
+                  key={subject.name}
+                  className="relative rounded-2xl border border-border bg-paper p-7 flex flex-col overflow-hidden"
+                >
+                  <div className={`absolute left-0 top-0 bottom-0 w-1 ${s.bar}`} />
+                  <div className={`inline-flex items-center justify-center w-10 h-10 rounded-xl border ${s.badge} mb-4`}>
+                    <span className="text-lg" aria-hidden="true">{subject.icon}</span>
+                  </div>
+                  <h3 className="font-serif text-xl font-semibold text-navy mb-4">{subject.name}</h3>
+                  <ul className="space-y-2.5 text-sm text-navy/60 leading-relaxed">
+                    {subject.topics.map((topic) => (
+                      <li key={topic} className="flex gap-2">
+                        <span className={`${s.text} shrink-0`}>•</span>
+                        <span>{topic}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Sample questions ── */}
-      {samplesList.length > 0 && (
+      {showSamples && samplesList.length > 0 && (
         <section id="samples" className="bg-paper-dim py-12 md:py-16">
           <div className="mx-auto max-w-6xl px-5">
             <div className="text-center max-w-2xl mx-auto mb-12">
