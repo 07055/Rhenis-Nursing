@@ -18,6 +18,8 @@ export default function LpnNursingPage() {
         parentName: PARENT_NAME,
         tagline: "LPN Nursing Q-Bank",
         title: "LPN Nursing Q-Bank Exam Success with Rhenis Review",
+        titleHighlight: "LPN Nursing Q-Bank",
+        titleHighlightClass: "text-sage",
         intro:
           "Step confidently into your practical nursing exams with Rhenis Review's LPN Q-Bank. Built to simulate authentic testing conditions, our extensive question bank strengthens your clinical reasoning and subject knowledge across all major LPN topics. Whether you're reviewing fundamentals or advanced care areas, Rhenis equips you with the tools to study efficiently and perform at your best.",
         subjects: LPN_NURSING_CATEGORIES,
