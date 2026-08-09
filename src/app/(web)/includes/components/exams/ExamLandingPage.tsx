@@ -12,6 +12,8 @@ export interface ExamLandingConfig {
   parentTableName: string;
   parentName: string;
   tagline: string;
+  taglineColor?: string;
+  barColor?: string;
   title?: string;
   intro: string;
   subjects: SubjectTopic[];
@@ -63,6 +65,8 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
     dashboardName,
     programName,
     tagline,
+    taglineColor,
+    barColor,
     title,
     intro,
     subjects,
@@ -115,7 +119,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
         />
         <div className="mx-auto max-w-6xl px-5 pt-24 pb-12 md:pt-20 md:pb-16">
           <div className="text-center max-w-3xl mx-auto">
-            <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-4`}>
+            <span className={`inline-block font-mono text-xs tracking-widest uppercase ${taglineColor ?? s.text} mb-4`}>
               {tagline}
             </span>
             <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight text-navy mb-6">
@@ -123,18 +127,18 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
             </h1>
             <p className="text-lg text-navy/60 leading-relaxed mb-8">{intro}</p>
             <div className="flex flex-row items-center justify-center gap-3">
+              <a
+                href="#plans"
+                className={`inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper ${barColor ?? s.bar} hover:opacity-90 transition-colors`}
+              >
+                View Subscription Plans
+              </a>
               <Link
                 href={`/dashboards/${dashboardName}`}
                 className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors"
               >
-                Access Now
+                Access Exams Now
               </Link>
-              <a
-                href="#plans"
-                className={`inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper ${s.bar} hover:opacity-90 transition-colors`}
-              >
-                View Exam Plans
-              </a>
             </div>
           </div>
         </div>
@@ -289,7 +293,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
               href={`/dashboards/${dashboardName}`}
               className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium text-navy border border-border-light hover:bg-paper-dim transition-colors"
             >
-              Access Now
+              Access Exams Now
             </Link>
           </div>
         </div>
