@@ -176,7 +176,7 @@ export default function EntrancePage() {
                                         href={accessHref}
                                         className={`flex items-center justify-center gap-1 rounded-lg bg-gradient-to-br ${presentation.accent} px-3 py-2 text-xs font-semibold text-white shadow transition-transform duration-300 hover:opacity-90`}
                                     >
-                                        Access Now
+                                        Access Exams Now
                                         <ArrowRight
                                             size={14}
                                             className="transition-transform duration-300 group-hover:translate-x-1"
