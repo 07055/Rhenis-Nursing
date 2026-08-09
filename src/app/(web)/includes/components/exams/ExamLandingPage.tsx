@@ -15,6 +15,8 @@ export interface ExamLandingConfig {
   taglineColor?: string;
   barColor?: string;
   title?: string;
+  titleHighlight?: string;
+  titleHighlightClass?: string;
   intro: string;
   subjects: SubjectTopic[];
   samples: Record<string, SampleQuestion>;
@@ -78,6 +80,8 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
     taglineColor,
     barColor,
     title,
+    titleHighlight,
+    titleHighlightClass,
     intro,
     subjects,
     samples,
@@ -90,6 +94,23 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
 
   const s = accentMap[accent];
   const samplesList = Object.values(samples);
+
+  const renderTitle = () => {
+    const fallback = title ?? `${programName} Exam Prep with Rhenis Nursing`;
+    if (titleHighlight) {
+      const idx = fallback.indexOf(titleHighlight);
+      if (idx >= 0) {
+        return (
+          <>
+            {fallback.slice(0, idx)}
+            <span className={titleHighlightClass ?? "text-coral"}>{titleHighlight}</span>
+            {fallback.slice(idx + titleHighlight.length)}
+          </>
+        );
+      }
+    }
+    return fallback;
+  };
 
   const faqs = [
     {
@@ -137,7 +158,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
               {tagline}
             </span>
             <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight text-navy mb-6">
-              {title ?? `${programName} Exam Prep with Rhenis Nursing`}<span className="text-coral">.</span>
+              {renderTitle()}<span className="text-coral">.</span>
             </h1>
             <p className="text-lg text-navy/60 leading-relaxed mb-8">{intro}</p>
             <div className="flex flex-row items-center justify-center gap-3">
