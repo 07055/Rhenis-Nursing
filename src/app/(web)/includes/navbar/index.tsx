@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import SearchBar from './search';
 
 const examLinks = [
   { label: 'ATI TEAS', href: '/pages/exams/ati-teas' },
@@ -152,6 +153,11 @@ export default function Navbar() {
           </div>
         </nav>
 
+        {/* Desktop search */}
+        <div className="hidden lg:block">
+          <SearchBar />
+        </div>
+
         {/* Auth buttons */}
         <div className="hidden lg:flex items-center gap-3">
           <Link
@@ -168,14 +174,17 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="lg:hidden text-navy p-1"
-          onClick={() => setMobileOpen((prev) => !prev)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile search + toggle */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <SearchBar compact />
+          <button
+            className="text-navy p-1"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
