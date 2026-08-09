@@ -30,6 +30,44 @@ export default function NclexRnPage() {
           { value: "96%", label: "Pass Rate" },
         ],
         accent: "blue",
+        showSubjects: false,
+        showSamples: false,
+        prepFormatLabel: "NCLEX-RN PREP FORMAT",
+        prepFormatCards: [
+          {
+            title: "Standalone Questions & Custom Exam Builder",
+            intro: "Thousands of NCLEX-style questions created by nurse educators.",
+            subtitle: "Custom exam creation to focus on your study priorities:",
+            items: [
+              "Adult Health",
+              "Child Health",
+              "Med-Surg Pharmacology",
+              "Mental Health",
+              "Critical Care",
+              "Maternal & Newborn",
+              "Case Study category for advanced clinical reasoning practice.",
+            ],
+            footer:
+              "Immediate feedback and clear rationales ensure you understand each concept thoroughly.",
+          },
+          {
+            title: "Comprehensive Practice Tests",
+            intro:
+              "Full-length, timed practice exams simulate the NCLEX-RN testing environment.",
+            items: [
+              "Build test-taking stamina, refine pacing, and enhance decision-making under pressure.",
+              "Category-level performance reports identify knowledge gaps and inform your study plan.",
+            ],
+          },
+          {
+            title: "Refined Readiness Exams",
+            intro: "Gauge your true exam preparedness with professional-level readiness assessments.",
+            items: [
+              "Advanced analytics reveal strengths and weaknesses, guiding final study focus.",
+              "Enter test day with confidence, knowing you've practiced under realistic conditions.",
+            ],
+          },
+        ],
       }}
     />
   );
