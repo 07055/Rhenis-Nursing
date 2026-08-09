@@ -17,7 +17,9 @@ export default function NclexPnPage() {
         parentTableName: PARENT_TABLE_NAME,
         parentName: PARENT_NAME,
         tagline: "NCLEX-PN",
-        title: "🩺 NCLEX-PN Prep with Rhenis Review",
+        title: "🩺 NCLEX-PN Prep with Rhenis Nursing",
+        titleHighlight: "NCLEX-PN",
+        titleHighlightClass: "text-green",
         intro:
           "Step confidently into your practical nursing career with Rhenis Review's NCLEX-PN Prep. Designed to match the style and difficulty of the official NCLEX-PN exam, our resources strengthen your clinical judgment, reinforce key content areas, and prepare you to excel on your first attempt. Whether you're reviewing fundamentals or tackling advanced topics, Rhenis Review gives you the tools to study smarter and succeed.",
         subjects: LPN_NURSING_CATEGORIES,
