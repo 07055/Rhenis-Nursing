@@ -1,4 +1,5 @@
 import ContactForm from "./contact-form";
+import BrandText from "../BrandText";
 
 const contactMethods = [
   {
@@ -32,10 +33,7 @@ export default function ContactUs() {
             Contact Us
           </h2>
           <p className="mt-4 text-navy/60 leading-relaxed">
-            Unlock Your Potential in Healthcare Education with Rhenis Review!
-            Rhenis Review helps support you in comprehending the complexities of
-            healthcare education and giving personalized guidance to help you
-            excel academically.
+            <BrandText text="Unlock Your Potential in Healthcare Education with Rhenis Nursing! Rhenis Nursing helps support you in comprehending the complexities of healthcare education and giving personalized guidance to help you excel academically." />
           </p>
         </div>
 

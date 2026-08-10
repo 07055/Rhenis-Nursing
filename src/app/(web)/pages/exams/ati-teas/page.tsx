@@ -20,12 +20,12 @@ export default function AtiTeasPage() {
         taglineColor: "text-green",
         barColor: "bg-green",
         intro:
-          "Dreaming of a career in nursing? The ATI TEAS 7 Exam is your critical first step—and Rhenis Review has everything you need to pass.",
+          "Dreaming of a career in nursing? The ATI TEAS 7 Exam is your critical first step—and Rhenis Nursing has everything you need to pass.",
         introPoints: [
           {
             icon: "sparkles",
             label:
-              "Dreaming of a career in nursing? The ATI TEAS 7 Exam is your critical first step—and Rhenis Review has everything you need to pass.",
+              "Dreaming of a career in nursing? The ATI TEAS 7 Exam is your critical first step—and Rhenis Nursing has everything you need to pass.",
           },
           {
             icon: "trendingUp",

@@ -65,7 +65,7 @@ export default function Navbar() {
             priority
             className="w-7 h-7 object-contain"
           />
-          <span className="font-serif text-lg font-semibold text-navy group-hover:text-coral transition-colors">
+          <span className="font-serif text-lg font-semibold text-sage group-hover:text-coral transition-colors">
             Rhenis Nursing
           </span>
         </Link>

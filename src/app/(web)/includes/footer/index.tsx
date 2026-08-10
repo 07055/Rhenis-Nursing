@@ -23,7 +23,7 @@ export default function Footer() {
                 alt="Rhenis Nursing"
                 className="w-7 h-7 shrink-0 object-contain"
               />
-              <span className="font-serif text-lg font-semibold text-navy">
+              <span className="font-serif text-lg font-semibold text-sage">
                 Rhenis Nursing
               </span>
             </Link>

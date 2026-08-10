@@ -18,12 +18,12 @@ export default function HesiA2Page() {
         parentName: PARENT_NAME,
         tagline: "HESI A2 Exam Prep",
         intro:
-          "Ace your HESI A2 with expertly crafted study materials from Rhenis Review—your trusted partner in nursing exam success.",
+          "Ace your HESI A2 with expertly crafted study materials from Rhenis Nursing—your trusted partner in nursing exam success.",
         introPoints: [
           {
             icon: "stethoscope",
             label:
-              "Ace your HESI A2 with expertly crafted study materials from Rhenis Review—your trusted partner in nursing exam success.",
+              "Ace your HESI A2 with expertly crafted study materials from Rhenis Nursing—your trusted partner in nursing exam success.",
           },
           {
             icon: "fileText",

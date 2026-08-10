@@ -13,6 +13,7 @@ import {
   Target,
   TrendingUp,
 } from "lucide-react";
+import BrandText from "../BrandText";
 
 export const HERO_INTRO_ICONS = {
   award: Award,
@@ -60,7 +61,7 @@ export default function HeroIntroBullets({
             >
               <Icon size={13} />
             </span>
-            <span>{bullet.label}</span>
+            <span>{<BrandText text={bullet.label} />}</span>
           </li>
         );
       })}
