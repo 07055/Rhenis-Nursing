@@ -19,7 +19,7 @@ export default function RnNursingPage() {
         tagline: "RN Nursing Q-Bank",
         title: "RN Nursing Q-Bank Exam Prep with Rhenis Nursing",
         titleHighlight: "RN Nursing Q-Bank",
-        titleHighlightClass: "text-green",
+        titleHighlightClass: "text-white",
         intro:
           "Master your RN nursing exams with Rhenis Nursing's Q-Bank, designed to mirror real test formats and clinical scenarios.",
         introPoints: [

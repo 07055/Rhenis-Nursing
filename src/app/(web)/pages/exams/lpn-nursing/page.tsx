@@ -19,7 +19,7 @@ export default function LpnNursingPage() {
         tagline: "LPN Nursing Q-Bank",
         title: "LPN Nursing Q-Bank Exam Success with Rhenis Nursing",
         titleHighlight: "LPN Nursing Q-Bank",
-        titleHighlightClass: "text-sage",
+        titleHighlightClass: "text-white",
         intro:
           "Step confidently into your practical nursing exams with Rhenis Nursing's LPN Q-Bank.",
         introPoints: [
