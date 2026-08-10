@@ -21,7 +21,23 @@ export default function NclexRnPage() {
         titleHighlight: "NCLEX-RN",
         titleHighlightClass: "text-sage",
         intro:
-          "Launch your nursing career with confidence using Rhenis Review's NCLEX-RN Prep. Our resources mirror the rigor and format of the official exam—helping you refine clinical judgment, strengthen content mastery, and feel fully prepared. Whether you're doing targeted drills or full-length simulations, Rhenis Review gives you the tools to succeed.",
+          "Launch your nursing career with confidence using Rhenis Review's NCLEX-RN Prep.",
+        introPoints: [
+          {
+            icon: "rocket",
+            label: "Launch your nursing career with confidence using Rhenis Review's NCLEX-RN Prep.",
+          },
+          {
+            icon: "brain",
+            label:
+              "Our resources mirror the rigor and format of the official exam—helping you refine clinical judgment, strengthen content mastery, and feel fully prepared.",
+          },
+          {
+            icon: "target",
+            label:
+              "Whether you're doing targeted drills or full-length simulations, Rhenis Review gives you the tools to succeed.",
+          },
+        ],
         subjects: RN_NURSING_CATEGORIES,
         samples: RN_NURSING_SAMPLES,
         shopDocs: RHENIS_SHOP_DOCS,

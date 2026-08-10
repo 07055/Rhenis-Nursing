@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeroIntroBullets from "@/app/(web)/includes/components/exams/HeroIntroBullets";
 import { CNA_SUBJECTS } from "@/lib/data/subject-breakdown";
 
 export default function CnaPage() {
@@ -22,11 +23,18 @@ export default function CnaPage() {
           <h1 className="font-serif text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-navy mb-6">
             CNA Exam Prep<span className="text-coral">.</span>
           </h1>
-          <p className="text-lg text-navy/60 leading-relaxed max-w-2xl mx-auto mb-8">
-            The Certified Nursing Assistant exam tests both written knowledge and
-            clinical skills. Build the confidence you need to pass on your first
-            attempt.
-          </p>
+          <HeroIntroBullets
+            bullets={[
+              {
+                icon: "clipboardCheck",
+                label: "The CNA exam tests both written knowledge and clinical skills.",
+              },
+              {
+                icon: "target",
+                label: "Build the confidence you need to pass on your first attempt.",
+              },
+            ]}
+          />
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/dashboards/web/assessments/absolute"

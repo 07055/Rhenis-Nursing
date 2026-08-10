@@ -21,7 +21,28 @@ export default function NclexPnPage() {
         titleHighlight: "NCLEX-PN",
         titleHighlightClass: "text-green",
         intro:
-          "Step confidently into your practical nursing career with Rhenis Review's NCLEX-PN Prep. Designed to match the style and difficulty of the official NCLEX-PN exam, our resources strengthen your clinical judgment, reinforce key content areas, and prepare you to excel on your first attempt. Whether you're reviewing fundamentals or tackling advanced topics, Rhenis Review gives you the tools to study smarter and succeed.",
+          "Step confidently into your practical nursing career with Rhenis Review's NCLEX-PN Prep.",
+        introPoints: [
+          {
+            icon: "graduationCap",
+            label:
+              "Step confidently into your practical nursing career with Rhenis Review's NCLEX-PN Prep.",
+          },
+          {
+            icon: "clipboardCheck",
+            label:
+              "Designed to match the style and difficulty of the official NCLEX-PN exam, our resources strengthen your clinical judgment and reinforce key content areas.",
+          },
+          {
+            icon: "target",
+            label:
+              "Prepare to excel on your first attempt—whether reviewing fundamentals or tackling advanced topics.",
+          },
+          {
+            icon: "sparkles",
+            label: "Rhenis Review gives you the tools to study smarter and succeed.",
+          },
+        ],
         subjects: LPN_NURSING_CATEGORIES,
         samples: LPN_NURSING_SAMPLES,
         shopDocs: RHENIS_SHOP_DOCS,

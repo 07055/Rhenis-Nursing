@@ -21,7 +21,24 @@ export default function LpnNursingPage() {
         titleHighlight: "LPN Nursing Q-Bank",
         titleHighlightClass: "text-sage",
         intro:
-          "Step confidently into your practical nursing exams with Rhenis Review's LPN Q-Bank. Built to simulate authentic testing conditions, our extensive question bank strengthens your clinical reasoning and subject knowledge across all major LPN topics. Whether you're reviewing fundamentals or advanced care areas, Rhenis equips you with the tools to study efficiently and perform at your best.",
+          "Step confidently into your practical nursing exams with Rhenis Review's LPN Q-Bank.",
+        introPoints: [
+          {
+            icon: "graduationCap",
+            label:
+              "Step confidently into your practical nursing exams with Rhenis Review's LPN Q-Bank.",
+          },
+          {
+            icon: "clipboardCheck",
+            label:
+              "Built to simulate authentic testing conditions, our extensive question bank strengthens your clinical reasoning and subject knowledge across all major LPN topics.",
+          },
+          {
+            icon: "trendingUp",
+            label:
+              "Whether you're reviewing fundamentals or advanced care areas, Rhenis equips you with the tools to study efficiently and perform at your best.",
+          },
+        ],
         subjects: LPN_NURSING_CATEGORIES,
         samples: LPN_NURSING_SAMPLES,
         shopDocs: RHENIS_SHOP_DOCS,
