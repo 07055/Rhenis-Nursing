@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import BrandText from "./BrandText";
 
 interface FaqItem {
   question: string;
@@ -23,27 +24,27 @@ const faqData: FaqCategory[] = [
     headerText: "text-coral",
     items: [
       {
-        question: "What is Rhenis Review?",
+        question: "What is Rhenis Nursing?",
         answer:
-          "Rhenis Review is a premier online platform providing comprehensive nursing exam preparation, including NCLEX-RN/PN, ATI TEAS, HESI A2, and specialized RN and LPN Q-Banks. Our resources cover Med-Surg, Fundamentals, Maternal-Newborn, Mental Health, Pediatrics, and more.",
+          "Rhenis Nursing is a premier online platform providing comprehensive nursing exam preparation, including NCLEX-RN/PN, ATI TEAS, HESI A2, and specialized RN and LPN Q-Banks. Our resources cover Med-Surg, Fundamentals, Maternal-Newborn, Mental Health, Pediatrics, and more.",
       },
       {
-        question: "Who can benefit from Rhenis Review?",
+        question: "Who can benefit from Rhenis Nursing?",
         answer:
           "Nursing students, graduates preparing for licensure exams, practicing nurses refreshing their knowledge, and educators seeking reliable question banks can all benefit.",
       },
       {
-        question: "What makes Rhenis Review different from other prep sites?",
+        question: "What makes Rhenis Nursing different from other prep sites?",
         answer:
           "We offer exam-blueprint-aligned content, rationales for every answer, adaptive practice modes, performance tracking, and coverage across multiple nursing specialties—all designed by experienced nurse educators.",
       },
       {
-        question: "Is Rhenis Review suitable for international nursing exams?",
+        question: "Is Rhenis Nursing suitable for international nursing exams?",
         answer:
-          "Yes! While our primary focus is on NCLEX, ATI TEAS, and HESI exams, many international nursing students use Rhenis Review to strengthen their knowledge of core nursing concepts and clinical reasoning.",
+          "Yes! While our primary focus is on NCLEX, ATI TEAS, and HESI exams, many international nursing students use Rhenis Nursing to strengthen their knowledge of core nursing concepts and clinical reasoning.",
       },
       {
-        question: "Does Rhenis Review offer guidance on study strategies?",
+        question: "Does Rhenis Nursing offer guidance on study strategies?",
         answer:
           "Absolutely. Alongside our practice questions, we provide expert tips, time-management strategies, and exam-day techniques to help you study smarter and boost your confidence.",
       },
@@ -122,7 +123,7 @@ const faqData: FaqCategory[] = [
     headerText: "text-navy-light",
     items: [
       {
-        question: "Can I access Rhenis Review on mobile devices?",
+        question: "Can I access Rhenis Nursing on mobile devices?",
         answer:
           "Absolutely. The platform is mobile-responsive, so you can study on your phone or tablet anywhere.",
       },
@@ -137,14 +138,14 @@ const faqData: FaqCategory[] = [
           "Reach our team through the Contact Us form on the website or by email. We aim to respond within 24–48 hours.",
       },
       {
-        question: "Does Rhenis Review work on tablets or mobile browsers?",
+        question: "Does Rhenis Nursing work on tablets or mobile browsers?",
         answer:
           "Yes. Our platform is fully responsive and optimized for desktops, tablets, and mobile devices so you can study on the go.",
       },
       {
         question: "Are my test scores and personal information secure?",
         answer:
-          "Absolutely. Rhenis Review uses industry-standard encryption and strict privacy practices to protect your data and exam results.",
+          "Absolutely. Rhenis Nursing uses industry-standard encryption and strict privacy practices to protect your data and exam results.",
       },
     ],
   },
@@ -165,7 +166,7 @@ export default function FAQ() {
             FAQ
           </span>
           <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight">
-            📋 Rhenis Review – Frequently Asked Questions (F.A.Qs)
+            📋 <BrandText text="Rhenis Nursing – Frequently Asked Questions (F.A.Qs)" />
           </h2>
         </div>
 
@@ -199,7 +200,7 @@ export default function FAQ() {
                           aria-controls={panelId}
                           onClick={() => toggle(id)}
                         >
-                          <span className="pr-3">{faq.question}</span>
+                          <span className="pr-3"><BrandText text={faq.question} /></span>
                           <svg
                             viewBox="0 0 24 24"
                             className={`w-4 h-4 shrink-0 text-navy/50 transition-transform duration-200 ${
@@ -223,7 +224,7 @@ export default function FAQ() {
                         hidden={!isOpen}
                       >
                         <div className="px-5 pb-4 text-sm text-navy/60 leading-relaxed">
-                          {faq.answer}
+                          <BrandText text={faq.answer} />
                         </div>
                       </div>
                     </div>

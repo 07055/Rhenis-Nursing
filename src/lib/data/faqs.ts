@@ -36,7 +36,7 @@ export const RN_NURSING_FAQS: { question: string; answer: string }[] = [
     answer: "TODO: Add answer copy before shipping.",
   },
   {
-    question: "Why choose Rhenis Review over free resources?",
+    question: "Why choose Rhenis Nursing over free resources?",
     answer: "TODO: Add answer copy before shipping.",
   },
 ];
@@ -59,7 +59,7 @@ export const NCLEX_RN_FAQS: { question: string; answer: string }[] = [
     answer: "TODO: Add answer copy before shipping.",
   },
   {
-    question: "How do Rhenis Review practice materials compare to the real exam?",
+    question: "How do Rhenis Nursing practice materials compare to the real exam?",
     answer: "TODO: Add answer copy before shipping.",
   },
   {
@@ -79,7 +79,7 @@ export const NCLEX_RN_FAQS: { question: string; answer: string }[] = [
     answer: "TODO: Add answer copy before shipping.",
   },
   {
-    question: "Why choose Rhenis Review over free resources?",
+    question: "Why choose Rhenis Nursing over free resources?",
     answer: "TODO: Add answer copy before shipping.",
   },
 ];
@@ -102,7 +102,7 @@ export const NCLEX_PN_FAQS: { question: string; answer: string }[] = [
     answer: "TODO: Add answer copy before shipping.",
   },
   {
-    question: "How realistic are Rhenis Review's practice materials?",
+    question: "How realistic are Rhenis Nursing's practice materials?",
     answer: "TODO: Add answer copy before shipping.",
   },
   {
@@ -122,7 +122,7 @@ export const NCLEX_PN_FAQS: { question: string; answer: string }[] = [
     answer: "TODO: Add answer copy before shipping.",
   },
   {
-    question: "Why choose Rhenis Review over free prep resources?",
+    question: "Why choose Rhenis Nursing over free prep resources?",
     answer: "TODO: Add answer copy before shipping.",
   },
 ];
@@ -165,7 +165,7 @@ export const LPN_NURSING_FAQS: { question: string; answer: string }[] = [
     answer: "TODO: Add answer copy before shipping.",
   },
   {
-    question: "Why choose Rhenis Review over free resources?",
+    question: "Why choose Rhenis Nursing over free resources?",
     answer: "TODO: Add answer copy before shipping.",
   },
 ];

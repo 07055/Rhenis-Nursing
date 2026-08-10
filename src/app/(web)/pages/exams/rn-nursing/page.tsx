@@ -17,16 +17,16 @@ export default function RnNursingPage() {
         parentTableName: PARENT_TABLE_NAME,
         parentName: PARENT_NAME,
         tagline: "RN Nursing Q-Bank",
-        title: "RN Nursing Q-Bank Exam Prep with Rhenis Review",
+        title: "RN Nursing Q-Bank Exam Prep with Rhenis Nursing",
         titleHighlight: "RN Nursing Q-Bank",
         titleHighlightClass: "text-green",
         intro:
-          "Master your RN nursing exams with Rhenis Review's Q-Bank, designed to mirror real test formats and clinical scenarios.",
+          "Master your RN nursing exams with Rhenis Nursing's Q-Bank, designed to mirror real test formats and clinical scenarios.",
         introPoints: [
           {
             icon: "clipboardList",
             label:
-              "Master your RN nursing exams with Rhenis Review's Q-Bank, designed to mirror real test formats and clinical scenarios.",
+              "Master your RN nursing exams with Rhenis Nursing's Q-Bank, designed to mirror real test formats and clinical scenarios.",
           },
           {
             icon: "barChart3",
@@ -36,7 +36,7 @@ export default function RnNursingPage() {
           {
             icon: "trendingUp",
             label:
-              "Whether you're focusing on fundamentals or advanced specialties, Rhenis Review helps you study smarter and achieve a competitive edge.",
+              "Whether you're focusing on fundamentals or advanced specialties, Rhenis Nursing helps you study smarter and achieve a competitive edge.",
           },
         ],
         subjects: RN_NURSING_CATEGORIES,

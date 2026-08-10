@@ -7,6 +7,7 @@ import type { SubjectTopic } from "@/lib/data/subject-breakdown";
 import type { SampleQuestion } from "@/lib/data/sample-questions";
 import type { StudyDoc } from "@/lib/data/study-materials";
 import HeroIntroBullets, { type HeroIntroBullet } from "./HeroIntroBullets";
+import BrandText from "../BrandText";
 
 export interface ExamLandingConfig {
   dashboardName: string;
@@ -60,13 +61,13 @@ function FaqAccordion({ faqs }: { faqs: { q: string; a: string }[] }) {
               className="flex items-center justify-between w-full text-left px-5 py-4 text-sm font-medium text-navy hover:bg-paper-dim transition-colors"
               aria-expanded={isOpen}
             >
-              <span className="pr-3">{faq.q}</span>
+              <span className="pr-3"><BrandText text={faq.q} /></span>
               <span className={`text-coral transition-transform duration-200 ${isOpen ? "rotate-45" : ""}`}>
                 +
               </span>
             </button>
             {isOpen && (
-              <div className="px-5 pb-4 text-sm text-navy/60 leading-relaxed">{faq.a}</div>
+              <div className="px-5 pb-4 text-sm text-navy/60 leading-relaxed"><BrandText text={faq.a} /></div>
             )}
           </div>
         );
@@ -106,20 +107,20 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
       if (idx >= 0) {
         return (
           <>
-            {fallback.slice(0, idx)}
+            <BrandText text={fallback.slice(0, idx)} />
             <span className={titleHighlightClass ?? "text-coral"}>{titleHighlight}</span>
-            {fallback.slice(idx + titleHighlight.length)}
+            <BrandText text={fallback.slice(idx + titleHighlight.length)} />
           </>
         );
       }
     }
-    return fallback;
+    return <BrandText text={fallback} />;
   };
 
   const faqs = [
     {
-      q: `What is Rhenis Review ${programName}?`,
-      a: `Rhenis Review offers expert-crafted study materials and Q-Banks to help you prepare for the ${programName} exam and boost your nursing school admission chances.`,
+      q: `What is Rhenis Nursing ${programName}?`,
+      a: `Rhenis Nursing offers expert-crafted study materials and Q-Banks to help you prepare for the ${programName} exam and boost your nursing school admission chances.`,
     },
     {
       q: `What subjects are covered in your ${programName} materials?`,
@@ -167,28 +168,32 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
             {introPoints && introPoints.length > 0 ? (
               <HeroIntroBullets bullets={introPoints} iconClass={barColor ?? s.bar} />
             ) : (
-              <p className="text-lg text-navy/60 leading-relaxed mb-8">{intro}</p>
+              <p className="text-lg text-navy/60 leading-relaxed mb-8"><BrandText text={intro} /></p>
             )}
-            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="flex w-full flex-row items-center justify-center gap-2.5 sm:w-auto">
               <a
                 href="#plans"
-                className={`inline-flex flex-col items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper ${barColor ?? s.bar} hover:opacity-90 transition-colors`}
+                className={`group inline-flex flex-col items-center justify-center gap-0.5 rounded-full px-4 py-2 text-xs font-semibold text-paper ${barColor ?? s.bar} shadow-md shadow-black/20 ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-0.5 sm:px-5`}
               >
-                <span className="inline-flex items-center justify-center gap-2">
-                  <CreditCard size={16} />
+                <span className="inline-flex items-center justify-center gap-1.5">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:scale-110">
+                    <CreditCard size={11} />
+                  </span>
                   View Subscription
                 </span>
-                <span className="text-[11px] font-normal text-paper/80">Browse plans</span>
+                <span className="text-[10px] font-normal text-paper/70">Browse plans</span>
               </a>
               <Link
                 href={`/dashboards/${dashboardName}`}
-                className="inline-flex flex-col items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors"
+                className="group inline-flex flex-col items-center justify-center gap-0.5 rounded-full bg-coral px-4 py-2 text-xs font-semibold text-paper shadow-md shadow-black/20 ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-coral-hover sm:px-5"
               >
-                <span className="inline-flex items-center justify-center gap-2">
-                  <BookOpen size={16} />
+                <span className="inline-flex items-center justify-center gap-1.5">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:scale-110">
+                    <BookOpen size={11} />
+                  </span>
                   Access Exams
                 </span>
-                <span className="text-[11px] font-normal text-paper/80">Start practicing</span>
+                <span className="text-[10px] font-normal text-paper/70">Start practicing</span>
               </Link>
             </div>
           </div>

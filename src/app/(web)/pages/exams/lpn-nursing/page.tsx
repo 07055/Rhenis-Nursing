@@ -17,16 +17,16 @@ export default function LpnNursingPage() {
         parentTableName: PARENT_TABLE_NAME,
         parentName: PARENT_NAME,
         tagline: "LPN Nursing Q-Bank",
-        title: "LPN Nursing Q-Bank Exam Success with Rhenis Review",
+        title: "LPN Nursing Q-Bank Exam Success with Rhenis Nursing",
         titleHighlight: "LPN Nursing Q-Bank",
         titleHighlightClass: "text-sage",
         intro:
-          "Step confidently into your practical nursing exams with Rhenis Review's LPN Q-Bank.",
+          "Step confidently into your practical nursing exams with Rhenis Nursing's LPN Q-Bank.",
         introPoints: [
           {
             icon: "graduationCap",
             label:
-              "Step confidently into your practical nursing exams with Rhenis Review's LPN Q-Bank.",
+              "Step confidently into your practical nursing exams with Rhenis Nursing's LPN Q-Bank.",
           },
           {
             icon: "clipboardCheck",

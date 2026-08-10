@@ -21,11 +21,11 @@ export default function NclexRnPage() {
         titleHighlight: "NCLEX-RN",
         titleHighlightClass: "text-sage",
         intro:
-          "Launch your nursing career with confidence using Rhenis Review's NCLEX-RN Prep.",
+          "Launch your nursing career with confidence using Rhenis Nursing's NCLEX-RN Prep.",
         introPoints: [
           {
             icon: "rocket",
-            label: "Launch your nursing career with confidence using Rhenis Review's NCLEX-RN Prep.",
+            label: "Launch your nursing career with confidence using Rhenis Nursing's NCLEX-RN Prep.",
           },
           {
             icon: "brain",
@@ -35,7 +35,7 @@ export default function NclexRnPage() {
           {
             icon: "target",
             label:
-              "Whether you're doing targeted drills or full-length simulations, Rhenis Review gives you the tools to succeed.",
+              "Whether you're doing targeted drills or full-length simulations, Rhenis Nursing gives you the tools to succeed.",
           },
         ],
         subjects: RN_NURSING_CATEGORIES,

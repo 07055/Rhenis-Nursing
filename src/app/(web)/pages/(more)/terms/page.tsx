@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import BrandText from '../../../includes/components/BrandText';
 
 const sections = [
   {
@@ -54,8 +55,8 @@ export default function TermsPage() {
             Terms and Conditions<span className="text-coral">.</span>
           </h1>
           <p className="text-navy/60 leading-relaxed">
-            Last updated: January 2026. Please read these terms carefully before using
-            Rhenis Nursing.
+            Last updated: January 2026. Please read these terms carefully before using{' '}
+            <BrandText text="Rhenis Nursing" />.
           </p>
         </div>
       </section>
@@ -66,7 +67,7 @@ export default function TermsPage() {
             {sections.map((section) => (
               <div key={section.title}>
                 <h2 className="font-serif text-2xl font-semibold text-navy mb-3">{section.title}</h2>
-                <p className="text-navy/60 leading-relaxed text-sm">{section.body}</p>
+                <p className="text-navy/60 leading-relaxed text-sm"><BrandText text={section.body} /></p>
               </div>
             ))}
           </div>

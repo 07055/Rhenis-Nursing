@@ -21,12 +21,12 @@ export default function NclexPnPage() {
         titleHighlight: "NCLEX-PN",
         titleHighlightClass: "text-green",
         intro:
-          "Step confidently into your practical nursing career with Rhenis Review's NCLEX-PN Prep.",
+          "Step confidently into your practical nursing career with Rhenis Nursing's NCLEX-PN Prep.",
         introPoints: [
           {
             icon: "graduationCap",
             label:
-              "Step confidently into your practical nursing career with Rhenis Review's NCLEX-PN Prep.",
+              "Step confidently into your practical nursing career with Rhenis Nursing's NCLEX-PN Prep.",
           },
           {
             icon: "clipboardCheck",
@@ -40,7 +40,7 @@ export default function NclexPnPage() {
           },
           {
             icon: "sparkles",
-            label: "Rhenis Review gives you the tools to study smarter and succeed.",
+            label: "Rhenis Nursing gives you the tools to study smarter and succeed.",
           },
         ],
         subjects: LPN_NURSING_CATEGORIES,
