@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeroIntroBullets from "@/app/(web)/includes/components/exams/HeroIntroBullets";
 
 export default function PreNursingPage() {
   return (
@@ -21,11 +22,19 @@ export default function PreNursingPage() {
           <h1 className="font-serif text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-navy mb-6">
             Pre-Nursing Essentials<span className="text-coral">.</span>
           </h1>
-          <p className="text-lg text-navy/60 leading-relaxed max-w-2xl mx-auto mb-8">
-            Get a head start on your nursing education. Our pre-nursing
-            essentials help you build the academic and clinical foundation
-            you&apos;ll need for success in nursing school and beyond.
-          </p>
+          <HeroIntroBullets
+            bullets={[
+              {
+                icon: "rocket",
+                label: "Get a head start on your nursing education.",
+              },
+              {
+                icon: "bookOpen",
+                label:
+                  "Build the academic and clinical foundation you'll need for success in nursing school and beyond.",
+              },
+            ]}
+          />
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/pages/exams/ati-teas"

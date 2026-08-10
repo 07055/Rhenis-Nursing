@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeroIntroBullets from "@/app/(web)/includes/components/exams/HeroIntroBullets";
 
 const certs = [
   {
@@ -39,11 +40,19 @@ export default function CertificationPage() {
           <h1 className="font-serif text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-navy mb-6">
             Certification Prep<span className="text-coral">.</span>
           </h1>
-          <p className="text-lg text-navy/60 leading-relaxed max-w-2xl mx-auto mb-8">
-            Expand your healthcare career with in-demand certifications.
-            Rhenis Nursing gives you the targeted prep materials you need to
-            pass your certification exam with confidence.
-          </p>
+          <HeroIntroBullets
+            bullets={[
+              {
+                icon: "award",
+                label: "Expand your healthcare career with in-demand certifications.",
+              },
+              {
+                icon: "fileText",
+                label:
+                  "Rhenis Nursing gives you the targeted prep materials you need to pass your certification exam with confidence.",
+              },
+            ]}
+          />
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/auth/register"

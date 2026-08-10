@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { BookOpen, CreditCard } from "lucide-react";
 import type { SubjectTopic } from "@/lib/data/subject-breakdown";
 import type { SampleQuestion } from "@/lib/data/sample-questions";
 import type { StudyDoc } from "@/lib/data/study-materials";
+import HeroIntroBullets, { type HeroIntroBullet } from "./HeroIntroBullets";
 
 export interface ExamLandingConfig {
   dashboardName: string;
@@ -18,6 +20,7 @@ export interface ExamLandingConfig {
   titleHighlight?: string;
   titleHighlightClass?: string;
   intro: string;
+  introPoints?: HeroIntroBullet[];
   subjects: SubjectTopic[];
   samples: Record<string, SampleQuestion>;
   shopDocs: StudyDoc[];
@@ -83,6 +86,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
     titleHighlight,
     titleHighlightClass,
     intro,
+    introPoints,
     subjects,
     samples,
     accent = "coral",
@@ -160,19 +164,31 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
             <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight text-navy mb-6">
               {renderTitle()}<span className="text-coral">.</span>
             </h1>
-            <p className="text-lg text-navy/60 leading-relaxed mb-8">{intro}</p>
-            <div className="flex flex-row items-center justify-center gap-3">
+            {introPoints && introPoints.length > 0 ? (
+              <HeroIntroBullets bullets={introPoints} iconClass={barColor ?? s.bar} />
+            ) : (
+              <p className="text-lg text-navy/60 leading-relaxed mb-8">{intro}</p>
+            )}
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href="#plans"
-                className={`inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper ${barColor ?? s.bar} hover:opacity-90 transition-colors`}
+                className={`inline-flex flex-col items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper ${barColor ?? s.bar} hover:opacity-90 transition-colors`}
               >
-                View Subscription Plans
+                <span className="inline-flex items-center justify-center gap-2">
+                  <CreditCard size={16} />
+                  View Subscription
+                </span>
+                <span className="text-[11px] font-normal text-paper/80">Browse plans</span>
               </a>
               <Link
                 href={`/dashboards/${dashboardName}`}
-                className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors"
+                className="inline-flex flex-col items-center justify-center px-7 py-3 rounded-full text-sm font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors"
               >
-                Access Exams Now
+                <span className="inline-flex items-center justify-center gap-2">
+                  <BookOpen size={16} />
+                  Access Exams
+                </span>
+                <span className="text-[11px] font-normal text-paper/80">Start practicing</span>
               </Link>
             </div>
           </div>

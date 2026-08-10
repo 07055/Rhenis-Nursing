@@ -18,7 +18,24 @@ export default function HesiA2Page() {
         parentName: PARENT_NAME,
         tagline: "HESI A2 Exam Prep",
         intro:
-          "Ace your HESI A2 with expertly crafted study materials from Rhenis Review—your trusted partner in nursing exam success. Our prep resources mirror the real exam, helping you master Reading Comprehension, Math, Vocabulary, Grammar, and Biology. Whether you're just starting or fine-tuning your knowledge, our practice questions, rationales, and strategies build confidence and precision for exam day.",
+          "Ace your HESI A2 with expertly crafted study materials from Rhenis Review—your trusted partner in nursing exam success.",
+        introPoints: [
+          {
+            icon: "stethoscope",
+            label:
+              "Ace your HESI A2 with expertly crafted study materials from Rhenis Review—your trusted partner in nursing exam success.",
+          },
+          {
+            icon: "fileText",
+            label:
+              "Our prep resources mirror the real exam, helping you master Reading Comprehension, Math, Vocabulary, Grammar, and Biology.",
+          },
+          {
+            icon: "target",
+            label:
+              "Whether you're just starting or fine-tuning your knowledge, our practice questions, rationales, and strategies build confidence and precision for exam day.",
+          },
+        ],
         subjects: HESI_A2_SUBJECTS,
         samples: HESI_A2_SAMPLES,
         shopDocs: HESI_A2_SHOP_DOCS,

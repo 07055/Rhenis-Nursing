@@ -21,7 +21,24 @@ export default function RnNursingPage() {
         titleHighlight: "RN Nursing Q-Bank",
         titleHighlightClass: "text-green",
         intro:
-          "Master your RN nursing exams with Rhenis Review's Q-Bank, designed to mirror real test formats and clinical scenarios. Our comprehensive question bank builds confidence across all major nursing subjects—preparing you for classroom tests, exit exams, and professional assessments. Whether you're focusing on fundamentals or advanced specialties, Rhenis Review helps you study smarter and achieve a competitive edge.",
+          "Master your RN nursing exams with Rhenis Review's Q-Bank, designed to mirror real test formats and clinical scenarios.",
+        introPoints: [
+          {
+            icon: "clipboardList",
+            label:
+              "Master your RN nursing exams with Rhenis Review's Q-Bank, designed to mirror real test formats and clinical scenarios.",
+          },
+          {
+            icon: "barChart3",
+            label:
+              "Our comprehensive question bank builds confidence across all major nursing subjects—preparing you for classroom tests, exit exams, and professional assessments.",
+          },
+          {
+            icon: "trendingUp",
+            label:
+              "Whether you're focusing on fundamentals or advanced specialties, Rhenis Review helps you study smarter and achieve a competitive edge.",
+          },
+        ],
         subjects: RN_NURSING_CATEGORIES,
         samples: RN_NURSING_SAMPLES,
         shopDocs: RHENIS_SHOP_DOCS,

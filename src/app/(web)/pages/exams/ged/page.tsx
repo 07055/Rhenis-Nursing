@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeroIntroBullets from "@/app/(web)/includes/components/exams/HeroIntroBullets";
 import { GED_SUBJECTS } from "@/lib/data/subject-breakdown";
 
 export default function GedPage() {
@@ -22,11 +23,19 @@ export default function GedPage() {
           <h1 className="font-serif text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-navy mb-6">
             GED Exam Prep<span className="text-coral">.</span>
           </h1>
-          <p className="text-lg text-navy/60 leading-relaxed max-w-2xl mx-auto mb-8">
-            Earn your high school equivalency credential and unlock new
-            opportunities. Build confidence across all four GED subjects with
-            targeted practice and study guides.
-          </p>
+          <HeroIntroBullets
+            bullets={[
+              {
+                icon: "award",
+                label: "Earn your high school equivalency credential and unlock new opportunities.",
+              },
+              {
+                icon: "bookOpen",
+                label:
+                  "Build confidence across all four GED subjects with targeted practice and study guides.",
+              },
+            ]}
+          />
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/auth/register"
