@@ -9,7 +9,7 @@ export const ATI_TEAS_SUBJECTS: SubjectTopic[] = [
   {
     icon: "🚀",
     name: "Science",
-    image: "/images/ATI TEAS/01_science.png",
+    image: "/images/ati-teas/01_science.png",
     topics: [
       "Human Anatomy & Physiology – Body systems, homeostasis, and interrelationships.",
       "Life & Physical Sciences – Genetics, biology basics, chemistry concepts, and physics principles.",
@@ -20,7 +20,7 @@ export const ATI_TEAS_SUBJECTS: SubjectTopic[] = [
   {
     icon: "➕",
     name: "Mathematics",
-    image: "/images/ATI TEAS/02_mathematics.png",
+    image: "/images/ati-teas/02_mathematics.png",
     topics: [
       "Numbers & Algebra – Whole numbers, fractions, decimals, ratios, proportions.",
       "Measurement & Data – Units of measure, conversions, geometry basics, interpreting graphs.",
@@ -31,7 +31,7 @@ export const ATI_TEAS_SUBJECTS: SubjectTopic[] = [
   {
     icon: "📖",
     name: "Reading",
-    image: "/images/ATI TEAS/03_reading.png",
+    image: "/images/ati-teas/03_reading.png",
     topics: [
       "Key Ideas & Details – Identify main ideas, supporting details, summarize passages.",
       "Craft & Structure – Analyze author's purpose, point of view, text features, and context clues.",
@@ -42,7 +42,7 @@ export const ATI_TEAS_SUBJECTS: SubjectTopic[] = [
   {
     icon: "✍️",
     name: "English & Language Usage",
-    image: "/images/ATI TEAS/04_english_language_usage.png",
+    image: "/images/ati-teas/04_english_language_usage.png",
     topics: [
       "Grammar & Syntax – Parts of speech, sentence structure, subject-verb agreement.",
       "Punctuation & Capitalization – Commas, semicolons, apostrophes, and capitalization rules.",
@@ -56,7 +56,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "🧬",
     name: "Biology",
-    image: "/images/ATI TEAS/01_science.png",
+    image: "/images/ati-teas/01_science.png",
     topics: [
       "Cell Structure & Function – Organelles, membrane transport, and cellular processes.",
       "Genetics & Heredity – DNA, RNA, mitosis, meiosis, and genetic disorders.",
@@ -67,7 +67,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "📐",
     name: "Mathematics",
-    image: "/images/ATI TEAS/02_mathematics.png",
+    image: "/images/ati-teas/02_mathematics.png",
     topics: [
       "Arithmetic – Fractions, decimals, percentages, ratios, and proportions.",
       "Algebra – Equations, inequalities, word problems, and variable manipulation.",
@@ -78,7 +78,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "📚",
     name: "Vocabulary",
-    image: "/images/ATI TEAS/05_nursing_school_essentials.png",
+    image: "/images/ati-teas/05_nursing_school_essentials.png",
     topics: [
       "Medical Terminology – Prefixes, suffixes, and root words used in healthcare.",
       "General Vocabulary – Word meanings, synonyms, antonyms, and context clues.",
@@ -89,7 +89,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "📝",
     name: "Reading Comprehension",
-    image: "/images/ATI TEAS/03_reading.png",
+    image: "/images/ati-teas/03_reading.png",
     topics: [
       "Main Idea & Detail – Identifying central themes and supporting information.",
       "Inference & Conclusion – Drawing logical conclusions from passage content.",
@@ -100,7 +100,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "🔬",
     name: "Anatomy & Physiology",
-    image: "/images/ATI TEAS/01_science.png",
+    image: "/images/ati-teas/01_science.png",
     topics: [
       "Cardiovascular System – Heart structure, blood flow, and circulation.",
       "Respiratory System – Gas exchange, lung anatomy, and breathing mechanics.",
@@ -111,7 +111,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "📗",
     name: "Grammar",
-    image: "/images/ATI TEAS/04_english_language_usage.png",
+    image: "/images/ati-teas/04_english_language_usage.png",
     topics: [
       "Parts of Speech – Nouns, verbs, adjectives, adverbs, and their functions.",
       "Sentence Structure – Subject-verb agreement, clauses, and phrase construction.",
@@ -125,7 +125,7 @@ export const RN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "🎓",
     name: "RN HESI Exams",
-    image: "/images/LPN Nursing/01_hesi_exam_review.png",
+    image: "/images/lpn-nursing/01_hesi_exam_review.png",
     topics: [
       "Targeted practice aligned with HESI testing standards for Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals.",
       "Build confidence with detailed rationales and adaptive quizzes.",
@@ -135,7 +135,7 @@ export const RN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "📘",
     name: "RN ATI Exams",
-    image: "/images/LPN Nursing/02_ati_practice.png",
+    image: "/images/lpn-nursing/02_ati_practice.png",
     topics: [
       "Comprehensive question sets covering Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals.",
       "Realistic scenarios to refine clinical reasoning skills.",
@@ -145,7 +145,7 @@ export const RN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "✳️",
     name: "ATI Exit Exams (RN)",
-    image: "/images/LPN Nursing/03_medical_surgical.png",
+    image: "/images/lpn-nursing/03_medical_surgical.png",
     topics: [
       "End-of-program practice designed to match exit exam style.",
       "Identify knowledge gaps before graduation.",
@@ -155,7 +155,7 @@ export const RN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "🎓",
     name: "HESI Exit Exams (RN)",
-    image: "/images/LPN Nursing/04_hesi_comprehensive.png",
+    image: "/images/lpn-nursing/04_hesi_comprehensive.png",
     topics: [
       "Extensive question banks modeled after RN exit exams.",
       "Covers Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals.",
@@ -165,7 +165,7 @@ export const RN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "💻",
     name: "EXAMPLIFY PRACTICE",
-    image: "/images/LPN Nursing/05_examplify.png",
+    image: "/images/lpn-nursing/05_examplify.png",
     topics: [
       "Practice Med-Surg, Mental Health, Maternal & Newborn, Fundamentals of Nursing, and Dosage Calculation in an authentic testing interface.",
       "Gain familiarity with digital exam tools and reduce test-day anxiety.",
@@ -264,7 +264,7 @@ export const LPN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "🎓",
     name: "LPN HESI Exams",
-    image: "/images/LPN Nursing/01_hesi_exam_review.png",
+    image: "/images/lpn-nursing/01_hesi_exam_review.png",
     topics: [
       "Comprehensive practice for Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals.",
       "Adaptive quizzes with detailed feedback to identify strengths and weaknesses.",
@@ -274,7 +274,7 @@ export const LPN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "📘",
     name: "LPN ATI Exams",
-    image: "/images/LPN Nursing/02_ati_practice.png",
+    image: "/images/lpn-nursing/02_ati_practice.png",
     topics: [
       "Broad coverage across Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals.",
       "Case-based questions to strengthen clinical judgment.",
@@ -284,7 +284,7 @@ export const LPN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "✳️",
     name: "ATI Exit Exams (LPN)",
-    image: "/images/LPN Nursing/03_medical_surgical.png",
+    image: "/images/lpn-nursing/03_medical_surgical.png",
     topics: [
       "Simulated end-of-program tests for accurate readiness checks.",
       "Pinpoint areas needing reinforcement before graduation.",
@@ -294,7 +294,7 @@ export const LPN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "🎓",
     name: "HESI Exit Exams (LPN)",
-    image: "/images/LPN Nursing/04_hesi_comprehensive.png",
+    image: "/images/lpn-nursing/04_hesi_comprehensive.png",
     topics: [
       "Exhaustive bank designed for practical nursing exit exam formats.",
       "Includes Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals sections.",
@@ -304,7 +304,7 @@ export const LPN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "💻",
     name: "EXAMPLIFY PRACTICE",
-    image: "/images/LPN Nursing/05_examplify.png",
+    image: "/images/lpn-nursing/05_examplify.png",
     topics: [
       "Hands-on drills in Med-Surg, Mental Health, Maternal-Newborn, Fundamentals, and Dosage Calculation within a realistic testing environment.",
       "Become comfortable with digital exam tools and reduce test-day stress.",
