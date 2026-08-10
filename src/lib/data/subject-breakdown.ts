@@ -2,6 +2,7 @@ export interface SubjectTopic {
   icon: string;
   name: string;
   topics: string[];
+  image?: string;
 }
 
 export const ATI_TEAS_SUBJECTS: SubjectTopic[] = [
@@ -114,6 +115,7 @@ export const RN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "🎓",
     name: "RN HESI Exams",
+    image: "/images/LPN Nursing/01_hesi_exam_review.png",
     topics: [
       "Targeted practice aligned with HESI testing standards for Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals.",
       "Build confidence with detailed rationales and adaptive quizzes.",
@@ -123,6 +125,7 @@ export const RN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "📘",
     name: "RN ATI Exams",
+    image: "/images/LPN Nursing/02_ati_practice.png",
     topics: [
       "Comprehensive question sets covering Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals.",
       "Realistic scenarios to refine clinical reasoning skills.",
@@ -132,6 +135,7 @@ export const RN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "✳️",
     name: "ATI Exit Exams (RN)",
+    image: "/images/LPN Nursing/03_medical_surgical.png",
     topics: [
       "End-of-program practice designed to match exit exam style.",
       "Identify knowledge gaps before graduation.",
@@ -141,6 +145,7 @@ export const RN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "🎓",
     name: "HESI Exit Exams (RN)",
+    image: "/images/LPN Nursing/04_hesi_comprehensive.png",
     topics: [
       "Extensive question banks modeled after RN exit exams.",
       "Covers Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals.",
@@ -150,6 +155,7 @@ export const RN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "💻",
     name: "EXAMPLIFY PRACTICE",
+    image: "/images/LPN Nursing/05_examplify.png",
     topics: [
       "Practice Med-Surg, Mental Health, Maternal & Newborn, Fundamentals of Nursing, and Dosage Calculation in an authentic testing interface.",
       "Gain familiarity with digital exam tools and reduce test-day anxiety.",
@@ -248,6 +254,7 @@ export const LPN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "🎓",
     name: "LPN HESI Exams",
+    image: "/images/LPN Nursing/01_hesi_exam_review.png",
     topics: [
       "Comprehensive practice for Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals.",
       "Adaptive quizzes with detailed feedback to identify strengths and weaknesses.",
@@ -257,6 +264,7 @@ export const LPN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "📘",
     name: "LPN ATI Exams",
+    image: "/images/LPN Nursing/02_ati_practice.png",
     topics: [
       "Broad coverage across Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals.",
       "Case-based questions to strengthen clinical judgment.",
@@ -266,6 +274,7 @@ export const LPN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "✳️",
     name: "ATI Exit Exams (LPN)",
+    image: "/images/LPN Nursing/03_medical_surgical.png",
     topics: [
       "Simulated end-of-program tests for accurate readiness checks.",
       "Pinpoint areas needing reinforcement before graduation.",
@@ -275,6 +284,7 @@ export const LPN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "🎓",
     name: "HESI Exit Exams (LPN)",
+    image: "/images/LPN Nursing/04_hesi_comprehensive.png",
     topics: [
       "Exhaustive bank designed for practical nursing exit exam formats.",
       "Includes Med-Surg, Mental Health, Maternal-Newborn, and Fundamentals sections.",
@@ -284,6 +294,7 @@ export const LPN_NURSING_CATEGORIES: SubjectTopic[] = [
   {
     icon: "💻",
     name: "EXAMPLIFY PRACTICE",
+    image: "/images/LPN Nursing/05_examplify.png",
     topics: [
       "Hands-on drills in Med-Surg, Mental Health, Maternal-Newborn, Fundamentals, and Dosage Calculation within a realistic testing environment.",
       "Become comfortable with digital exam tools and reduce test-day stress.",

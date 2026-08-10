@@ -17,7 +17,7 @@ interface SubscriptionItemProps {
 export default function SubscriptionItem({
     parentTableName,
     parentName,
-    heading = "Exam Prep Plans",
+    heading = "Subscription Plans",
     subheading,
     perPage = 50,
     showSearch = true,

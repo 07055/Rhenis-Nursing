@@ -4,7 +4,7 @@ import { RN_NURSING_SAMPLES } from "@/lib/data/sample-questions";
 import { RHENIS_SHOP_DOCS } from "@/lib/data/study-materials";
 
 const DASHBOARD_NAME = "rn-nursing";
-const PROGRAM_NAME = "RN NURSING";
+const PROGRAM_NAME = "RN Nursing";
 const PARENT_TABLE_NAME = "program";
 const PARENT_NAME = "RnNursing";
 

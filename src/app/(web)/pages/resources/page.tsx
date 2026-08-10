@@ -68,19 +68,19 @@ const rawCards: DashboardCard[] = [
         route: '/pages/exams/lpn-nursing',
     },
     {
-        label: 'PRE NURSING EXAMS',
+        label: 'PRE Nursing EXAMS',
         description: 'Entry-level nursing readiness assessments.',
         icon: <FaClipboardList className="text-cyan-400 text-3xl" />,
         route: '/pages/exams/pre-nursing',
     },
     {
-        label: 'RN NURSING EXAMS',
+        label: 'RN Nursing EXAMS',
         description: 'Registered Nurse core competency review.',
         icon: <FaStethoscope className="text-blue-400 text-3xl" />,
         route: '/pages/exams/rn-nursing',
     },
     {
-        label: 'LPN NURSING EXAMS',
+        label: 'LPN Nursing EXAMS',
         description: 'Licensed Practical Nurse exam simulations.',
         icon: <FaStethoscope className="text-purple-400 text-3xl" />,
         route: '/pages/exams/lpn-nursing',
