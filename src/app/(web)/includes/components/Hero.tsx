@@ -111,7 +111,7 @@ export default function Hero() {
                 </span>
                 Nursing Exam Prep
               </span>
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight tracking-tight text-navy mb-6">
+              <h1 className="font-serif text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight tracking-tight text-navy mb-6">
                 Pass Your Nursing Exams
                 <span className="text-coral">.</span>
                 <br />

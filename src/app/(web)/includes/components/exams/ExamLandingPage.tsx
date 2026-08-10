@@ -159,7 +159,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
           }}
         />
         <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-12 pt-24 pb-12 md:pt-20 md:pb-16">
-          <div className="text-center max-w-3xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto md:px-8 lg:px-12">
             <span className={`inline-block font-mono text-xs tracking-widest uppercase ${taglineColor ?? s.text} mb-4`}>
               {tagline}
             </span>
