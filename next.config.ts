@@ -2,10 +2,6 @@
 
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  turbopack: {
-    root: "C:/Users/Brian/Documents/Rhenis/nursing-rhenisnursing",
-  },
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
