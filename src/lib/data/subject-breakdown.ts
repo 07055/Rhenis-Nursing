@@ -9,6 +9,7 @@ export const ATI_TEAS_SUBJECTS: SubjectTopic[] = [
   {
     icon: "🚀",
     name: "Science",
+    image: "/images/ATI TEAS/01_science.png",
     topics: [
       "Human Anatomy & Physiology – Body systems, homeostasis, and interrelationships.",
       "Life & Physical Sciences – Genetics, biology basics, chemistry concepts, and physics principles.",
@@ -19,6 +20,7 @@ export const ATI_TEAS_SUBJECTS: SubjectTopic[] = [
   {
     icon: "➕",
     name: "Mathematics",
+    image: "/images/ATI TEAS/02_mathematics.png",
     topics: [
       "Numbers & Algebra – Whole numbers, fractions, decimals, ratios, proportions.",
       "Measurement & Data – Units of measure, conversions, geometry basics, interpreting graphs.",
@@ -29,6 +31,7 @@ export const ATI_TEAS_SUBJECTS: SubjectTopic[] = [
   {
     icon: "📖",
     name: "Reading",
+    image: "/images/ATI TEAS/03_reading.png",
     topics: [
       "Key Ideas & Details – Identify main ideas, supporting details, summarize passages.",
       "Craft & Structure – Analyze author's purpose, point of view, text features, and context clues.",
@@ -39,6 +42,7 @@ export const ATI_TEAS_SUBJECTS: SubjectTopic[] = [
   {
     icon: "✍️",
     name: "English & Language Usage",
+    image: "/images/ATI TEAS/04_english_language_usage.png",
     topics: [
       "Grammar & Syntax – Parts of speech, sentence structure, subject-verb agreement.",
       "Punctuation & Capitalization – Commas, semicolons, apostrophes, and capitalization rules.",
@@ -52,6 +56,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "🧬",
     name: "Biology",
+    image: "/images/ATI TEAS/01_science.png",
     topics: [
       "Cell Structure & Function – Organelles, membrane transport, and cellular processes.",
       "Genetics & Heredity – DNA, RNA, mitosis, meiosis, and genetic disorders.",
@@ -62,6 +67,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "📐",
     name: "Mathematics",
+    image: "/images/ATI TEAS/02_mathematics.png",
     topics: [
       "Arithmetic – Fractions, decimals, percentages, ratios, and proportions.",
       "Algebra – Equations, inequalities, word problems, and variable manipulation.",
@@ -72,6 +78,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "📚",
     name: "Vocabulary",
+    image: "/images/ATI TEAS/05_nursing_school_essentials.png",
     topics: [
       "Medical Terminology – Prefixes, suffixes, and root words used in healthcare.",
       "General Vocabulary – Word meanings, synonyms, antonyms, and context clues.",
@@ -82,6 +89,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "📝",
     name: "Reading Comprehension",
+    image: "/images/ATI TEAS/03_reading.png",
     topics: [
       "Main Idea & Detail – Identifying central themes and supporting information.",
       "Inference & Conclusion – Drawing logical conclusions from passage content.",
@@ -92,6 +100,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "🔬",
     name: "Anatomy & Physiology",
+    image: "/images/ATI TEAS/01_science.png",
     topics: [
       "Cardiovascular System – Heart structure, blood flow, and circulation.",
       "Respiratory System – Gas exchange, lung anatomy, and breathing mechanics.",
@@ -102,6 +111,7 @@ export const HESI_A2_SUBJECTS: SubjectTopic[] = [
   {
     icon: "📗",
     name: "Grammar",
+    image: "/images/ATI TEAS/04_english_language_usage.png",
     topics: [
       "Parts of Speech – Nouns, verbs, adjectives, adverbs, and their functions.",
       "Sentence Structure – Subject-verb agreement, clauses, and phrase construction.",
