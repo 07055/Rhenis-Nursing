@@ -24,7 +24,7 @@ interface HighlightRow {
 
 const rows: HighlightRow[] = [
   {
-    eyebrow: "📖 NURSING ENTRANCE EXAM",
+    eyebrow: "📖 Nursing Entrance Exam",
     icon: Library,
     accent: "coral",
     cards: [
@@ -82,7 +82,7 @@ const rows: HighlightRow[] = [
     ],
   },
   {
-    eyebrow: "NURSING CORE",
+    eyebrow: "Nursing Core",
     icon: HeartPulse,
     accent: "teal",
     cards: [

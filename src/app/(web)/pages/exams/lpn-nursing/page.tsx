@@ -4,7 +4,7 @@ import { LPN_NURSING_SAMPLES } from "@/lib/data/sample-questions";
 import { RHENIS_SHOP_DOCS } from "@/lib/data/study-materials";
 
 const DASHBOARD_NAME = "lpn-nursing";
-const PROGRAM_NAME = "LPN NURSING";
+const PROGRAM_NAME = "LPN Nursing";
 const PARENT_TABLE_NAME = "program";
 const PARENT_NAME = "LpnNursing";
 

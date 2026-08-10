@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { BookOpen, CreditCard } from "lucide-react";
 import type { SubjectTopic } from "@/lib/data/subject-breakdown";
 import type { SampleQuestion } from "@/lib/data/sample-questions";
@@ -157,7 +158,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
             WebkitMaskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
           }}
         />
-        <div className="mx-auto max-w-6xl px-5 pt-24 pb-12 md:pt-20 md:pb-16">
+        <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-12 pt-24 pb-12 md:pt-20 md:pb-16">
           <div className="text-center max-w-3xl mx-auto">
             <span className={`inline-block font-mono text-xs tracking-widest uppercase ${taglineColor ?? s.text} mb-4`}>
               {tagline}
@@ -202,13 +203,13 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
 
       {/* ── Exam Plans (populated from the admin dashboard) ── */}
       <section id="plans" className="scroll-mt-24 py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-5">
+        <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-12">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-3`}>
-              Exam Plans
+              Subscription Plans
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight">
-              {programName} Exam Prep Plans
+              {programName} Subscription Plans
             </h2>
             <p className="mt-4 text-navy/60 leading-relaxed">
               Choose the plan that fits your study timeline.
@@ -242,7 +243,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
       {/* ── Prep format cards ── */}
       {prepFormatCards && prepFormatCards.length > 0 && (
         <section className="pb-12 -mt-6">
-          <div className="mx-auto max-w-6xl px-5">
+          <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {prepFormatCards.map((card) => (
                 <article
@@ -274,7 +275,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
       {/* ── Subject breakdown ── */}
       {showSubjects && (
         <section id="subjects" className="py-12 md:py-16">
-          <div className="mx-auto max-w-6xl px-5">
+          <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-12">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-3`}>
                 Subject Breakdown
@@ -294,19 +295,33 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
                   key={subject.name}
                   className="relative rounded-2xl border border-border bg-paper p-7 flex flex-col overflow-hidden"
                 >
-                  <div className={`absolute left-0 top-0 bottom-0 w-1 ${s.bar}`} />
-                  <div className={`inline-flex items-center justify-center w-10 h-10 rounded-xl border ${s.badge} mb-4`}>
-                    <span className="text-lg" aria-hidden="true">{subject.icon}</span>
+                  {subject.image && (
+                    <>
+                      <Image
+                        src={subject.image}
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-paper/80" aria-hidden="true" />
+                    </>
+                  )}
+                  <div className={`absolute left-0 top-0 bottom-0 w-1 z-10 ${s.bar}`} />
+                  <div className="relative z-10 flex h-full flex-col">
+                    <div className={`inline-flex items-center justify-center w-10 h-10 rounded-xl border ${s.badge} mb-4`}>
+                      <span className="text-lg" aria-hidden="true">{subject.icon}</span>
+                    </div>
+                    <h3 className="font-serif text-xl font-semibold text-navy mb-4">{subject.name}</h3>
+                    <ul className="space-y-2.5 text-sm text-navy/60 leading-relaxed">
+                      {subject.topics.map((topic) => (
+                        <li key={topic} className="flex gap-2">
+                          <span className={`${s.text} shrink-0`}>•</span>
+                          <span>{topic}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="font-serif text-xl font-semibold text-navy mb-4">{subject.name}</h3>
-                  <ul className="space-y-2.5 text-sm text-navy/60 leading-relaxed">
-                    {subject.topics.map((topic) => (
-                      <li key={topic} className="flex gap-2">
-                        <span className={`${s.text} shrink-0`}>•</span>
-                        <span>{topic}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </article>
               ))}
             </div>
@@ -317,7 +332,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
       {/* ── Sample questions ── */}
       {showSamples && samplesList.length > 0 && (
         <section id="samples" className="bg-paper-dim py-12 md:py-16">
-          <div className="mx-auto max-w-6xl px-5">
+          <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-12">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-3`}>
                 Try It First
@@ -359,7 +374,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
 
       {/* ── FAQ ── */}
       <section id="faq" className="py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-5">
+        <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-12">
           <div className="text-center mb-12">
             <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-3`}>
               FAQ
@@ -374,7 +389,7 @@ export default function ExamLandingPage({ config }: { config: ExamLandingConfig 
 
       {/* ── Closing CTA ── */}
       <section className="bg-paper py-12 md:py-16">
-        <div className="mx-auto max-w-3xl px-5 text-center">
+        <div className="mx-auto max-w-3xl px-5 md:px-8 lg:px-12 text-center">
           <span className={`inline-block font-mono text-xs tracking-widest uppercase ${s.text} mb-3`}>
             Ready to Begin?
           </span>
