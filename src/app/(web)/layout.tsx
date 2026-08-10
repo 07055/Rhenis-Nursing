@@ -1,28 +1,29 @@
 import Navbar from '@/app/(web)/includes/navbar';
 import Footer from '@/app/(web)/includes/footer';
 import type { Metadata } from 'next';
-import { Fraunces, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import ScrollToTopButton from '@/components/common/ScrollToTopButton';
 import { APP_NAME } from '@/lib/config/config';
 import '@/styles/web/rhenis.css';
 
-const fraunces = Fraunces({
+const fraunces = localFont({
+  src: './fonts/Fraunces-Variable.ttf.woff2',
   variable: '--font-fraunces',
-  subsets: ['latin'],
   display: 'swap',
 });
 
-const ibmPlexSans = IBM_Plex_Sans({
+const ibmPlexSans = localFont({
+  src: './fonts/IBM-Plex-Sans-Variable.ttf.woff2',
   variable: '--font-ibm-plex-sans',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
   display: 'swap',
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
+const ibmPlexMono = localFont({
+  src: [
+    { path: './fonts/IBM-Plex-Mono-400.woff2', weight: '400' },
+    { path: './fonts/IBM-Plex-Mono-500.woff2', weight: '500' },
+  ],
   variable: '--font-ibm-plex-mono',
-  subsets: ['latin'],
-  weight: ['400', '500'],
   display: 'swap',
 });
 
