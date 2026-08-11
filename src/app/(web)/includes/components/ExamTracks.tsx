@@ -48,25 +48,13 @@ const tracks = [
     icon: DoorOpen,
     image: "/images/cards/rn-exit-exam.png",
     eyebrow: "Exit Exams",
-    title: "RN Exit Exam",
+    title: "RN & PN Exit Exam",
     description:
-      "Comprehensive review covering advanced nursing concepts with clinical application. Practice critical-thinking with real-world cases for confident NCLEX-RN transition.",
-    tags: ["Comprehensive Content Review", "Critical-Thinking Scenarios", "Licensure Readiness"],
+      "Comprehensive review covering advanced nursing concepts with clinical application. Practice critical-thinking with real-world cases. Focused PN curriculum review with scenario-based clinical skills drills for confident licensure transition.",
+    tags: ["Comprehensive Content Review", "Critical-Thinking Scenarios", "Focused PN Curriculum", "Clinical Skills Practice", "Licensure Readiness", "Exam-Day Confidence"],
     accent: "blue" as const,
     links: [
       { label: "RN Nursing", href: "/pages/exams/rn-nursing" },
-    ],
-  },
-  {
-    icon: DoorOpen,
-    image: "/images/cards/pn-exit-exam.png",
-    eyebrow: "Exit Exams",
-    title: "PN Exit Exam",
-    description:
-      "Focused PN curriculum review with scenario-based clinical skills drills. Build exam-day confidence for practical nursing licensure success.",
-    tags: ["Focused PN Curriculum", "Clinical Skills Practice", "Exam-Day Confidence"],
-    accent: "blue" as const,
-    links: [
       { label: "LPN Nursing", href: "/pages/exams/lpn-nursing" },
     ],
   },

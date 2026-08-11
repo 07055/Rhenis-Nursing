@@ -111,7 +111,7 @@ export default function Hero() {
                 </span>
                 Nursing Exam Prep
               </span>
-              <h1 className="font-serif text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight tracking-tight text-navy mb-6">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight tracking-tight text-navy mb-6">
                 Pass Your Nursing Exams
                 <span className="text-coral">.</span>
                 <br />
@@ -125,20 +125,20 @@ export default function Hero() {
               </p>
               <div className="flex flex-row items-center justify-center gap-2 md:gap-6">
                 <a
-                  href="#exams"
+                  href="/dashboards"
                   className="inline-flex items-center justify-center gap-1.5 px-4 py-1.5 md:px-10 md:py-3 rounded-full text-xs md:text-base font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors whitespace-nowrap"
                 >
                   <BookOpen className="w-3.5 h-3.5 md:w-5 md:h-5" strokeWidth={2} />
-                  Browse Exam Tracks
+                  Start Free Practice
                 </a>
                 <a
-                  href="#how-it-works"
+                  href="/auth/register"
                   className="inline-flex items-center justify-center gap-1.5 px-4 py-1.5 md:px-10 md:py-3 rounded-full text-xs md:text-base font-medium text-navy border border-border-light hover:bg-paper-dim transition-colors whitespace-nowrap"
                 >
                   <span className="inline-flex items-center justify-center w-4 h-4 md:w-6 md:h-6 rounded-full border-2 border-current">
                     <Play className="w-2 h-2 md:w-3 md:h-3" fill="currentColor" strokeWidth={0} />
                   </span>
-                  See How It Works
+                  Register / Login
                 </a>
               </div>
             </div>

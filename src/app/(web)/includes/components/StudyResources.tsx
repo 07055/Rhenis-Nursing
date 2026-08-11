@@ -1,4 +1,4 @@
-import { BookOpen, Stethoscope, Brain, Heart, Target, UserCheck } from "lucide-react";
+import { BookOpen, Stethoscope, Brain, Heart, Target } from "lucide-react";
 import FeatureCard from "./FeatureCard";
 
 const features = [
@@ -51,15 +51,6 @@ const features = [
       "Test your knowledge with free practice exams and Clinical Assessment Tests that simulate real exam conditions.",
     href: "/dashboards",
     accent: "green" as const,
-  },
-  {
-    icon: UserCheck,
-    eyebrow: "Support",
-    title: "Customized Tutoring & Guidance",
-    description:
-      "Get personalized tutoring and academic guidance tailored to your learning needs.",
-    href: "/pages/contact-us",
-    accent: "teal" as const,
   },
 ];
 

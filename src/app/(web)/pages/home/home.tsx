@@ -3,7 +3,6 @@ import ExamTracks from '@/app/(web)/includes/components/ExamTracks';
 import StudyResources from '@/app/(web)/includes/components/StudyResources';
 import ShopTeaser from '@/app/(web)/includes/components/shop/ShopTeaser';
 import StudyKit from '@/app/(web)/includes/components/StudyKit';
-import ExamHighlights from '@/app/(web)/includes/components/sections/exam-highlights';
 import NclexComingSoon from '@/app/(web)/includes/components/NclexComingSoon';
 import HowItWorks from '@/app/(web)/includes/components/HowItWorks';
 import FAQ from '@/app/(web)/includes/components/FAQ';
@@ -23,7 +22,6 @@ export default function HomePage({ data }: HomePageProps) {
       <StudyResources />
       <ShopTeaser />
       <StudyKit />
-      <ExamHighlights />
       <NclexComingSoon />
       <HowItWorks />
       <FAQ />
