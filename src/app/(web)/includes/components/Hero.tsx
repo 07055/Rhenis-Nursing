@@ -10,7 +10,7 @@ import {
   ClipboardList,
   ClipboardCheck,
   ChevronRight,
-  Play,
+  User,
 } from "lucide-react";
 import PulseLine from "./PulseLine";
 import Stats from "./Stats";
@@ -133,10 +133,10 @@ export default function Hero() {
                 </a>
                 <a
                   href="/auth/register"
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-1.5 md:px-10 md:py-3 rounded-full text-xs md:text-base font-medium text-navy border border-border-light hover:bg-paper-dim transition-colors whitespace-nowrap"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-1.5 md:px-10 md:py-3 rounded-full text-xs md:text-base font-medium text-paper bg-sage hover:bg-sage-light transition-colors whitespace-nowrap"
                 >
                   <span className="inline-flex items-center justify-center w-4 h-4 md:w-6 md:h-6 rounded-full border-2 border-current">
-                    <Play className="w-2 h-2 md:w-3 md:h-3" fill="currentColor" strokeWidth={0} />
+                    <User className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" strokeWidth={2.5} />
                   </span>
                   Register / Login
                 </a>
