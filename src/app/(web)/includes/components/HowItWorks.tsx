@@ -36,34 +36,6 @@ const steps = [
   },
 ];
 
-const supportCards = [
-  {
-    title: "Fundamentals of Nursing",
-    description:
-      "Master core nursing concepts, skills, and patient care basics with comprehensive study guides and practice materials.",
-  },
-  {
-    title: "Pharmacology & Med-Surg Mastery",
-    description:
-      "Master the complexities of Pharmacology and Medical-Surgical Nursing with detailed study materials and expert notes.",
-  },
-  {
-    title: "Pediatrics/Child Health",
-    description:
-      "Explore study materials covering pediatric nursing and child health, including developmental stages and common conditions.",
-  },
-  {
-    title: "Mental Health & Maternal and Newborn Care",
-    description:
-      "Prepare for Mental Health and Maternal-Newborn Nursing exams with structured study guides and expert support.",
-  },
-  {
-    title: "Free Practice Tests & CATs",
-    description:
-      "Test your knowledge with free practice exams and Clinical Assessment Tests that simulate real exam conditions.",
-  },
-];
-
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="py-12 md:py-16">
@@ -104,23 +76,6 @@ export default function HowItWorks() {
                 )}
               </div>
             </div>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {supportCards.map((card) => (
-            <a
-              key={card.title}
-              href="/dashboards"
-              className="rounded-2xl border border-border bg-paper-dim p-7 transition-colors hover:border-border-light block"
-            >
-              <h3 className="font-serif text-base font-semibold text-navy mb-2">
-                {card.title}
-              </h3>
-              <p className="text-sm text-navy/60 leading-relaxed">
-                {card.description}
-              </p>
-            </a>
           ))}
         </div>
       </div>

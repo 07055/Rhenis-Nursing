@@ -1,6 +1,5 @@
 import Hero from '@/app/(web)/includes/components/Hero';
 import ExamTracks from '@/app/(web)/includes/components/ExamTracks';
-import StudyResources from '@/app/(web)/includes/components/StudyResources';
 import ShopTeaser from '@/app/(web)/includes/components/shop/ShopTeaser';
 import StudyKit from '@/app/(web)/includes/components/StudyKit';
 import NclexComingSoon from '@/app/(web)/includes/components/NclexComingSoon';
@@ -19,7 +18,6 @@ export default function HomePage({ data }: HomePageProps) {
     <main>
       <Hero />
       <ExamTracks />
-      <StudyResources />
       <ShopTeaser />
       <StudyKit />
       <NclexComingSoon />
