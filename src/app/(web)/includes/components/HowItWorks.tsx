@@ -3,14 +3,14 @@ const steps = [
     number: "01",
     title: "Assess Your Needs",
     description:
-      "We begin by understanding your specific goals and knowledge level, tailoring resources for TEAS, HESI, NCLEX, or any assignments.",
+      "We begin by understanding your specific goals and knowledge level, tailoring resources for TEAS/ HESI, RN/LPN, Exit Exams or NCLEX.",
     link: undefined,
   },
   {
     number: "02",
     title: "Choose the Right Materials",
     description:
-      "Select from our extensive library of practice exams, study notes, and guides. We cover ATI, HESI, Pharmacology, and much more.",
+      "Select from our extensive library of practice exams, study notes, and guides. We cover ATI/ HESI, Examplify, capstone with wide coverage in Medsurge, pediatrics, Pharmacology, and much more.",
     link: { label: "View Subscription Plans", href: "#exams" },
   },
   {
@@ -29,13 +29,6 @@ const steps = [
   },
   {
     number: "05",
-    title: "Expert Guidance",
-    description:
-      "Get personalized support from our nursing experts with study plans and advice for challenging topics.",
-    link: { label: "Contact a Tutor", href: "/#contact" },
-  },
-  {
-    number: "06",
     title: "Ace Your Exams",
     description:
       "With proper preparation, ace your exams and move closer to your nursing career goals. We're with you all the way!",
@@ -69,11 +62,6 @@ const supportCards = [
     description:
       "Test your knowledge with free practice exams and Clinical Assessment Tests that simulate real exam conditions.",
   },
-  {
-    title: "Customized Tutoring & Guidance",
-    description:
-      "Get personalized tutoring and academic guidance tailored to your learning needs.",
-  },
 ];
 
 export default function HowItWorks() {
@@ -85,10 +73,10 @@ export default function HowItWorks() {
             How We Help You Succeed
           </span>
           <h2 className="font-serif text-3xl md:text-4xl font-semibold text-navy tracking-tight">
-            From Assessment to Certification
+            From Entrance to NCLEX
           </h2>
           <p className="mt-4 text-navy/60 leading-relaxed">
-            A proven six-step path that takes you from baseline to exam day
+            A proven five-step path that takes you from baseline to exam day
             with confidence.
           </p>
         </div>
