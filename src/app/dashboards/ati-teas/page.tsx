@@ -171,10 +171,13 @@ export default function AtiTeasHomePage() {
 
         {/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */}
         {/* Hero / Greeting — compact */}
-        <div className="relative overflow-hidden rounded-2xl border border-[var(--text-color)]/20 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 backdrop-blur-xl px-5 py-4 md:px-7 md:py-5">
+        <div className="relative overflow-hidden rounded-2xl border border-[var(--text-color)]/10 bg-gradient-to-br from-[#122642]/80 via-[#0d1f33]/60 to-[#0a1828]/80 backdrop-blur-xl px-5 py-4 md:px-7 md:py-5">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-coral/70 to-transparent" />
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="flex items-center gap-3 min-w-0">
-              <GreetingIcon className="w-6 h-6 text-[var(--text-color)] opacity-80 shrink-0" />
+              <div className="w-10 h-10 rounded-xl bg-coral/15 flex items-center justify-center shrink-0">
+                <GreetingIcon className="w-5 h-5 text-coral" />
+              </div>
 
               <div className="min-w-0">
                 <h1 className="text-lg md:text-2xl font-bold text-[var(--text-color)] truncate">
@@ -192,7 +195,7 @@ export default function AtiTeasHomePage() {
             <div className="flex flex-wrap items-center gap-3 shrink-0">
               <Link
                 href={`/pages/exams/${CURRENT_PANEL}`}
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm bg-gradient-to-r from-indigo-700 to-teal-700 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm bg-coral text-white shadow-lg shadow-coral/20 hover:bg-coral-hover hover:shadow-xl hover:scale-105 transition-all duration-300"
               >
                 <CreditCard className="w-4 h-4" />
                 Open Subscription Packages
@@ -200,7 +203,7 @@ export default function AtiTeasHomePage() {
 
               <Link
                 href={`/dashboards/${CURRENT_PANEL}/subscriptions`}
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm border border-indigo-200 bg-indigo-200 text-[var(--text-color)] backdrop-blur-sm hover:bg-indigo-500 hover:text-white hover:border-indigo-500 hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm border border-[var(--text-color)]/20 bg-[var(--text-color)]/5 text-[var(--text-color)] backdrop-blur-sm hover:bg-coral hover:text-white hover:border-coral hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 <BookMarked className="w-4 h-4" />
                 My Subscriptions

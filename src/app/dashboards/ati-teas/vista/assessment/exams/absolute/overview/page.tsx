@@ -225,17 +225,15 @@ export default function SubCategoriesPage() {
               <div
                 key={toastType.id}
                 className={`
-                  px-5 py-2 rounded-xl shadow-2xl text-black font-semibold
+                  px-5 py-2 rounded-xl shadow-2xl font-semibold
                   transition-all duration-300 flex items-center justify-between gap-3
-                  bg-gradient-to-r ${toastType.type === "success" ? "from-green-300 via-pink-300 to-indigo-300 " : ""
-                  } ${toastType.type === "error" ? "from-red-500 to-red-700" : ""} ${toastType.type === "info" ? "from-blue-500 to-blue-700" : ""
-                  }
+                  bg-[var(--content-bg)] border border-[var(--text-color)]/20 text-[var(--text-color)]
                 `}
               >
                 <span>{toastType.message}</span>
                 <button
                   onClick={() => removeStaticToast(toastType.id)}
-                  className="ml-3 px-2 py-1 text-sm font-bold bg-yellow-300 border border-cyan-500 text-black rounded-lg hover:bg-gray-200 transition"
+                  className="ml-3 px-2 py-1 text-sm font-bold bg-[var(--text-color)]/10 border border-[var(--text-color)]/25 text-[var(--text-color)] rounded-lg hover:bg-[var(--text-color)]/20 transition"
                 >
                   ✕
                 </button>
@@ -251,17 +249,15 @@ export default function SubCategoriesPage() {
               <div
                 key={toastType.id}
                 className={`
-                  px-5 py-2 rounded-xl shadow-2xl text-black font-semibold
+                  px-5 py-2 rounded-xl shadow-2xl font-semibold
                   transition-all duration-300 flex items-center justify-between gap-3
-                  bg-gradient-to-r ${toastType.type === "success" ? "from-green-300 via-pink-300 to-indigo-300 " : ""
-                  } ${toastType.type === "error" ? "from-red-500 to-red-700" : ""} ${toastType.type === "info" ? "from-blue-500 to-blue-700" : ""
-                  }
+                  bg-[var(--content-bg)] border border-[var(--text-color)]/20 text-[var(--text-color)]
                 `}
               >
                 <span>{toastType.message}</span>
                 <button
                   onClick={() => removeStaticToast(toastType.id)}
-                  className="ml-3 px-2 py-1 text-sm font-bold bg-yellow-300 border border-cyan-500 text-black rounded-lg hover:bg-gray-200 transition"
+                  className="ml-3 px-2 py-1 text-sm font-bold bg-[var(--text-color)]/10 border border-[var(--text-color)]/25 text-[var(--text-color)] rounded-lg hover:bg-[var(--text-color)]/20 transition"
                 >
                   ✕
                 </button>
@@ -348,12 +344,12 @@ export default function SubCategoriesPage() {
             <div className="flex items-center gap-2 shrink-0">
               <span className="text-xs uppercase font-bold tracking-wide">Sorted By</span>
               {sortColumn ? (
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-green-300 via-pink-500 to-cyan-300 text-[var(--text-color)] text-xs font-semibold shadow-md">
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-coral text-white text-xs font-semibold shadow-md">
                   {String(sortColumn).toUpperCase()}
                   <span className="text-[10px]">{sortDirection === "asc" ? "▲" : "▼"}</span>
                 </div>
               ) : (
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-gray-300 text-gray-700 text-xs font-semibold">
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--text-color)]/10 text-[var(--text-color)]/70 text-xs font-semibold">
                   None
                 </div>
               )}
@@ -438,8 +434,9 @@ export default function SubCategoriesPage() {
                 px-4 py-1.5
                 text-xs font-semibold
                 rounded-full
-                bg-gradient-to-r from-gray-500 via-fuchsia-700 to-gray-700
-                text-white
+                bg-[var(--text-color)]/10
+                text-[var(--text-color)]
+                hover:bg-[var(--text-color)]/20
                 hover:scale-105
                 transition-all duration-200
               "
@@ -588,8 +585,8 @@ export default function SubCategoriesPage() {
                   key={p}
                   onClick={() => setCurrentPage(p)}
                   className={`px-3 py-2 rounded-md border text-sm ${p === currentPage
-                    ? "bg-blue-400 border-red-500 text-white"
-                    : "bg-white border-gray-300 text-gray-700 hover:bg-gray-100"
+                    ? "bg-coral border-coral text-white"
+                    : "bg-[var(--content-bg)] border-[var(--text-color)]/20 text-[var(--text-color)] hover:bg-[var(--text-color)]/10"
                     }`}
                 >
                   {p}

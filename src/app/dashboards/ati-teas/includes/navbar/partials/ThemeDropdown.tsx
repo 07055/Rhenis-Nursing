@@ -93,7 +93,7 @@ const ThemeDropdown: React.FC = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1 px-3 py-2 text-gray-700 dark:text-[var(--text-color)] hover:bg-[var(--navbar-bg)] dark:hover:bg-[var(--navbar-bg)] rounded-lg transition"
+        className="flex items-center gap-1 px-3 py-2 text-[var(--text-color)] hover:bg-[var(--text-color)]/10 rounded-lg transition"
       >
         {activeMode === "dark" ? (
           <Moon className="w-5 h-5" />
@@ -108,14 +108,15 @@ const ThemeDropdown: React.FC = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-200 dark:border-gray-700 select-none">
+        <div className="absolute right-0 mt-2 w-48 bg-[var(--leftSidebar-bg)] text-[var(--text-color)] rounded-md shadow-lg py-1 z-50 border border-[var(--text-color)]/15 select-none">
           {["default", "light", "dark", "custom"].map((mode) => (
             <button
               key={mode}
               onClick={() => handleThemeChange(mode as "default" | "light" | "dark" | "custom")}
-              className={`flex items-center px-4 py-2 text-sm w-full text-left ${mode === activeMode
-                ? "bg-blue-100 dark:bg-green-200 text-blue-800 dark:text-blue-900 hover:bg-amber-600"
-                : "text-gray-700 dark:text-gray-200 hover:text-black hover:bg-gray-100 dark:hover:bg-gray-300"
+              className={`flex items-center px-4 py-2 text-sm w-full text-left ${
+                mode === activeMode
+                  ? "bg-[var(--text-color)]/15 text-[var(--text-color)]"
+                  : "text-[var(--text-color)] opacity-75 hover:text-[var(--text-color)] hover:bg-[var(--text-color)]/10"
                 }`}
             >
               {mode === "light" && <Sun className="w-4 h-4 mr-2" />}

@@ -21,14 +21,14 @@ export type CustomColors = {
   text: string; // Added text color
 };
 
-// Default Dashboard Colors
+// Default Dashboard Colors — brand navy (matches the public Rhenis web theme)
 export const DEFAULT_THEME_COLORS: CustomColors = {
-  navbar: "#c7fff2",
-  leftSidebar: "#e5ff00",
-  rightSidebar: "#e2dbff",
-  content: "#fffce6",
-  footer: "#ffecad",
-  text: "#000000",
+  navbar: "#0d1f33",
+  leftSidebar: "#0a1828",
+  rightSidebar: "#0a1828",
+  content: "#0d1f33",
+  footer: "#0a1828",
+  text: "#e2e8f0",
 };
 
 export const USER_CUSTOM_COLORS_KEY = "userCustomColors";

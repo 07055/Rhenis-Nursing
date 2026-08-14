@@ -27,7 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${outfit.className} bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300`}
+        className={`${outfit.className} transition-colors duration-300`}
+        style={{
+          backgroundColor: "var(--content-bg, #0d1f33)",
+          color: "var(--text-color, #e2e8f0)",
+        }}
       >
         <ThemeProvider>
           <LeftSidebarProvider>

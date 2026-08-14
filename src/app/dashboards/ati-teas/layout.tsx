@@ -1,7 +1,6 @@
 // castoline/src/app/dashboards/admin/layout.tsx
 
 import Navbar from "./includes/navbar/Navbar";
-import LeftSidebar from "./includes/sidebar/left/LeftSidebar";
 import RightSidebar from "./includes/sidebar/right/RightSidebar";
 import Footer from "./includes/footer/Footer";
 import ScrollToTopButton from "@/components/common/ScrollToTopButton";
@@ -24,17 +23,24 @@ export default function DashboardLayout({
 }) {
   return (
     <DashboardPreloader>
-      <div className="flex min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
-        {/* LEFT SIDEBAR */}
-        <aside className="shrink-0">
-          <LeftSidebar />
-        </aside>
-
+      <div
+        className="flex min-h-screen transition-colors duration-300"
+        style={{
+          backgroundColor: "var(--content-bg)",
+          color: "var(--text-color)",
+        }}
+      >
         {/* CENTER COLUMN (Navbar + Content + Footer) */}
         <div className="flex flex-col flex-1 min-w-0">
           <Navbar />
 
-          <main className="flex-1 overflow-y-auto bg-white text-black dark:bg-blue-100 dark:text-white transition-colors duration-300">
+          <main
+            className="flex-1 overflow-y-auto transition-colors duration-300"
+            style={{
+              backgroundColor: "var(--content-bg)",
+              color: "var(--text-color)",
+            }}
+          >
             <div className="flex flex-col min-h-full">
               {children}
               <Footer />

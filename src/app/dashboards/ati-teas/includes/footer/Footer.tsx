@@ -1,41 +1,31 @@
 "use client";
 
-import { useThemeContext } from "@/lib/contexts/panel/layout/theme/PanelThemeContext";
-import { useLeftSidebar } from "@/lib/contexts/panel/layout/includes/sidebar/LeftSidebarContext";
 import { useRightSidebar } from "@/lib/contexts/panel/layout/includes/sidebar/RightSidebarContext";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Footer() {
-  const { theme } = useThemeContext();
-  const leftSidebar = useLeftSidebar();
   const rightSidebar = useRightSidebar();
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => setIsClient(true), []);
 
-  // Theme handling
-  const effectiveFooterTheme = theme.footer === "system" ? theme.global : theme.footer;
-  const isLightFooter = effectiveFooterTheme === "light";
-
   // Sidebar widths
-  const getSidebarWidth = (sidebar: typeof leftSidebar) => {
+  const getSidebarWidth = (sidebar: typeof rightSidebar) => {
     if (!isClient) return 0;
     if (sidebar.isClosed) return 0;
     if (sidebar.isOpened) return 256;
     return 80;
   };
 
-  const leftWidth = getSidebarWidth(leftSidebar);
   const rightWidth = getSidebarWidth(rightSidebar);
 
   return (
     <footer
-      className="transition-all duration-300 ease-in-out text-sm py-4 px-4 border-t"
+      className="transition-all duration-300 ease-in-out text-sm py-4 px-4 border-t border-[var(--text-color)]/10"
       style={{
-        marginLeft: leftWidth,
         marginRight: rightWidth,
-        width: `calc(100% - ${leftWidth + rightWidth}px)`,
+        width: `calc(100% - ${rightWidth}px)`,
         backgroundColor: "var(--footer-bg)",
         color: "var(--text-color)",
       }}
@@ -59,8 +49,7 @@ export default function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`hover:text-blue-600 transition-colors text-nowrap ${isLightFooter ? "text-[var(--text-color)] hover:text-blue-600" : "text-[var(--text-color)] hover:text-blue-400"
-                  }`}
+                className="text-[var(--text-color)] opacity-70 hover:text-blue-400 transition-colors text-nowrap"
               >
                 {link.label}
               </Link>
@@ -91,7 +80,7 @@ export default function Footer() {
         </div>
 
         {/* Version */}
-        <div className={`mt-4 text-xs text-center ${isLightFooter ? "text-gray-500" : "text-[var(--text-color)]"}`}>
+        <div className="mt-4 text-xs text-center text-[var(--text-color)] opacity-60">
           v{process.env.NEXT_PUBLIC_APP_VERSION || "1.0.0"} • Built with Next.js
         </div>
       </div>
