@@ -1,6 +1,7 @@
 // castoline/src/app/dashboards/admin/layout.tsx
 
 import Navbar from "./includes/navbar/Navbar";
+import LeftSidebar from "./includes/sidebar/left/LeftSidebar";
 import RightSidebar from "./includes/sidebar/right/RightSidebar";
 import Footer from "./includes/footer/Footer";
 import ScrollToTopButton from "@/components/common/ScrollToTopButton";
@@ -10,6 +11,9 @@ import { APP_TITLE } from "@/lib/config/config";
 import "@/styles/dashboards/sidebars/left/global.css";
 import "@/styles/dashboards/sidebars/right/global.css";
 import "@/styles/dashboards/nexus/strata/hierarchy/global.css";
+
+// Toggle to re-enable the right sidebar rail on this route
+const SHOW_RIGHT_SIDEBAR = false;
 
 export const metadata: Metadata = {
   title: APP_TITLE,
@@ -23,6 +27,9 @@ export default function DashboardLayout({
 }) {
   return (
     <DashboardPreloader>
+      {/* LEFT SIDEBAR (fixed positioned) */}
+      <LeftSidebar />
+
       <div
         className="flex min-h-screen transition-colors duration-300"
         style={{
@@ -50,10 +57,12 @@ export default function DashboardLayout({
           <ScrollToTopButton />
         </div>
 
-        {/* RIGHT SIDEBAR */}
-        <aside className="shrink-0">
-          <RightSidebar />
-        </aside>
+        {/* RIGHT SIDEBAR (hidden on this route — set SHOW_RIGHT_SIDEBAR = true to re-enable) */}
+        {SHOW_RIGHT_SIDEBAR && (
+          <aside className="shrink-0">
+            <RightSidebar />
+          </aside>
+        )}
       </div>
     </DashboardPreloader>
   );
