@@ -199,8 +199,6 @@ export default function LeftSidebar() {
   const isLightSidebar =
     (theme.leftSidebar === "system" ? theme.global : theme.leftSidebar) === "light";
 
-  const sidebarWidth = isOpened ? "w-64" : "w-20";
-
   const toggleDropdown = (key: string) => {
     let newActive: string | null;
     if (!isOpened) {

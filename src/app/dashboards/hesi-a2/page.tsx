@@ -24,7 +24,6 @@ import {
 import PerformanceIndexGauge from "./includes/components/PerformanceIndexGauge";
 import HesiA2ListCard from "./includes/components/HesiA2ListCard";
 
-const CURRENT_NAME = "Hesi A2";
 const CURRENT_PANEL = "hesi-a2";
 
 const SUBJECT_CARDS = [
