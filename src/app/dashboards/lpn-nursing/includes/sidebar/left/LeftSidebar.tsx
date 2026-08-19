@@ -257,9 +257,12 @@ export default function LeftSidebar() {
       )}
 
       <aside
-        className={`fixed top-16 leftSidebar-0 z-40 flex flex-col h-[calc(100vh-64px)]
-          ${isMobile ? (isOpened ? "w-64" : "w-0") : sidebarWidth}
-          ${isMobile && isClosed ? "overflow-hidden" : ""}
+        className={`fixed top-16 leftSidebar-0 z-40 flex flex-col overflow-hidden
+          ${isMobile
+            ? (isOpened ? "w-full" : "w-0")
+            : (isOpened ? "w-64" : "w-20")
+          }
+          h-[calc(100vh-64px)]
           transition-all duration-300 ease-in-out
           shadow-md border-r border-[var(--text-color)]/10`}
         style={{
@@ -268,7 +271,7 @@ export default function LeftSidebar() {
         }}
       >
       <div
-        className={`flex items-center justify-between px-4 py-3 border-b border-[var(--text-color)]/10
+        className={`flex items-center justify-between px-4 py-3 border-b border-[var(--text-color)]/10 shrink-0
           ${isLightSidebar ? "border-gray-200" : ""}`}
       >
         <div className={`flex-1 ${!isOpened && "justify-center flex"}`}>
@@ -294,7 +297,9 @@ export default function LeftSidebar() {
         )}
       </div>
 
-      <nav className={`flex-1 overflow-y-auto space-y-1 p-2 left-sidebar-scroll ${isMobile ? "text-xs" : ""}`}>
+      <nav
+        className={`flex-1 overflow-y-auto space-y-1 p-2 left-sidebar-scroll overscroll-contain ${isMobile ? "text-xs" : ""}`}
+      >
 
         <Link href={`/dashboards/${DASHBOARD_NAME}`}>
           <div

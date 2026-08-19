@@ -146,7 +146,7 @@ export default function LpnNursingHomePage() {
       <div className="p-3 md:p-4 space-y-5 w-full max-w-7xl mx-auto">
 
         {/* ─── Row 1: Greeting + LPN Nursing List + Performance Index Gauge ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:items-stretch">
           {/* Greeting Card */}
           <div className="min-w-0 relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm px-5 py-4 md:px-7 md:py-5 flex flex-col justify-center">
             <div className="flex items-center gap-3 min-w-0 mb-3">
@@ -225,7 +225,7 @@ export default function LpnNursingHomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 min-[360px]:grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
             {SUBJECT_CARDS.map((subject) => {
               const Icon = subject.icon;
               return (
