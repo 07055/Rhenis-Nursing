@@ -7,7 +7,7 @@ import { useLeftSidebar } from "@/lib/contexts/panel/layout/includes/sidebar/Lef
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { useThemeContext } from "@/lib/contexts/panel/layout/theme/PanelThemeContext";
 
 const Navbar: React.FC = () => {
@@ -60,6 +60,16 @@ const Navbar: React.FC = () => {
 
       {/* SPACER */}
       <div className="flex-1" />
+
+      {/* SEARCH BAR */}
+      <div className="hidden md:flex items-center gap-2 mr-4 px-3 py-1.5 rounded-lg bg-[var(--text-color)]/5 border border-[var(--text-color)]/15 w-64 lg:w-80">
+        <Search className="w-4 h-4 shrink-0 opacity-50" />
+        <input
+          type="text"
+          placeholder="Search..."
+          className="flex-1 bg-transparent text-sm outline-none placeholder:opacity-40"
+        />
+      </div>
 
       {/* RIGHT: Login/Register */}
       <div className="flex items-center shrink-0">
