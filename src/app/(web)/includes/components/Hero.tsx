@@ -11,6 +11,7 @@ import {
   ClipboardCheck,
   ChevronRight,
   User,
+  Calendar,
 } from "lucide-react";
 import PulseLine from "./PulseLine";
 import Stats from "./Stats";
@@ -125,8 +126,9 @@ export default function Hero() {
               </p>
 
               {/* Last Updated Placeholder — editable from admin dashboard */}
-              <p className="text-xs md:text-sm text-navy/40 font-medium tracking-wide mb-6">
-                Exams last Updated mm/dd/yy
+              <p className="flex items-center justify-center gap-1.5 text-xs md:text-sm text-navy/40 font-medium tracking-wide mb-6">
+                <Calendar className="w-3.5 h-3.5" />
+                Exams last Updated <span className="text-green font-semibold">mm/dd/yy</span>
               </p>
 
               <div className="flex flex-row items-center justify-center gap-2 md:gap-6">
