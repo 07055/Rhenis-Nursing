@@ -6,7 +6,7 @@ import { useFlexPageClasp } from "@/lib/contexts/panel/layout/utils/FlexPageClas
 import { useNominalStrataExams } from "@/lib/hooks/nexus/strata/assessment/learning/exams/nominal/useNominalStrataExams";
 import { useCurrentSystemUser } from "@/lib/hooks/users/account/current/useCurrentSystemUser";
 import { VISTA_QUOTES } from "@/lib/constants/dashboards/nexus/vista/quotes";
-import { Sun, Sunset, Moon } from "lucide-react";
+import { Sun, Sunset, Moon, Calendar } from "lucide-react";
 import PerformanceIndexGauge from "./includes/components/PerformanceIndexGauge";
 import HesiA2ListCard from "./includes/components/HesiA2ListCard";
 
@@ -106,6 +106,11 @@ export default function HesiA2HomePage() {
 
             <p className="text-xs lg:text-sm text-gray-400 italic leading-relaxed">
               {randomQuote.quoteDescription}
+            </p>
+
+            <p className="flex items-center gap-1.5 text-[10px] md:text-xs text-gray-400 font-medium mt-2">
+              <Calendar className="w-3 h-3" />
+              Exams last Updated <span className="text-green-600 font-semibold">mm/dd/yy</span>
             </p>
           </div>
 
