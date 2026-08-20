@@ -27,7 +27,7 @@ export default function LpnNursingListCard() {
         .lpn-nursing-list-scroll::-webkit-scrollbar-thumb:hover { background-color: #0d9488; }
       `}</style>
 
-      <div className="px-5 pt-4 pb-3 border-b border-gray-100">
+      <div className="px-5 pt-4 pb-5 border-b border-gray-100">
         <h2 className="text-base md:text-2xl font-bold text-gray-900 text-center">
           Nursing Study Notes/Guides
         </h2>
