@@ -35,7 +35,7 @@ export default function HesiA2HomePage() {
     return () => clearInterval(interval);
   }, []);
 
-  const { greeting, GreetingIcon } = useMemo(() => {
+  const { greeting } = useMemo(() => {
     const hour = now.getHours();
     if (hour < 12) return { greeting: "Good morning", GreetingIcon: Sun };
     if (hour < 18) return { greeting: "Good afternoon", GreetingIcon: Sunset };
