@@ -28,7 +28,7 @@ export default function AtiTeasListCard() {
       `}</style>
 
       {/* Header */}
-      <div className="px-5 pt-4 pb-5 border-b border-gray-100">
+      <div className="px-3 pt-3 pb-5 md:px-5 md:pt-4 border-b border-gray-100">
         <h2 className="text-base md:text-2xl font-bold text-gray-900 text-center">
           Nursing Study Notes/Guides
         </h2>
