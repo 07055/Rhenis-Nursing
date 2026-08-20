@@ -6,14 +6,11 @@ import { useLeftSidebar } from "@/lib/contexts/panel/layout/includes/sidebar/Lef
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { Menu, X } from "lucide-react";
-import { APP_NAME } from "@/lib/config/config";
 import { useThemeContext } from "@/lib/contexts/panel/layout/theme/PanelThemeContext";
 
 const Navbar: React.FC = () => {
-  const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
-
   const { theme } = useThemeContext();
 
   /** LEFT SIDEBAR */
@@ -21,10 +18,6 @@ const Navbar: React.FC = () => {
     isOpened: isLeftOpened,
     toggle: toggleLeftSidebar,
   } = useLeftSidebar();
-
-  const toggleApplicationMenu = () => {
-    setApplicationMenuOpen(!isApplicationMenuOpen);
-  };
 
   /** HANDLERS */
   const handleLeftSidebarToggle = () => {
@@ -42,9 +35,9 @@ const Navbar: React.FC = () => {
       <div className="flex flex-col items-center justify-between grow lg:flex-row lg:px-6">
         <div className="flex items-center justify-between w-full gap-2 px-3 py-3 border-b border-[var(--text-color)]/10 sm:gap-4 lg:justify-normal lg:border-b-0 lg:px-0 lg:py-4">
           {/* LEFT AREA */}
-          <div className="flex items-center justify-between w-full px-4 py-3 border-b border-[var(--text-color)]/10 lg:border-b-0 lg:px-6">
+          <div className="flex items-center gap-2 px-4 py-3 lg:border-b-0 lg:px-6 lg:py-0">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 shrink-0">
+            <Link href="/" className="flex items-center shrink-0">
               <Image
                 src="/logo/logo.webp"
                 alt="Logo"
@@ -53,9 +46,6 @@ const Navbar: React.FC = () => {
                 className="w-8 h-8 object-contain"
                 priority
               />
-
-              {/* App Name */}
-              <span className="text-2xl font-semibold whitespace-nowrap">{APP_NAME}</span>
             </Link>
 
             {/* LEFT SIDEBAR TOGGLE */}
@@ -73,26 +63,12 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile App Menu */}
-          <button
-            onClick={toggleApplicationMenu}
-            className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-[var(--text-color)]/10 lg:hidden"
-          >
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path
-                fill="currentColor"
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M6 10.5a1.5 1.5 0 1 1 0 3Zm6 0a1.5 1.5 0 1 1 0 3Zm6 0a1.5 1.5 0 1 1 0 3Z"
-              />
-            </svg>
-          </button>
 
         </div>
 
         {/* RIGHT AREA */}
         <div
-          className={`${isApplicationMenuOpen ? "flex" : "hidden"
-            } items-center justify-between w-full gap-4 px-5 py-4 lg:flex lg:justify-end`}
+          className="items-center justify-end w-full gap-4 px-5 py-4 lg:flex"
         >
           <UserDropdown />
         </div>
