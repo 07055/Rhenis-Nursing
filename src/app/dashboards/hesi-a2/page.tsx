@@ -13,7 +13,7 @@ import HesiA2ListCard from "./includes/components/HesiA2ListCard";
 const CURRENT_PANEL = "hesi-a2";
 
 const SUBJECT_CARDS = [
-  { title: "READING COMP", subject: "reading" },
+  { title: "READING COMP...", subject: "reading" },
   { title: "BIOLOGY", subject: "biology" },
   { title: "MATH", subject: "math" },
   { title: "GRAMMAR", subject: "grammar" },

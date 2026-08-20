@@ -18,7 +18,7 @@ const CURRENT_PANEL = "ati-teas";
 // Subject cards for the ATI TEAS subjects
 const SUBJECT_CARDS = [
   { title: "SCIENCE", subject: "science" },
-  { title: "READING COMP", subject: "reading" },
+  { title: "READING COMP...", subject: "reading" },
   { title: "MATH", subject: "math" },
   { title: "ENGLISH", subject: "english" },
   { title: "COMPREHENSIVE", subject: "" },
