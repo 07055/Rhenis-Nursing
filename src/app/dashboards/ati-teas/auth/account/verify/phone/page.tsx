@@ -79,7 +79,7 @@ export default function VerifyPhonePage() {
   if (loading) {
     return (
       <main
-        className="pt-16 flex items-center justify-center"
+        className="pt-14 flex items-center justify-center"
         style={{ marginLeft: leftWidth, marginRight: rightWidth, minHeight: `calc(100vh - ${navHeight}px)` }}
       >
         <p className="text-sm font-bold opacity-60 text-[var(--text-color)]">Loading . . . ⚓</p>
@@ -90,7 +90,7 @@ export default function VerifyPhonePage() {
   if (!user) {
     return (
       <main
-        className="pt-16 flex flex-col items-center justify-center gap-4 text-center px-4"
+        className="pt-14 flex flex-col items-center justify-center gap-4 text-center px-4"
         style={{ marginLeft: leftWidth, marginRight: rightWidth, minHeight: `calc(100vh - ${navHeight}px)` }}
       >
         <p className="text-sm font-bold opacity-70 text-[var(--text-color)]">
@@ -108,7 +108,7 @@ export default function VerifyPhonePage() {
 
   return (
     <main
-      className="pt-16 transition-all duration-300 ease-in-out overflow-x-hidden"
+      className="pt-14 transition-all duration-300 ease-in-out overflow-x-hidden"
       style={{
         marginLeft: leftWidth,
         marginRight: rightWidth,

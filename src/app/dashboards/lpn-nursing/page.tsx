@@ -79,7 +79,7 @@ export default function LpnNursingHomePage() {
 
   return (
     <main
-      className="pt-16 transition-all duration-300 ease-in-out overflow-x-hidden"
+      className="pt-14 transition-all duration-300 ease-in-out overflow-x-hidden"
       style={{
         marginLeft: leftWidth,
         minHeight: `calc(100vh - ${navHeight}px)`,
