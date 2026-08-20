@@ -123,6 +123,12 @@ export default function Hero() {
                 HESI A2, NCLEX-RN/PN, and RN &amp; LPN nursing exams — all in one
                 place.
               </p>
+
+              {/* Last Updated Placeholder — editable from admin dashboard */}
+              <p className="text-xs md:text-sm text-navy/40 font-medium tracking-wide mb-6">
+                Exams last Updated mm/dd/yy
+              </p>
+
               <div className="flex flex-row items-center justify-center gap-2 md:gap-6">
                 <a
                   href="/dashboards"
