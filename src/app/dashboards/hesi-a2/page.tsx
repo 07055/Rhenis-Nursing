@@ -13,13 +13,13 @@ import HesiA2ListCard from "./includes/components/HesiA2ListCard";
 const CURRENT_PANEL = "hesi-a2";
 
 const SUBJECT_CARDS = [
-  { title: "READING COMP...", subject: "reading" },
-  { title: "BIOLOGY", subject: "biology" },
-  { title: "MATH", subject: "math" },
-  { title: "GRAMMAR", subject: "grammar" },
-  { title: "VOCABULARY", subject: "vocabularies" },
-  { title: "COMPREHENSIVE", subject: "" },
-  { title: "ANATOMY", subject: "anatomy" },
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
 ];
 
 export default function HesiA2HomePage() {
@@ -122,25 +122,18 @@ export default function HesiA2HomePage() {
               </h2>
             </div>
 
+            {/* Placeholder — updated from admin dashboard */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-              {SUBJECT_CARDS.map((subject) => {
-                return (
-                  <div
-                    key={subject.subject || "comprehensive"}
-                    className="relative overflow-hidden rounded-xl bg-white shadow-md p-2 md:p-6 flex flex-col items-center text-center"
-                  >
-                    <h3 className="text-[10px] md:text-lg font-bold uppercase text-gray-900 tracking-wide leading-tight line-clamp-2">
-                      {subject.title}
-                    </h3>
-                    <Link
-                      href={`/register`}
-                      className="mt-1.5 md:mt-4 w-full inline-flex items-center justify-center py-1 md:py-3 rounded-lg text-[9px] md:text-sm font-bold text-white bg-[#14b8a6] hover:bg-[#0d9488] transition-colors duration-200"
-                    >
-                      Start Now
-                    </Link>
-                  </div>
-                );
-              })}
+              {SUBJECT_CARDS.map((subject) => (
+                <div
+                  key={subject.id}
+                  className="relative overflow-hidden rounded-xl bg-white/10 border border-white/20 p-2 md:p-6 flex flex-col items-center justify-center text-center min-h-[60px] md:min-h-[100px]"
+                >
+                  <span className="text-[10px] md:text-sm text-white/50 font-medium">
+                    Placeholder
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 

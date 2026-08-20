@@ -17,11 +17,11 @@ const CURRENT_PANEL = "ati-teas";
 // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 // Subject cards for the ATI TEAS subjects
 const SUBJECT_CARDS = [
-  { title: "SCIENCE", subject: "science" },
-  { title: "READING COMP...", subject: "reading" },
-  { title: "MATH", subject: "math" },
-  { title: "ENGLISH", subject: "english" },
-  { title: "COMPREHENSIVE", subject: "" },
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
 ];
 
 // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -128,25 +128,18 @@ export default function AtiTeasHomePage() {
               </h2>
             </div>
 
+            {/* Placeholder — updated from admin dashboard */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
-              {SUBJECT_CARDS.map((subject) => {
-                return (
-                  <div
-                    key={subject.subject || "comprehensive"}
-                    className="relative overflow-hidden rounded-xl bg-white shadow-md p-2 md:p-8 flex flex-col items-center justify-center text-center min-h-[70px] md:min-h-[160px]"
-                  >
-                    <h3 className="text-[10px] md:text-xl font-bold uppercase text-gray-900 tracking-wide leading-tight line-clamp-2">
-                      {subject.title}
-                    </h3>
-                    <Link
-                      href={`/register`}
-                      className="mt-1.5 md:mt-4 w-full inline-flex items-center justify-center py-1 md:py-3 rounded-lg text-[9px] md:text-base font-bold text-white bg-[#14b8a6] hover:bg-[#0d9488] transition-colors duration-200"
-                    >
-                      Start Now
-                    </Link>
-                  </div>
-                );
-              })}
+              {SUBJECT_CARDS.map((subject) => (
+                <div
+                  key={subject.id}
+                  className="relative overflow-hidden rounded-xl bg-white/10 border border-white/20 p-2 md:p-8 flex flex-col items-center justify-center text-center min-h-[60px] md:min-h-[160px]"
+                >
+                  <span className="text-[10px] md:text-sm text-white/50 font-medium">
+                    Placeholder
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
