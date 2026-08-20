@@ -17,8 +17,8 @@ export default function AtiTeasListCard() {
       <style>{`
         .ati-teas-list-scroll::-webkit-scrollbar { width: 6px; }
         .ati-teas-list-scroll::-webkit-scrollbar-track { background: transparent; }
-        .ati-teas-list-scroll::-webkit-scrollbar-thumb { background-color: #7f1d1d; border-radius: 9999px; }
-        .ati-teas-list-scroll::-webkit-scrollbar-thumb:hover { background-color: #991b1b; }
+        .ati-teas-list-scroll::-webkit-scrollbar-thumb { background-color: #14b8a6; border-radius: 9999px; }
+        .ati-teas-list-scroll::-webkit-scrollbar-thumb:hover { background-color: #0d9488; }
       `}</style>
 
       {/* Header */}
@@ -31,13 +31,13 @@ export default function AtiTeasListCard() {
       {/* Scrollable subject list */}
       <div
         className="ati-teas-list-scroll flex-1 overflow-y-scroll px-3 py-3 space-y-2 max-h-[260px]"
-        style={{ scrollbarWidth: "thin", scrollbarColor: "#7f1d1d transparent" }}
+        style={{ scrollbarWidth: "thin", scrollbarColor: "#14b8a6 transparent" }}
       >
         {SUBJECTS.map((subject) => (
           <Link
             key={subject.label}
             href={subject.href}
-            className="group flex items-center justify-between gap-2 w-full rounded-xl bg-[#7f1d1d] hover:bg-[#991b1b] px-4 py-2.5 text-white text-sm md:text-xl font-semibold transition-colors duration-200"
+            className="group flex items-center justify-between gap-2 w-full rounded-xl bg-[#14b8a6] hover:bg-[#0d9488] px-4 py-2.5 text-white text-sm md:text-xl font-semibold transition-colors duration-200"
           >
             <span className="truncate">{subject.label}</span>
             <ChevronRight className="w-3.5 h-3.5 shrink-0 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200" />
