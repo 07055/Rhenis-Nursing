@@ -62,12 +62,12 @@ const Navbar: React.FC = () => {
       <div className="flex-1" />
 
       {/* SEARCH BAR */}
-      <div className="hidden md:flex items-center gap-2 mr-4 px-3 py-1.5 rounded-lg bg-[var(--text-color)]/5 border border-[var(--text-color)]/15 w-64 lg:w-80">
-        <Search className="w-4 h-4 shrink-0 opacity-50" />
+      <div className="flex items-center gap-1.5 mr-3 px-2 py-1 rounded-lg bg-[var(--text-color)]/5 border border-[var(--text-color)]/15 w-28 sm:w-48 lg:w-80">
+        <Search className="w-3.5 h-3.5 shrink-0 opacity-50" />
         <input
           type="text"
           placeholder="Search..."
-          className="flex-1 bg-transparent text-sm outline-none placeholder:opacity-40"
+          className="flex-1 bg-transparent text-xs sm:text-sm outline-none placeholder:opacity-40"
         />
       </div>
 

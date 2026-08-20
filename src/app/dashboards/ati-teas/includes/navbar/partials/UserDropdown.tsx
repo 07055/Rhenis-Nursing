@@ -133,8 +133,8 @@ export default function UserDropdown() {
         <button
           onClick={() => setIsOpen(v => !v)}
           className="
-            group relative flex items-center gap-2 px-5 py-2.5
-            rounded-full text-sm font-semibold
+            group relative flex items-center gap-1 px-3 py-1.5
+            rounded-full text-xs font-semibold
             text-indigo-700
             bg-white/70 backdrop-blur
             border border-indigo-200
@@ -145,9 +145,7 @@ export default function UserDropdown() {
           "
         >
           <span className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-400/20 via-purple-400/20 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition" />
-          <FiLogIn className="relative" />
           <span className="relative">Login / Register</span>
-          <FiChevronDown className="relative ml-1 text-xs" />
         </button>
 
         <Dropdown
