@@ -4,12 +4,17 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 const SUBJECTS = [
-  { label: "HESI Exams (LPN)", href: "/register" },
-  { label: "ATI Exams (LPN)", href: "/register" },
-  { label: "EXIT ATI Exams-LPN", href: "/register" },
-  { label: "EXIT HESI Exams-LPN", href: "/register" },
-  { label: "EXAMPLIFY Practice (PN)", href: "/register" },
-  { label: "KAPLAN EXAMS", href: "/register" },
+  { label: "Pediatrics", href: "/register" },
+  { label: "Adult Health", href: "/register" },
+  { label: "Medical-Surgical", href: "/register" },
+  { label: "Maternal & Newborn", href: "/register" },
+  { label: "Child Health/ Pediatrics", href: "/register" },
+  { label: "Pharmacology", href: "/register" },
+  { label: "Mental Health", href: "/register" },
+  { label: "Nutrition", href: "/register" },
+  { label: "Fundamentals of Nursing", href: "/register" },
+  { label: "Dosage Calculation", href: "/register" },
+  { label: "Leadership", href: "/register" },
 ];
 
 export default function LpnNursingListCard() {
@@ -24,7 +29,7 @@ export default function LpnNursingListCard() {
 
       <div className="px-5 pt-4 pb-3 border-b border-gray-100">
         <h2 className="text-base md:text-2xl font-bold text-gray-900 text-center">
-          LPN Nursing Exams
+          Nursing Study Notes/Guides
         </h2>
       </div>
 

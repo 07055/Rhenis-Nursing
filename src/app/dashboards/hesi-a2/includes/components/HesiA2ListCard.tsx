@@ -4,13 +4,17 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 const SUBJECTS = [
-  { label: "READING Comprehension", href: "/register" },
-  { label: "BIOLOGY", href: "/register" },
-  { label: "MATH", href: "/register" },
-  { label: "GRAMMAR", href: "/register" },
-  { label: "VOCABULARIES", href: "/register" },
-  { label: "Comprehensive HESI A2 Exams", href: "/register" },
-  { label: "Anatomy and Physiology", href: "/register" },
+  { label: "Pediatrics", href: "/register" },
+  { label: "Adult Health", href: "/register" },
+  { label: "Medical-Surgical", href: "/register" },
+  { label: "Maternal & Newborn", href: "/register" },
+  { label: "Child Health/ Pediatrics", href: "/register" },
+  { label: "Pharmacology", href: "/register" },
+  { label: "Mental Health", href: "/register" },
+  { label: "Nutrition", href: "/register" },
+  { label: "Fundamentals of Nursing", href: "/register" },
+  { label: "Dosage Calculation", href: "/register" },
+  { label: "Leadership", href: "/register" },
 ];
 
 export default function HesiA2ListCard() {
@@ -26,7 +30,7 @@ export default function HesiA2ListCard() {
       {/* Header */}
       <div className="px-5 pt-4 pb-3 border-b border-gray-100">
         <h2 className="text-base md:text-2xl font-bold text-gray-900 text-center">
-          HESI A2
+          Nursing Study Notes/Guides
         </h2>
       </div>
 
