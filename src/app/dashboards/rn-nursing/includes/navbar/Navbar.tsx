@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
 
         {/* RIGHT AREA */}
         <div
-          className="items-center justify-end w-full gap-4 px-5 py-4 lg:flex"
+          className="flex items-center justify-end w-full gap-4 px-5 py-4"
         >
           <UserDropdown />
         </div>
