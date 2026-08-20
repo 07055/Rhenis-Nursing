@@ -128,14 +128,14 @@ export default function AtiTeasHomePage() {
                 return (
                   <div
                     key={subject.subject || "comprehensive"}
-                    className="relative overflow-hidden rounded-2xl bg-white shadow-md p-4 md:p-8 flex flex-col items-center justify-center text-center min-h-[100px] md:min-h-[160px]"
+                    className="relative overflow-hidden rounded-2xl bg-white shadow-md p-3 md:p-8 flex flex-col items-center justify-center text-center min-h-[80px] md:min-h-[160px]"
                   >
-                    <h3 className="text-xs md:text-xl font-bold uppercase text-gray-900 tracking-wide leading-tight">
+                    <h3 className="text-[11px] md:text-xl font-bold uppercase text-gray-900 tracking-wide leading-tight line-clamp-2">
                       {subject.title}
                     </h3>
                     <Link
                       href={`/register`}
-                      className="mt-3 md:mt-4 w-full inline-flex items-center justify-center py-2 md:py-3 rounded-lg text-xs md:text-base font-bold text-white bg-[#14b8a6] hover:bg-[#0d9488] transition-colors duration-200"
+                      className="mt-2 md:mt-4 w-full inline-flex items-center justify-center py-1.5 md:py-3 rounded-lg text-[10px] md:text-base font-bold text-white bg-[#14b8a6] hover:bg-[#0d9488] transition-colors duration-200"
                     >
                       Start Now
                     </Link>
