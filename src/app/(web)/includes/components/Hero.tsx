@@ -210,7 +210,6 @@ export default function Hero() {
                           <span className="text-[11px] sm:text-xs xl:text-[13px] font-bold text-gray-900 leading-tight whitespace-nowrap">
                               {link.label}
                             </span>
-                          </span>
                           <ChevronRight
                             className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 xl:w-4 xl:h-4 text-gray-400 group-hover:text-gray-600 transition-colors shrink-0 ml-0.5 sm:ml-1"
                             strokeWidth={2}
