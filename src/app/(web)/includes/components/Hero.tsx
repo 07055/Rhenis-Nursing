@@ -95,10 +95,18 @@ export default function Hero() {
           WebkitMaskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
         }}
       />
+      {/* Mobile-only decorative stethoscope */}
+      <Image
+        src="/stethoscope.jpg"
+        alt=""
+        width={300}
+        height={400}
+        className="absolute top-8 -right-10 w-[200px] md:hidden object-contain opacity-[0.15] pointer-events-none mix-blend-multiply"
+      />
       <div className="mx-auto w-full max-w-[1600px] px-4 md:px-6 lg:px-8 pt-24 pb-12 md:pt-16 md:pb-16">
-        {/* Hero intro — background photo is scoped to this block and clipped at its bottom edge */}
+        {/* Hero intro — background photo is scoped to this block and clipped at its bottom edge (desktop only) */}
         <div className="relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none select-none [mask-image:linear-gradient(to_bottom,black_50%,transparent_96%)]">
+          <div className="hidden md:block absolute inset-0 pointer-events-none select-none [mask-image:linear-gradient(to_bottom,black_50%,transparent_96%)]">
             <div className="absolute inset-0 opacity-80 md:opacity-100 [mask-image:linear-gradient(to_right,transparent_0%,black_45%)] lg:left-[28%] lg:[mask-image:linear-gradient(to_right,transparent_0%,black_55%)]">
               <Image
                 src="/images/home-bg/home-bg.png"
