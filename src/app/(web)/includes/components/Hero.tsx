@@ -169,7 +169,7 @@ export default function Hero() {
     </div>
 
           {/* Quick-access exam navigation — single row of 4 on desktop */}
-          <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6">
             {quickLinks.map((group) => {
               const Icon = group.icon;
               return (
@@ -184,11 +184,11 @@ export default function Hero() {
                       <Icon className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" strokeWidth={1.75} />
                     </span>
                     <div className="flex flex-col min-w-0">
-                      <span className={`text-[10px] sm:text-[13px] xl:text-sm font-bold uppercase leading-tight ${group.accentColor}`}>
+                      <span className={`text-[9px] sm:text-[13px] xl:text-sm font-bold uppercase leading-tight ${group.accentColor}`}>
                         {group.category}
                       </span>
                       <span className={`block w-6 h-0.5 sm:w-8 ${group.accentBg} rounded-full mt-1 sm:mt-1.5 mb-1 sm:mb-2`} />
-                      <p className="text-[10px] sm:text-xs md:text-[11px] xl:text-xs leading-snug text-slate-400">
+                      <p className="text-[9px] sm:text-xs md:text-[11px] xl:text-xs leading-snug text-slate-400">
                         {group.description}
                       </p>
                     </div>
