@@ -188,7 +188,7 @@ export default function Hero() {
                         {group.category}
                       </span>
                       <span className={`block w-6 h-0.5 sm:w-8 ${group.accentBg} rounded-full mt-1 sm:mt-1.5 mb-1 sm:mb-2`} />
-                      <p className="text-[10px] sm:text-xs md:text-[11px] xl:text-xs leading-snug text-slate-400 line-clamp-2">
+                      <p className="text-[10px] sm:text-xs md:text-[11px] xl:text-xs leading-snug text-slate-400">
                         {group.description}
                       </p>
                     </div>
