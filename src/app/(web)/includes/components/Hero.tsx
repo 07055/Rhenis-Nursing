@@ -107,14 +107,14 @@ export default function Hero() {
         {/* Hero intro — background photo is scoped to this block and clipped at its bottom edge (desktop only) */}
         <div className="relative overflow-hidden">
           <div className="hidden md:block absolute inset-0 pointer-events-none select-none [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_25%,black_50%,black_65%,transparent_100%)]">
-            <div className="absolute inset-0 opacity-90 lg:left-[24%] [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.4)_20%,black_55%,black_88%,rgba(0,0,0,0.6)_96%,transparent_100%)]">
+            <div className="absolute inset-0 isolate opacity-90 lg:left-[24%] [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.4)_20%,black_55%,black_88%,rgba(0,0,0,0.6)_96%,transparent_100%)]">
               <Image
                 src="/images/home-bg/home-bg.png"
                 alt=""
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 76vw"
-                className="object-contain object-[right_center]"
+                className="object-contain object-[right_center] mix-blend-lighten"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-r from-[#0d1b2e] via-[#0d1b2e]/45 lg:via-[#0d1b2e]/20 to-transparent" />
