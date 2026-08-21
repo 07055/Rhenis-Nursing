@@ -169,7 +169,7 @@ export default function Hero() {
     </div>
 
           {/* Quick-access exam navigation — single row of 4 on desktop */}
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {quickLinks.map((group) => {
               const Icon = group.icon;
               return (
