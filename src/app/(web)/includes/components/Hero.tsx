@@ -175,20 +175,20 @@ export default function Hero() {
               return (
                 <div
                   key={group.category}
-                  className="rounded-xl md:rounded-2xl border border-slate-700/50 bg-[#163353] p-2 sm:p-4 lg:p-5 xl:p-7 flex flex-col h-full"
+                  className="rounded-xl md:rounded-2xl border border-slate-700/50 bg-[#163353] p-2 sm:p-4 lg:p-5 xl:p-6 flex flex-col h-full"
                 >
-                  <div className="flex gap-1.5 sm:gap-3 md:gap-4">
+                  <div className="flex gap-1.5 sm:gap-3">
                     <span
-                      className={`inline-flex items-center justify-center w-6 h-6 sm:w-9 sm:h-9 md:w-10 md:h-10 xl:w-12 xl:h-12 shrink-0 rounded-full ${group.iconBg} ${group.iconColor}`}
+                      className={`inline-flex items-center justify-center w-6 h-6 sm:w-9 sm:h-9 lg:w-10 lg:h-10 shrink-0 rounded-full ${group.iconBg} ${group.iconColor}`}
                     >
-                      <Icon className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 xl:w-6 xl:h-6" strokeWidth={1.75} />
+                      <Icon className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" strokeWidth={1.75} />
                     </span>
                     <div className="flex flex-col min-w-0">
-                      <span className={`text-[9px] sm:text-sm md:text-sm xl:text-base font-bold uppercase leading-tight ${group.accentColor}`}>
+                      <span className={`text-[10px] sm:text-[13px] xl:text-sm font-bold uppercase leading-tight ${group.accentColor}`}>
                         {group.category}
                       </span>
                       <span className={`block w-6 h-0.5 sm:w-8 ${group.accentBg} rounded-full mt-1 sm:mt-1.5 mb-1 sm:mb-2`} />
-                      <p className="text-[9px] sm:text-xs md:text-[11px] xl:text-sm leading-snug text-slate-400">
+                      <p className="text-[10px] sm:text-xs md:text-[11px] xl:text-xs leading-snug text-slate-400 line-clamp-2">
                         {group.description}
                       </p>
                     </div>
@@ -200,13 +200,14 @@ export default function Hero() {
                         <Link
                           key={link.href + link.label}
                           href={link.href}
-                          className="flex items-center justify-between w-full px-1.5 sm:px-3 md:px-3 xl:px-4 py-1.5 sm:py-2.5 md:py-3 xl:py-4 rounded-lg bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors group"
+                          className="flex items-center justify-between w-full px-1.5 sm:px-2.5 xl:px-3.5 py-1.5 sm:py-2 md:py-2.5 xl:py-3 rounded-lg bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors group"
                         >
                           <span className="flex items-center gap-1 sm:gap-1.5 min-w-0">
-                            <span className={`inline-flex items-center justify-center w-4 h-4 sm:w-6 sm:h-6 md:w-6 md:h-6 xl:w-7 xl:h-7 rounded-md ${group.iconBg} ${group.iconColor} shrink-0`}>
-                              <LinkIcon className="w-2 h-2 sm:w-3 sm:h-3 md:w-3 md:h-3 xl:w-3.5 xl:h-3.5" strokeWidth={1.75} />
+                            <span className={`inline-flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 rounded-md ${group.iconBg} ${group.iconColor} shrink-0`}>
+                              <LinkIcon className="w-2 h-2 sm:w-3 sm:h-3 xl:w-3.5 xl:h-3.5" strokeWidth={1.75} />
                             </span>
-                            <span className="text-[11px] sm:text-[13px] md:text-[13px] xl:text-base font-bold text-gray-900 leading-tight whitespace-nowrap">
+                          </span>
+                          <span className="text-[11px] sm:text-xs xl:text-[13px] font-bold text-gray-900 leading-tight whitespace-nowrap">
                               {link.label}
                             </span>
                           </span>
