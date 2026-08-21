@@ -106,18 +106,18 @@ export default function Hero() {
       <div className="mx-auto w-full max-w-[1600px] px-4 md:px-6 lg:px-8 pt-24 pb-12 md:pt-16 md:pb-16">
         {/* Hero intro — background photo is scoped to this block and clipped at its bottom edge (desktop only) */}
         <div className="relative overflow-hidden">
-          <div className="hidden md:block absolute inset-0 pointer-events-none select-none [mask-image:linear-gradient(to_bottom,black_50%,transparent_96%)]">
-            <div className="absolute inset-0 opacity-80 md:opacity-100 [mask-image:linear-gradient(to_right,transparent_0%,black_45%)] lg:left-[28%] lg:[mask-image:linear-gradient(to_right,transparent_0%,black_55%)]">
+          <div className="hidden md:block absolute inset-0 pointer-events-none select-none [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.5)_25%,black_50%,black_65%,transparent_100%)]">
+            <div className="absolute inset-0 opacity-90 lg:left-[24%] [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.4)_20%,black_55%,black_88%,rgba(0,0,0,0.6)_96%,transparent_100%)]">
               <Image
                 src="/images/home-bg/home-bg.png"
                 alt=""
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 72vw"
+                sizes="(max-width: 1024px) 100vw, 76vw"
                 className="object-contain object-[right_center]"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0d1b2e] via-[#0d1b2e]/50 lg:via-[#0d1b2e]/25 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0d1b2e] via-[#0d1b2e]/45 lg:via-[#0d1b2e]/20 to-transparent" />
           </div>
           <div className="relative z-10 text-center md:text-left max-w-xl md:max-w-2xl lg:max-w-3xl py-6 lg:py-8">
             <div className="flex-1 min-w-0">
