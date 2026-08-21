@@ -160,7 +160,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-12 md:py-16">
-      <div className="mx-auto max-w-7xl px-5">
+      <div className="mx-auto w-full max-w-[1600px] px-4 md:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="inline-block font-mono text-xs tracking-widest uppercase text-sage mb-3">
             FAQ

@@ -95,16 +95,23 @@ export default function Hero() {
           WebkitMaskImage: "radial-gradient(circle at 20% 30%, black 0%, transparent 70%)",
         }}
       />
-      <Image
-        src="/stethoscope.jpg"
-        alt=""
-        width={300}
-        height={400}
-        className="absolute top-8 -right-10 w-[200px] md:w-[380px] lg:w-[440px] object-contain opacity-[0.15] pointer-events-none mix-blend-multiply"
-      />
-      <div className="mx-auto max-w-6xl px-5 pt-24 pb-12 md:pt-16 md:pb-16">
-        <div className="text-center max-w-4xl lg:max-w-5xl relative mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+      <div className="mx-auto w-full max-w-[1600px] px-4 md:px-6 lg:px-8 pt-24 pb-12 md:pt-16 md:pb-16">
+        {/* Hero intro — background photo is scoped to this block and clipped at its bottom edge */}
+        <div className="relative overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none select-none [mask-image:linear-gradient(to_bottom,black_50%,transparent_96%)]">
+            <div className="absolute inset-0 opacity-80 md:opacity-100 [mask-image:linear-gradient(to_right,transparent_0%,black_45%)] lg:left-[28%] lg:[mask-image:linear-gradient(to_right,transparent_0%,black_55%)]">
+              <Image
+                src="/images/home-bg/home-bg.png"
+                alt=""
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 72vw"
+                className="object-contain object-[right_center]"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0d1b2e] via-[#0d1b2e]/50 lg:via-[#0d1b2e]/25 to-transparent" />
+          </div>
+          <div className="relative z-10 text-center md:text-left max-w-xl md:max-w-2xl lg:max-w-3xl py-6 lg:py-8">
             <div className="flex-1 min-w-0">
               <span className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-coral mb-4">
                 <span className="inline-flex items-center justify-center w-7 h-7 rounded-full border-2 border-green bg-transparent">
@@ -119,19 +126,19 @@ export default function Hero() {
                 Start Your Career
                 <span className="text-coral">.</span>
               </h1>
-              <p className="text-lg md:text-xl text-navy/60 leading-relaxed max-w-2xl mb-8 mx-auto">
+              <p className="text-lg md:text-xl text-navy/60 leading-relaxed max-w-2xl mb-8 mx-auto md:mx-0">
                 Question banks, study notes, and timed practice tests for TEAS 7,
                 HESI A2, NCLEX-RN/PN, and RN &amp; LPN nursing exams — all in one
                 place.
               </p>
 
               {/* Last Updated Placeholder — editable from admin dashboard */}
-              <p className="flex items-center justify-center gap-1.5 text-xs md:text-sm text-navy/40 font-medium tracking-wide mb-6">
+              <p className="flex items-center justify-center md:justify-start gap-1.5 text-xs md:text-sm text-navy/40 font-medium tracking-wide mb-6">
                 <Calendar className="w-3.5 h-3.5" />
                 Exams last updated on <span className="text-green font-semibold">mm/dd/yy</span>
               </p>
 
-              <div className="flex flex-row items-center justify-center gap-2 md:gap-6">
+              <div className="flex flex-row items-center justify-center md:justify-start gap-2 md:gap-6">
                 <a
                   href="/dashboards"
                   className="inline-flex items-center justify-center gap-1.5 px-4 py-1.5 md:px-10 md:py-3 rounded-full text-xs md:text-base font-semibold text-paper bg-coral hover:bg-coral-hover transition-colors whitespace-nowrap"
@@ -153,14 +160,14 @@ export default function Hero() {
           </div>
     </div>
 
-          {/* Quick-access exam navigation */}
-          <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 mx-auto">
+          {/* Quick-access exam navigation — single row of 4 on desktop */}
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {quickLinks.map((group) => {
               const Icon = group.icon;
               return (
                 <div
                   key={group.category}
-                  className="rounded-xl md:rounded-2xl border border-slate-700/50 bg-[#163353] p-2 sm:p-4 md:p-6 xl:p-8 flex flex-col h-full"
+                  className="rounded-xl md:rounded-2xl border border-slate-700/50 bg-[#163353] p-2 sm:p-4 lg:p-5 xl:p-7 flex flex-col h-full"
                 >
                   <div className="flex gap-1.5 sm:gap-3 md:gap-4">
                     <span
@@ -209,7 +216,7 @@ export default function Hero() {
           </div>
 
           {/* Feature strip */}
-          <div className="mt-8 max-w-4xl lg:max-w-5xl mx-auto rounded-xl border border-border bg-paper-dim p-3 sm:p-5 md:p-8 xl:p-10">
+          <div className="mt-8 rounded-xl border border-border bg-paper-dim p-3 sm:p-5 md:p-8 xl:p-10">
             <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 xl:gap-6">
               <div className="flex flex-col items-center text-center">
                 <span className="inline-flex items-center justify-center w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 xl:w-12 xl:h-12 rounded-full border border-border-light mb-1 sm:mb-2.5">

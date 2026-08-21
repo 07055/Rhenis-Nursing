@@ -41,7 +41,7 @@ export default function PulseLine({
       <svg
         viewBox="0 0 1000 80"
         preserveAspectRatio="xMidYMid meet"
-        className="w-full max-w-5xl h-20 md:h-28"
+        className="w-full h-20 md:h-28"
         fill="none"
       >
         <path

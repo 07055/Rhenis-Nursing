@@ -54,7 +54,7 @@ export default function Navbar() {
         scrolled ? 'bg-[#0d1b2e]/95 backdrop-blur-md py-2 shadow-lg' : 'bg-[#0d1b2e] py-4'
       }`}
     >
-      <div className="mx-auto max-w-6xl px-5 flex items-center justify-between">
+      <div className="mx-auto w-full max-w-[1600px] px-4 md:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2 group" onClick={() => setOpenDropdown(null)}>
           <Image

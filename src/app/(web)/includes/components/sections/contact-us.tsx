@@ -23,7 +23,7 @@ const contactMethods = [
 export default function ContactUs() {
   return (
     <section id="contact" className="py-12 md:py-16">
-      <div className="mx-auto max-w-6xl px-5">
+      <div className="mx-auto w-full max-w-[1600px] px-4 md:px-6 lg:px-8">
         {/* Intro */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="inline-block font-mono text-xs tracking-widest uppercase text-sage mb-3">
