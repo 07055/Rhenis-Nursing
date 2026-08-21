@@ -128,7 +128,7 @@ export default function Hero() {
               {/* Last Updated Placeholder — editable from admin dashboard */}
               <p className="flex items-center justify-center gap-1.5 text-xs md:text-sm text-navy/40 font-medium tracking-wide mb-6">
                 <Calendar className="w-3.5 h-3.5" />
-                Exams last Updated <span className="text-green font-semibold">mm/dd/yy</span>
+                Exams last updated on <span className="text-green font-semibold">mm/dd/yy</span>
               </p>
 
               <div className="flex flex-row items-center justify-center gap-2 md:gap-6">

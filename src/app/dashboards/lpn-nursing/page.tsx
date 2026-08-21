@@ -105,18 +105,18 @@ export default function LpnNursingHomePage() {
               {randomQuote.quoteDescription}
             </p>
 
-            <p className="flex items-center gap-1.5 text-[10px] md:text-xs text-gray-400 font-medium mt-2">
-              <Calendar className="w-3 h-3" />
-              Exams last Updated <span className="text-green-600 font-semibold">mm/dd/yy</span>
-            </p>
           </div>
 
           {/* LPN Nursing Subjects — order-2 on mobile, spans full width on desktop */}
           <div className="order-2 sm:col-span-2 lg:order-last lg:col-span-3">
-            <div className="flex items-center gap-2 mb-2.5">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2.5">
               <h2 className="text-lg md:text-2xl font-bold text-white">
                 LPN Nursing Exams
               </h2>
+              <p className="flex items-center gap-1.5 text-[10px] md:text-xs text-gray-400 font-medium">
+                <Calendar className="w-3 h-3" />
+                Exams last updated on <span className="text-green-400 font-semibold">mm/dd/yy</span>
+              </p>
             </div>
 
             {/* Placeholder — updated from admin dashboard */}
