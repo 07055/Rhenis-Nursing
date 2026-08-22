@@ -19,7 +19,7 @@ const SUBJECTS = [
 
 export default function LpnNursingListCard() {
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white shadow-sm flex flex-col h-full overflow-hidden">
+    <div className="rounded-2xl border border-[var(--text-color)]/15 bg-[var(--content-bg)] flex flex-col h-full overflow-hidden">
       <style>{`
         .lpn-nursing-list-scroll::-webkit-scrollbar { width: 6px; }
         .lpn-nursing-list-scroll::-webkit-scrollbar-track { background: transparent; }
@@ -27,8 +27,8 @@ export default function LpnNursingListCard() {
         .lpn-nursing-list-scroll::-webkit-scrollbar-thumb:hover { background-color: #0d9488; }
       `}</style>
 
-      <div className="px-3 pt-3 pb-5 md:px-5 md:pt-4 border-b border-gray-100">
-        <h2 className="text-base md:text-2xl font-bold text-gray-900 text-center">
+      <div className="px-3 pt-3 pb-5 md:px-5 md:pt-4 border-b border-[var(--text-color)]/10">
+        <h2 className="text-base md:text-2xl font-bold text-[var(--text-color)] text-center">
           Nursing Study Notes/Guides
         </h2>
       </div>

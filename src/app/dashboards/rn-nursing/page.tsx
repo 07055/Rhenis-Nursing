@@ -92,16 +92,16 @@ export default function RnNursingHomePage() {
         {/* ─── Greeting + Subjects + List + Gauge ─── */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-3 lg:items-stretch">
           {/* Greeting Card */}
-          <div className="order-1 min-w-0 relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm px-4 py-3 lg:px-5 lg:py-3 flex flex-col justify-center">
-            <p className="text-sm text-gray-400 mb-1">
+          <div className="order-1 min-w-0 relative overflow-hidden rounded-2xl border border-[var(--text-color)]/15 bg-[var(--content-bg)] px-4 py-3 lg:px-5 lg:py-3 flex flex-col justify-center">
+            <p className="text-sm text-[var(--text-color)] opacity-60 mb-1">
               {formattedDate} at {formattedTime}
             </p>
 
-            <p className="text-base lg:text-lg font-bold text-gray-900 mb-1">
+            <p className="text-base lg:text-lg font-bold text-[var(--text-color)] mb-1">
               {greeting}{!isUserLoading && firstName ? `, ${firstName}` : ", Guest"} !
             </p>
 
-            <p className="text-xs lg:text-sm text-gray-400 italic leading-relaxed">
+            <p className="text-xs lg:text-sm text-[var(--text-color)] opacity-60 italic leading-relaxed">
               {randomQuote.quoteDescription}
             </p>
 

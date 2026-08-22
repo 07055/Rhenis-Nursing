@@ -53,9 +53,9 @@ export default function PerformanceIndexGauge({ score = 0 }: { score?: number })
         : "text-green-500";
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-5 flex flex-col items-center text-center h-full">
+    <div className="rounded-2xl border border-[var(--text-color)]/15 bg-[var(--content-bg)] p-5 flex flex-col items-center text-center h-full">
       {/* Heading */}
-      <h2 className="text-base md:text-2xl font-bold text-gray-900 mb-1">Performance Index!</h2>
+      <h2 className="text-base md:text-2xl font-bold text-[var(--text-color)] mb-1">Performance Index!</h2>
 
       {/* Status message */}
       <p className={`text-sm md:text-lg font-semibold mb-4 leading-snug ${statusColor}`}>
@@ -66,7 +66,7 @@ export default function PerformanceIndexGauge({ score = 0 }: { score?: number })
       <div className="w-full flex justify-center">
         <svg
           viewBox="0 0 300 165"
-          className="w-full max-w-[260px]"
+          className="w-full max-w-[260px] text-[var(--text-color)]"
           role="img"
           aria-label={`Performance index ${clampedScore} percent`}
         >
@@ -118,21 +118,21 @@ export default function PerformanceIndexGauge({ score = 0 }: { score?: number })
           <g transform={`rotate(${needleRotation} ${CX} ${CY})`}>
             <polygon
               points={`${CX},${CY - R + 24} ${CX - 2.5},${CY + 2} ${CX + 2.5},${CY + 2}`}
-              fill="#374151"
+              fill="currentColor"
             />
           </g>
 
           {/* Center hub */}
-          <circle cx={CX} cy={CY} r="6" fill="#374151" />
+          <circle cx={CX} cy={CY} r="6" fill="currentColor" />
           <circle cx={CX} cy={CY} r="3" fill="white" />
 
-          {/* Score percentage (large, centered inside arc) */}
+          {/* Score percentage */}
           <text
             x={CX}
             y={CY - 32}
             textAnchor="middle"
             dominantBaseline="middle"
-            fill="#111827"
+            fill="currentColor"
             fontSize="28"
             fontWeight="800"
             fontFamily="inherit"
@@ -144,8 +144,8 @@ export default function PerformanceIndexGauge({ score = 0 }: { score?: number })
 
       {/* Score label */}
       <div className="mt-2 text-center">
-        <span className="text-sm md:text-lg font-semibold text-gray-500">
-          Score : <span className="text-gray-900">{clampedScore}</span>
+        <span className="text-sm md:text-lg font-semibold text-[var(--text-color)] opacity-60">
+          Score : <span className="text-[var(--text-color)]">{clampedScore}</span>
         </span>
       </div>
     </div>
