@@ -86,7 +86,7 @@ export default function SearchBar({
         }}
         placeholder="Search..."
         autoFocus={!!compact && expanded}
-        className="w-full bg-transparent text-sm text-navy placeholder:text-navy/40 outline-none"
+        className="w-full bg-transparent text-[16px] sm:text-sm text-navy placeholder:text-navy/40 outline-none"
       />
       {query ? (
         <button

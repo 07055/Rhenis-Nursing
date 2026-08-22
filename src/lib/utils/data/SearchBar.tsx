@@ -38,7 +38,7 @@ export default function SearchBar({
         placeholder={placeholder}
         className={`
           w-full pl-9 pr-9 py-2
-          text-sm rounded-md
+          text-[16px] sm:text-sm rounded-md
           border outline-none
           transition
           focus:ring-2 focus:ring-offset-1

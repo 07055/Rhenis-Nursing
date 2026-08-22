@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
         <input
           type="text"
           placeholder="Search..."
-          className="flex-1 bg-transparent text-xs sm:text-sm outline-none placeholder:opacity-40"
+          className="flex-1 bg-transparent text-[16px] sm:text-sm outline-none placeholder:opacity-40"
         />
       </div>
 
